@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.liaoinstan.demospring">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".demo1.Demo1Activity"
+            android:label="@string/title_activity_demo1"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo2.Demo2Activity"
+            android:label="@string/title_activity_demo2"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo3.Demo3Activity"
+            android:label="@string/title_activity_demo3"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo4.Demo4Activity"
+            android:label="@string/title_activity_demo4"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo5.Demo5Activity"
+            android:label="@string/title_activity_demo5"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo6.Demo6Activity"
+            android:label="@string/title_activity_demo6"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".demo7.Demo7Activity"
+            android:label="@string/title_activity_demo7"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".test.TestActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".warning.WarningActivity"
+            android:label="@string/title_activity_warning"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+
+</manifest>

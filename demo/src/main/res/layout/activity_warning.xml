@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".warning.WarningActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.liaoinstan.springview.widget.SpringView
+            android:id="@+id/springview"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ScrollView
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="#68b3f3"
+                        android:textColor="#ffffff"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="这是一个自定义的header，在拉动到达下边界时改变header上textview的文字"/>
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:textColor="#ffffff"
+                        android:text="但是拉动时发生了位置错乱，使拉动回到了头部\n\n这是由于当textView的宽度为wrap_content时，调用textView.setText()方法，textView会重新计算内容占据的高宽，并重新进行layout，丢失原来的高度，最终导致拉动回到顶部\n\n解决方法：\n设置textView的宽为match_parent或固定值\n\n这个问题来自textView，springView无法进行处理，如果需要动态改变内容的textView,请不要设置宽度为wrap_content\n\n\n只有设置springView为OVERLAP(重叠)模式时才会出现这个问题"
+                        android:textSize="12sp"
+                        android:background="#68b3f3"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+                        android:background="#68b3f3"/>
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </com.liaoinstan.springview.widget.SpringView>
+
+
+        <RadioGroup
+            android:layout_gravity="bottom|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="90dp"
+            android:id="@+id/group_text"
+            android:orientation="vertical">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置TextView宽为wrap_content"
+                android:checked="true"
+                android:id="@+id/setwrap"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置TextView宽为120dp"
+                android:id="@+id/sethard"/>
+        </RadioGroup>
+
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

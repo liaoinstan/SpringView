@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ali_frame"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/ali_footer_progressbar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ali_footer_text"
+            android:layout_toStartOf="@+id/ali_footer_text"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/ali_footer_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ali_footer_text"
+            android:layout_toStartOf="@+id/ali_footer_text"
+            android:adjustViewBounds="true"
+            android:rotation="180"/>
+
+
+        <TextView
+            android:id="@+id/ali_footer_text"
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="left"
+            android:text="上拉加载" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ali_footer_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:adjustViewBounds="true"/>
+</LinearLayout>

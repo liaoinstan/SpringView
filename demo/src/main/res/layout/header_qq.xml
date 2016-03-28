@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/qqbk"
+    android:layout_gravity="top">
+
+    <TextView
+        android:layout_width="200dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="刷一刷"
+        android:id="@+id/text_dot"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fdd21b"
+        android:textSize="50sp"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="连刷更容易得红包"
+        android:textSize="18sp"
+        android:id="@+id/text_note"
+        android:layout_below="@+id/text_dot"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

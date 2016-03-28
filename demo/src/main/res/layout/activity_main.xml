@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/demo1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo1" />
+
+        <Button
+            android:id="@+id/demo2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo2" />
+
+        <Button
+            android:id="@+id/demo3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo3" />
+
+        <Button
+            android:id="@+id/demo4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo4" />
+
+        <Button
+            android:id="@+id/demo5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo5" />
+
+        <Button
+            android:id="@+id/demo6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo6" />
+
+        <Button
+            android:id="@+id/demo7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo7" />
+
+        <Button
+            android:id="@+id/warning"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="warning" />
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="test" />
+    </LinearLayout>
+
+</ScrollView>
