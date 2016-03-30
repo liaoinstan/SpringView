@@ -8,8 +8,6 @@ SpringView
 
 **SpringView** 能动态地替换头部/尾部，只需要设置不同的头尾即可：springView.setHeader(MyHeader());
 
-**SpringView** 使用简单，对于简单的需求甚至不用写任何代码，只需要在布局中为SpringView设置header="@layout/..."属性即可。
-
 **SpringView** 支持多点触控，可以两只手连续拖拽，你可以定制一些有趣味的效果
 
 **SpringView** 提供了2种拖拽方式（重叠和跟随），可以动态地切换
