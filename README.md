@@ -1,7 +1,3 @@
-关于下拉刷新/上拉加载更多的解决方案网上已经有很多了，浏览了目前主流的下拉控件比如PullToRefresh库等，**第一：大多数实现库都难以进行动画和样式的自定义。第二：不能很好的兼容多种滚动控件**，它们都对listView、RecyclerView等进行了不同程度的重新实现，你在项目中就得使用库提供的PullToRefreshListView、PullToRefreshRecyclerView等来代替源生的listView、RecyclerView等，这样的方式其实并不好，随着android版本的不断升级源生的listView、RecyclerView也不断加入新特性和对之前bug的修改，这使得三方实现的控件很难跟上google的节奏，当源生listView已经更新多个版本之后，三方的ListView可能还在使用低版本的实现方式。
-
-基于如上两个原因，我开始着手开发SpringView（弹性View）
-
 ##**SpringView有哪些优点？**
 
  1. 能对header/footer（头部/尾部）的样式和动画进行高度自定义，单独将header/footer独立出来，几乎可是实现任何你想要的效果，只需要继承BaseHeader/BaseFooter实现对应接口就可以。
@@ -63,7 +59,7 @@ springView.setListener(new SpringView.OnFreshListener() {
       public void onLoadmore() {
       }
 });
-
+```
 
 ####**获取SpringView**
 添加Gradle依赖:
