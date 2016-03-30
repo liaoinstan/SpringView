@@ -1,3 +1,5 @@
+更多请异步至 我的CSDN博客： http://blog.csdn.net/liaoinstan  
+
 ##**SpringView有哪些优点？**
 
  1. 能对header/footer（头部/尾部）的样式和动画进行高度自定义，单独将header/footer独立出来，几乎可是实现任何你想要的效果，只需要继承BaseHeader/BaseFooter实现对应接口就可以。
