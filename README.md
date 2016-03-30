@@ -22,7 +22,7 @@ SpringView
 如何使用 SpringView
 --------
 
-在布局文件中添加SpringView，并把你想要拖拽的控件放在SpringView中，给SpringView添加app:header="@layout/..."属性，设置一个自己编写的头部的布局即可（footer同理）：
+在布局文件中添加SpringView，注意SpringView和ScrollView有同样的限制：只能有一个子元素：
 
 ```
 	<com.liaoinstan.springview.widget.SpringView
@@ -40,10 +40,8 @@ SpringView
 当然，你也可以不再布局中设置，使用代码动态添加：
 
 ```
-	//DefaultHeader/Footer是SpringView已经实现的默认头/尾之一
-	//更多还有MeituanHeader、AliHeader、RotationHeader等如上图7种
 	springView.setHeader(new DefaultHeader(this));
-    springView.setFooter(new DefaultFooter(this));
+	springView.setFooter(new DefaultFooter(this));
 ```
 
 添加监听
@@ -62,9 +60,18 @@ springView.setListener(new SpringView.OnFreshListener() {
 ```
 
 ####**获取SpringView**
-添加Gradle依赖:
+use Gradle:
 ```
 dependencies {
    compile 'com.liaoinstan.springview:library:1.1.0'
 }
+```
+or Maven：
+```
+<dependency>
+  <groupId>com.liaoinstan.springview</groupId>
+  <artifactId>library</artifactId>
+  <version>1.1.0</version>
+  <type>pom</type>
+</dependency>
 ```
