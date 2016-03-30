@@ -67,6 +67,6 @@ springView.setListener(new SpringView.OnFreshListener() {
 添加Gradle依赖:
 ```
 dependencies {
-   compile 'com.github.rey5137:material:1.2.2'
+   compile 'com.liaoinstan.springview:library:1.1.0'
 }
 ```
