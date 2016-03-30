@@ -60,10 +60,6 @@ springView.setListener(new SpringView.OnFreshListener() {
       }
 });
 ```
-**反馈**
---------
-如果遇到问题或者好的建议，请反馈到我的邮箱：liaoinstan@outlook.com
-或者在我的CSDN博客留言
 
 **获取SpringView**
 --------
@@ -83,4 +79,11 @@ dependencies {
 </dependency>
 ```
 
+**反馈**
+--------
+如果遇到问题或者好的建议，请反馈到我的邮箱：liaoinstan@outlook.com
+或者在我的博客留言
+
+**更多**
+--------
 更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan) 
