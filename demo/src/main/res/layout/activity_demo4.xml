@@ -43,6 +43,7 @@
         </com.liaoinstan.springview.widget.SpringView>
 
         <TextView
+            android:visibility="invisible"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/AcFunFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/AcFunHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/AliFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/AliHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/BaseFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/BaseHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/DefaultFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/DefaultHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/MeituanFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/MeituanHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/RotationFooter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/container/RotationHeader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/utils/DensityUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/src/main/java/com/liaoinstan/springview/widget/SpringView.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

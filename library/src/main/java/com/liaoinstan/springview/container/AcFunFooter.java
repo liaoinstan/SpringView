@@ -1,21 +1,25 @@
 package com.liaoinstan.springview.container;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/23.
  */
 public class AcFunFooter extends BaseFooter {
+    private Context context;
     private int imgSrc;
     private ImageView acfun_footer_img;
 
-    public AcFunFooter(int imgSrc){
+    public AcFunFooter(Context context,int imgSrc){
+        this.context = context;
         this.imgSrc = imgSrc;
     }
 
@@ -29,7 +33,7 @@ public class AcFunFooter extends BaseFooter {
 
     @Override
     public int getDragLimitHeight(View rootView) {
-        return 150;
+        return DensityUtil.dip2px(context,70);
     }
 
     @Override
@@ -39,7 +43,7 @@ public class AcFunFooter extends BaseFooter {
 
     @Override
     public int getDragSpringHeight(View rootView) {
-        return 150;
+        return DensityUtil.dip2px(context,70);
     }
 
     @Override

@@ -46,31 +46,31 @@ public class RotationHeader extends BaseHeader {
         this.rotationFuSrc = rotationFuSrc;
 
         mRotateUpAnim = new RotateAnimation(0.0f, 360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim.setInterpolator(new LinearInterpolator());
         mRotateUpAnim.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim.setDuration(1200);
         mRotateUpAnim.setFillAfter(true);
 
         mRotateUpAnim2 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim2.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim2.setInterpolator(new LinearInterpolator());
         mRotateUpAnim2.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim2.setDuration(800);
         mRotateUpAnim2.setFillAfter(true);
 
         mRotateUpAnim3 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim3.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim3.setInterpolator(new LinearInterpolator());
         mRotateUpAnim3.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim3.setDuration(500);
         mRotateUpAnim3.setFillAfter(true);
 
         mRotateUpAnim4 = new RotateAnimation(0.0f, 360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim4.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim4.setInterpolator(new LinearInterpolator());
         mRotateUpAnim4.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim4.setDuration(400);
         mRotateUpAnim4.setFillAfter(true);
 
         mRotateUpAnim5 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim5.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim5.setInterpolator(new LinearInterpolator());
         mRotateUpAnim5.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim5.setDuration(800);
         mRotateUpAnim5.setFillAfter(true);

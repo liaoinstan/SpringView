@@ -34,7 +34,7 @@ public class RotationFooter extends BaseFooter {
         this.rotationSrc = rotationSrc;
 
         mRotateUpAnim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        mRotateUpAnim.setInterpolator(new LinearInterpolator());//不停顿
+        mRotateUpAnim.setInterpolator(new LinearInterpolator());
         mRotateUpAnim.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim.setDuration(600);
         mRotateUpAnim.setFillAfter(true);

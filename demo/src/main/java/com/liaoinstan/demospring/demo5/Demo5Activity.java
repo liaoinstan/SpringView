@@ -20,7 +20,7 @@ public class Demo5Activity extends AppCompatActivity {
         setContentView(R.layout.activity_demo5);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f8d3e4")));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff8277")));
 
         springView = (SpringView) findViewById(R.id.springview);
         springView.setGive(SpringView.Give.NONE);
@@ -33,7 +33,7 @@ public class Demo5Activity extends AppCompatActivity {
             public void onLoadmore() {
             }
         });
-        springView.setHeader(new AcFunHeader(R.drawable.acfun_header));
-        springView.setFooter(new AcFunFooter(R.drawable.acfun_footer));
+        springView.setHeader(new AcFunHeader(this,R.drawable.acfun_header));
+        springView.setFooter(new AcFunFooter(this,R.drawable.acfun_footer));
     }
 }

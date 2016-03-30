@@ -48,7 +48,7 @@
                         android:id="@+id/text"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#f8d3e4"
+                        android:background="#ffd5d1"
                         android:textColor="#ffffff"
                         android:gravity="center"
                         android:text="We are in ScrollView"/>
@@ -60,7 +60,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#f8d3e4"/>
+                        android:background="#ffd5d1"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#f8d3e4"/>
+                        android:background="#ffd5d1"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#f8d3e4"/>
+                        android:background="#ffd5d1"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#f8d3e4"/>
+                        android:background="#ffd5d1"/>
 
                 </LinearLayout>
             </ScrollView>

@@ -27,7 +27,5 @@ public class Demo4Activity extends AppCompatActivity{
         settings.setJavaScriptEnabled(true);
         webView.loadUrl("https://github.com");//https://github.com    //http://cn.bing.com/
 
-
-
     }
 }
