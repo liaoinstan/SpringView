@@ -55,6 +55,10 @@
                         android:id="@+id/text"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:gravity="center"
+                        android:text="SpringView支持ScrollView\n\n这是一个提供了记录刷新时间的Header"
                         android:background="#68b3f3"/>
 
                     <TextView

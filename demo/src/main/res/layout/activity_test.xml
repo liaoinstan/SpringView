@@ -98,15 +98,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/group_type"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text=" 样式:"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="overlap(重叠)"
                 android:checked="true"
                 android:id="@+id/overlap"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="follow(跟随)"
                 android:id="@+id/follow"/>
 
@@ -117,25 +124,34 @@
             android:layout_height="wrap_content"
             android:id="@+id/group_give"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text=" 停顿:"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="both"
                 android:checked="true"
+                android:textSize="12sp"
                 android:id="@+id/both"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="only top"
+                android:textSize="12sp"
                 android:id="@+id/top"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="only bottom"
                 android:id="@+id/bottom"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="none"
                 android:id="@+id/none"/>
 

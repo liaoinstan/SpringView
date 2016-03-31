@@ -45,6 +45,9 @@ public class MeituanFooter extends BaseFooter {
 
     @Override
     public void onPreDrag(View rootView) {
+        animationLoading.stop();
+        if (animationLoading!=null && animationLoading.getNumberOfFrames()>0)
+            footer_img.setImageDrawable(animationLoading.getFrame(0));
     }
 
     @Override

@@ -79,7 +79,7 @@ public class Demo2Activity extends AppCompatActivity {
 
     private void initData(){
         for (int i = 0; i < 8; i++) {
-            mDatas.add(i==0?"We are in ListView":"");
+            mDatas.add(i==0?"We are in ListView":(i==1?"SpringView支持ListView\n\n你可以轻易定制个性化的头部和尾部并在任何控件中使用它":""));
         }
     }
 
@@ -136,7 +136,7 @@ public class Demo2Activity extends AppCompatActivity {
             }
             if (position%2==1) {
                 item_text.setBackgroundColor(Color.parseColor("#e3f1fc"));
-                item_text.setTextColor(Color.parseColor("#ffffff"));
+                item_text.setTextColor(Color.parseColor("#9dd2fc"));
             }
             else {
                 item_text.setBackgroundColor(Color.parseColor("#ffffff"));

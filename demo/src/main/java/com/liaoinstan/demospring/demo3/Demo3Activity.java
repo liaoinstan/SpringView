@@ -78,7 +78,7 @@ public class Demo3Activity extends AppCompatActivity{
 
     private void initData(){
         for (int i = 0; i < 9; i++) {
-            mDatas.add(i==0?"We are in RecyclerView":"");
+            mDatas.add(i==0?"We are in RecyclerView":(i==1?"SpringView支持RecyclerView\n\n这是一个仿阿里旅行的header，logo可以图片可自行替换":""));
         }
     }
 
@@ -115,7 +115,7 @@ public class Demo3Activity extends AppCompatActivity{
             holder.text_item.setText(results.get(position));
             if (position%2==1) {
                 holder.text_item.setBackgroundColor(Color.parseColor("#e3f1fc"));
-                holder.text_item.setTextColor(Color.parseColor("#ffffff"));
+                holder.text_item.setTextColor(Color.parseColor("#9dd2fc"));
             }
             else {
                 holder.text_item.setBackgroundColor(Color.parseColor("#ffffff"));

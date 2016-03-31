@@ -56,6 +56,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:textColor="#9dd2fc"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:text="SprigView能够动态替换头\尾部\n\n这是一个简单定制的仿qq刷红包的效果"
                         android:background="#e3f1fc"/>
 
                     <TextView

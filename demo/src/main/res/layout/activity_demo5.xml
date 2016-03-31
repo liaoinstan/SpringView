@@ -55,7 +55,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
+                        android:textColor="#cccccc"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:text="SpringView支持多点触控，双手连续下拉到底部试试\n\n图片素材比较模糊，可自行替换"/>
 
                     <TextView
                         android:layout_width="match_parent"

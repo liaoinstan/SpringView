@@ -56,6 +56,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:textColor="#18cfbe"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:text="这是一个仿美团的效果\n\n你可以自行设置一组图片来展示自己的动画"
                         android:background="#dbfbf8"/>
 
                     <TextView

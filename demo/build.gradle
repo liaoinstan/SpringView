@@ -27,6 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
 
-//    compile 'com.liaoinstan.springview:library:1.1.0'
-    compile project(':library')
+    compile 'com.liaoinstan.springview:library:1.2.0'
+//    compile project(':library')
 }

@@ -5,6 +5,7 @@
     android:layout_height="200dp"
     android:background="#28d3ff"
     android:textColor="#FFFFFF"
+    android:textSize="12sp"
     android:gravity="center" >
 </TextView>
 

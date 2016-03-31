@@ -61,11 +61,33 @@
                         android:textSize="12sp"
                         android:background="#68b3f3"/>
 
-                    <TextView
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="500dp"
-                        android:background="#68b3f3"/>
+                        android:layout_height="600dp"
+                        android:gravity="center"
+                        android:background="#68b3f3">
 
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注我"
+                            android:textColor="#ffffff" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:src="@drawable/me"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#ffffff"
+                            android:text="http://blog.csdn.net/liaoinstan"
+                            android:layout_marginTop="20dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </ScrollView>
