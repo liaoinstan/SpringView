@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.1.0'
+   compile 'com.liaoinstan.springview:library:1.2.0'
 }
 ```
 或者 Maven：
@@ -74,9 +74,18 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <type>pom</type>
 </dependency>
 ```
 
+**反馈**
+--------
+如果遇到问题或者好的建议，请反馈到我的邮箱：liaoinstan@outlook.com
+或者在我的博客留言
+
+如果觉得对你有用的话，点一下右上的星星赞一下吧
+
+**更多**
+--------
 更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan) 
