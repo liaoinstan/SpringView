@@ -6,18 +6,14 @@ import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.AbsListView;
-import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.OverScroller;
-import android.widget.ScrollView;
 
 import com.liaoinstan.springview.R;
 
@@ -199,6 +195,9 @@ public class SpringView extends ViewGroup{
         switch (action){
             case MotionEvent.ACTION_DOWN:
                 mfirstY = event.getY();
+                boolean isTop = isChildScrollToTop();
+                boolean isBottom = isChildScrollToBottomFull(isFullEnable);
+                if (isTop||isBottom) isNeedMyMove = false;
                 break;
             case MotionEvent.ACTION_MOVE:
                 dsY += dy;
@@ -285,6 +284,7 @@ public class SpringView extends ViewGroup{
                 _firstDrag = true;
                 restSmartPosition();
                 dsY = 0;
+                dy = 0;
                 break;
             case MotionEvent.ACTION_CANCEL:
                 break;
@@ -473,12 +473,12 @@ public class SpringView extends ViewGroup{
         boolean isBottom = isChildScrollToBottomFull(isFullEnable);     //false不满一屏也算在底部，true不满一屏不算在底部
         if (type==Type.OVERLAP){
             if (header!=null) {
-                if (isTop && dy >= 0 || contentView.getTop() > 0 + 20) {
+                if (isTop && dy > 0 || contentView.getTop() > 0 + 20) {
                     return true;
                 }
             }
             if (footer!=null) {
-                if (isBottom && dy <= 0 || contentView.getBottom() < mRect.bottom - 20) {
+                if (isBottom && dy < 0 || contentView.getBottom() < mRect.bottom - 20) {
 //                    if (isFullScrean()&&!isFullEnable)
 //                        return true;
 //                    else
@@ -489,12 +489,12 @@ public class SpringView extends ViewGroup{
         }else if(type==Type.FOLLOW){
             if (header!=null) {
                 //其中的20是一个防止触摸误差的偏移量
-                if (isTop && dy >= 0 || getScrollY() < 0 - 20) {
+                if (isTop && dy > 0 || getScrollY() < 0 - 20) {
                     return true;
                 }
             }
             if (footer!=null) {
-                if (isBottom && dy <= 0 || getScrollY() > 0 + 20) {
+                if (isBottom && dy < 0 || getScrollY() > 0 + 20) {
                     return true;
                 }
             }
