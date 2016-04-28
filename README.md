@@ -1,18 +1,18 @@
-更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-debug.apk?raw=true)
+More, please visit：[My CSDN](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk demo：[download](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-debug.apk?raw=true)  　　　　中文文档：[中文文档](https://github.com/liaoinstan/SpringView/blob/master/README_CN.md)
 
 SpringView
 =====
-**SpringView** 是一个提供了上下拖拽的功能组件，能够进行高度自定义，实现各种下拉\上拉动画效果，demo里实现了：仿阿里旅行、仿美团，仿QQ下拉刷红包，仿acfun等，完全兼容源生控件如ListView、RecyclerView、ScrollView、WebView等，使用简单，轻易定制自己风格的拖拽页面
+**SpringView**  is one provides the function of the upper and lower drag and drop components, can be highly customized, implement all kinds of drop-down \ pull painting effect, implementation in the demo: imitation ali travel, imitation Meituan, imitation QQ drop-down brush red envelopes, imitation acfun etc., is fully compatible with the source control such as ListView, RecyclerView, ScrollView, WebView, etc., using a simple, easily customize their style of drag and drop page
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/springview.png)
-**SpringView** 单独将头部/尾部独立出来，几乎可是实现任何你想要的效果，只需要继承BaseHeader(或Footer)实现接口
+**SpringView** Individual independence will head/foot,  almost achieve the effect of whatever you want, just need to inherit BaseHeader (or Footer) to implement the interface
 
-**SpringView** 能动态地替换头部/尾部，只需要设置不同的头尾即可：springView.setHeader(MyHeader());
+**SpringView** Can dynamically replace the head/tail, you just need to set up different Footer：springView.setHeader(MyHeader());
 
-**SpringView** 支持多点触控，可以两只手连续拖拽，你可以定制一些有趣味的效果
+**SpringView** Multi-touch support, can two hands drag and drop in a row, you can customize some interesting results
 
-**SpringView** 提供了2种拖拽方式（重叠和跟随），可以动态地切换
+**SpringView** Provides two methods for drag and drop (overlap and follow), can be dynamically switching
 
-**SpringView** 为不想去自定义头/尾的懒人提供了7种默认的实现（模仿了阿里，腾讯，美团等多种风格）如下，还会继续增加 
+**SpringView** For lazy people don't want to go to the custom head/tail provides 7 kinds of the default implementation (mimics the ali, tencent, Meituan etc. Various style) as follows, will continue to increase
 　
 　
 
@@ -21,10 +21,10 @@ SpringView
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212517801_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212658972_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212769245_s.gif)
 
-**如何使用 SpringView**
+**How to use SpringView**
 --------
 
-在布局文件中添加SpringView，注意SpringView和ScrollView有同样的限制：只能有一个子元素：
+Add Spring View in the layout file, note that Spring View and ScrollView have the same limitation: only one child element：
 
 ```
 	<com.liaoinstan.springview.widget.SpringView
@@ -39,16 +39,16 @@ SpringView
 
      </com.liaoinstan.springview.widget.SpringView>
 ```
-当然，你也可以不再布局中设置，使用代码动态添加：
+Of course, you also can not in the layout setting, use the code dynamically added：
 
 ```
 	springView.setHeader(new DefaultHeader(this));
 	springView.setFooter(new DefaultFooter(this));
 ```
 
-**添加监听**
+**Add Listener**
 --------
-如果需要处理的话，只需在代码中添加监听：
+If you need to deal with the case, just add a listener in code：
 
 ```
 springView.setListener(new SpringView.OnFreshListener() {
@@ -61,15 +61,15 @@ springView.setListener(new SpringView.OnFreshListener() {
 });
 ```
 
-**获取SpringView**
+**Get SpringView**
 --------
-使用 Gradle:
+use Gradle:
 ```
 dependencies {
    compile 'com.liaoinstan.springview:library:1.2.1'
 }
 ```
-或者 Maven：
+or Maven：
 ```
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
@@ -79,13 +79,13 @@ dependencies {
 </dependency>
 ```
 
-**反馈**
+**Feedback**
 --------
-如果遇到问题或者好的建议，请反馈到我的邮箱：liaoinstan@outlook.com
-或者在我的博客留言
+If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com
+Or in my blog
 
-如果觉得对你有用的话，点一下右上的星星赞一下吧
+If it works for you, click the upper right of the stars praise
 
-**更多**
+**More**
 --------
-更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan) 
+More, please visit：[my CSDN blog](http://blog.csdn.net/liaoinstan)
