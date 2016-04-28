@@ -84,7 +84,7 @@ or Maven：
 If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com
 Or in my blog
 
-If it works for you, click the upper right of the stars praise
+If it works for you, click the stars for my hardwork ,thank you
 
 **More**
 --------
