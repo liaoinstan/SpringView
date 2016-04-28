@@ -1,4 +1,4 @@
-更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-debug.apk?raw=true)
+更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-debug.apk?raw=true)  　　　　English document：[English document](https://github.com/liaoinstan/SpringView/blob/master/README.md)
 
 SpringView
 =====
