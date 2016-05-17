@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -194,6 +195,8 @@ public class SpringView extends ViewGroup{
         int action = event.getAction();
         switch (action){
             case MotionEvent.ACTION_DOWN:
+                hasCallFull = false;
+                hasCallRefresh = false;
                 mfirstY = event.getY();
                 boolean isTop = isChildScrollToTop();
                 boolean isBottom = isChildScrollToBottomFull(isFullEnable);
@@ -451,16 +454,25 @@ public class SpringView extends ViewGroup{
             invalidate();
         }
         //在滚动动画完全结束后回调接口
+        //滚动回调过程中mScroller.isFinished会多次返回true，导致判断条件被多次进入，设置标志位保证只调用一次
         if (!isMoveNow && type==Type.FOLLOW && mScroller.isFinished()){
             if (isFullAnim) {
-                callOnAfterFullAnim();
+               if (!hasCallFull){
+                    hasCallFull = true;
+                    callOnAfterFullAnim();
+               }
             } else {
-                callOnAfterRefreshAnim();
+                if (!hasCallRefresh) {
+                    hasCallRefresh = true;
+                    callOnAfterRefreshAnim();
+                }
             }
         }
     }
     private int callFreshORload = 0;
     private boolean isFullAnim;
+    private boolean hasCallFull = false;
+    private boolean hasCallRefresh = false;
 
     /**
      * 判断是否需要由该控件来控制滑动事件
