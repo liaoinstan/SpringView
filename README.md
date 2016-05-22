@@ -39,7 +39,7 @@ Add Spring View in the layout file, note that Spring View and ScrollView have th
 
      </com.liaoinstan.springview.widget.SpringView>
 ```
-Of course, you also can not in the layout setting, use the code dynamically added：
+Of course, you also can not add in the layout, use the code dynamically added：
 
 ```
 	springView.setHeader(new DefaultHeader(this));
@@ -84,7 +84,7 @@ or Maven：
 If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com
 Or in my blog
 
-If it works for you, click the stars for my hardwork ,thank you
+If it works to you, please give me a star for my hardwork ,thank you
 
 **More**
 --------
