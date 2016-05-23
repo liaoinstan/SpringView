@@ -12,6 +12,7 @@ import com.liaoinstan.springview.widget.SpringView;
 
 public class Demo1Activity extends AppCompatActivity {
 
+
     private SpringView springView;
 
     @Override
