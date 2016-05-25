@@ -60,6 +60,7 @@ public class SpringView extends ViewGroup{
     private int FOOTER_SPRING_HEIGHT;
     //储存上次的Y坐标
     private float mLastY;
+    private float mLastX;
     //储存第一次的Y坐标
     private float mfirstY;
     //储存手指拉动的总距离
@@ -188,6 +189,7 @@ public class SpringView extends ViewGroup{
 
 
     private float dy;
+    private float dx;
     private boolean isNeedMyMove;
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -205,7 +207,7 @@ public class SpringView extends ViewGroup{
             case MotionEvent.ACTION_MOVE:
                 dsY += dy;
                 isMoveNow = true;
-                isNeedMyMove = isNeedMyMove(dy);
+                isNeedMyMove = isNeedMyMove();
                 if(isNeedMyMove && !isInControl){
                     //把内部控件的事件转发给本控件处理
                     isInControl = true;
@@ -305,16 +307,21 @@ public class SpringView extends ViewGroup{
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+                final float x = MotionEventCompat.getX(ev, pointerIndex);
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
+                mLastX = x;
                 mLastY = y;
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+                final float x = MotionEventCompat.getX(ev, pointerIndex);
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
+                dx = x - mLastX;
                 dy = y - mLastY;
                 mLastY = y;
+                mLastX = x;
                 break;
             }
             case MotionEvent.ACTION_UP:
@@ -325,6 +332,7 @@ public class SpringView extends ViewGroup{
                 final int pointerIndex = MotionEventCompat.getActionIndex(ev);
                 final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
                 if (pointerId != mActivePointerId) {
+                    mLastX = MotionEventCompat.getX(ev, pointerIndex);
                     mLastY = MotionEventCompat.getY(ev, pointerIndex);
                     mActivePointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
                 }
@@ -335,6 +343,7 @@ public class SpringView extends ViewGroup{
                 final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
                 if (pointerId == mActivePointerId) {
                     final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+                    mLastX = MotionEventCompat.getX(ev, newPointerIndex);
                     mLastY = MotionEventCompat.getY(ev, newPointerIndex);
                     mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
                 }
@@ -477,8 +486,11 @@ public class SpringView extends ViewGroup{
     /**
      * 判断是否需要由该控件来控制滑动事件
      */
-    private boolean isNeedMyMove(float dy) {
+    private boolean isNeedMyMove() {
         if (contentView==null){
+            return false;
+        }
+        if (Math.abs(dy)<Math.abs(dx)){
             return false;
         }
         boolean isTop = isChildScrollToTop();
@@ -664,7 +676,46 @@ public class SpringView extends ViewGroup{
                 invalidate();
             }
         }
+    }
 
+    public void callFresh(){
+        header.setVisibility(VISIBLE);
+        if (type==Type.OVERLAP){
+            if (mRect.isEmpty()) {
+                mRect.set(contentView.getLeft(), contentView.getTop(),contentView.getRight(), contentView.getBottom());
+            }
+
+            Animation animation = new TranslateAnimation(0, 0,  contentView.getTop()- HEADER_SPRING_HEIGHT,mRect.top);
+            animation.setDuration(MOVE_TIME_OVER);
+            animation.setFillAfter(true);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    if (headerHander!=null) headerHander.onStartAnim();
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    callFreshORload = 1;
+                    needResetAnim = true;
+                    listener.onRefresh();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+            contentView.startAnimation(animation);
+            contentView.layout(mRect.left, mRect.top + HEADER_SPRING_HEIGHT, mRect.right, mRect.bottom+ HEADER_SPRING_HEIGHT);
+        }else if(type==Type.FOLLOW){
+            isFullAnim = false;
+            hasCallRefresh = false;
+            callFreshORload = 1;
+            needResetAnim = true;
+            if (headerHander!=null) headerHander.onStartAnim();
+            mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
+            invalidate();
+        }
     }
 
     /**

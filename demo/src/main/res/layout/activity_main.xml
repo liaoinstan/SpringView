@@ -52,6 +52,12 @@
             android:text="demo7" />
 
         <Button
+            android:id="@+id/demo8"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="demo8" />
+
+        <Button
             android:id="@+id/warning"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
