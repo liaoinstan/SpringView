@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.2'
+   compile 'com.liaoinstan.springview:library:1.2.3'
 }
 ```
 或者 Maven：
