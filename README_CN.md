@@ -74,7 +74,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.3</version>
   <type>pom</type>
 </dependency>
 ```
