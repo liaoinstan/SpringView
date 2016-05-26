@@ -79,6 +79,21 @@ or Maven：
 </dependency>
 ```
 
+
+**Update log**
+--------
+####**v1.2.3**
+
+ - add **callFresh()** method, used to call the refresh operation manual
+ - fixes the lateral sliding conflict
+
+####**v1.2.2**
+ - repair the callback refresh many times
+
+####**v1.2.1**
+ - repair the click event occasional failure problem
+
+
 **Feedback**
 --------
 If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com
