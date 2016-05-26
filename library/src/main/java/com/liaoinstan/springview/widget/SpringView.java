@@ -273,7 +273,7 @@ public class SpringView extends ViewGroup{
                 }
                 else {
                     //手指在产生移动的时候（dy!=0）才重置位置
-                    if (dy!=0) {
+                    if (dy!=0 && isFlow()) {
                         resetPosition();
                         //把滚动事件交给内部控件处理
                         event.setAction(MotionEvent.ACTION_DOWN);
@@ -906,6 +906,14 @@ public class SpringView extends ViewGroup{
             return contentView.getTop()<0;
         }else if(type==Type.FOLLOW){
             return getScrollY()>0;
+        }else
+            return false;
+    }
+    private boolean isFlow(){
+        if (type==Type.OVERLAP){
+            return contentView.getTop()<30 && contentView.getTop()>-30;
+        }else if (type==Type.FOLLOW){
+            return getScrollY()>-30 && getScrollY()<30;
         }else
             return false;
     }
