@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.2'
+   compile 'com.liaoinstan.springview:library:1.2.3'
 }
 ```
 或者 Maven：
@@ -74,10 +74,25 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.3</version>
   <type>pom</type>
 </dependency>
 ```
+
+
+**更新日志**
+--------
+####**v1.2.3**
+
+ - 新增callFresh方法，用于手动调用进行刷新操作
+ - 处理了横向滑动冲突
+
+####**v1.2.2**
+ - 修复了会多次回调刷新的问题
+
+####**v1.2.1**
+ - 修复点击事件偶尔失效的问题
+
 
 **反馈**
 --------

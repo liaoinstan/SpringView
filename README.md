@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.2'
+   compile 'com.liaoinstan.springview:library:1.2.3'
 }
 ```
 or Maven：
@@ -74,10 +74,25 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.3</version>
   <type>pom</type>
 </dependency>
 ```
+
+
+**Update log**
+--------
+####**v1.2.3**
+
+ - add **callFresh()** method, used to call the refresh operation manual
+ - fixes the lateral sliding conflict
+
+####**v1.2.2**
+ - repair the callback refresh many times
+
+####**v1.2.1**
+ - repair the click event occasional failure problem
+
 
 **Feedback**
 --------
