@@ -35,6 +35,7 @@ public class SpringView extends ViewGroup{
     private boolean isFullEnable = false;   //是否超过一屏时才允许上拉，为false则不满一屏也可以上拉，注意样式为isOverlap时，无论如何也不允许在不满一屏时上拉
     private boolean isMoveNow = false;       //当前是否正在拖动
     private long lastMoveTime;
+    private boolean enable = true;           //是否禁用（默认可用）
 
     private int MOVE_TIME = 400;
     private int MOVE_TIME_OVER = 200;
@@ -230,7 +231,7 @@ public class SpringView extends ViewGroup{
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        return isNeedMyMove;
+        return isNeedMyMove && enable;
 //        int action = event.getAction();
 //        switch (action){
 //            case MotionEvent.ACTION_MOVE:
@@ -957,6 +958,17 @@ public class SpringView extends ViewGroup{
     }
     public void setMoveTimeOver(int time){
         this.MOVE_TIME_OVER = time;
+    }
+
+    /**
+     * 是否禁用SpringView
+     */
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public boolean isEnable() {
+        return enable;
     }
 
     /**
