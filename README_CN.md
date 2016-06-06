@@ -83,7 +83,7 @@ dependencies {
 **更新日志**
 --------
 ####**v1.2.5**
- - 新增 **setEnable(boolean) 方法，用于禁用/启用SpringView
+ - 新增 **setEnable(boolean)** 方法，用于禁用/启用SpringView
 
 ####**v1.2.4**
 
