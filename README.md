@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.4'
+   compile 'com.liaoinstan.springview:library:1.2.5'
 }
 ```
 or Maven：
@@ -74,7 +74,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.4</version>
+  <version>1.2.5</version>
   <type>pom</type>
 </dependency>
 ```
@@ -82,6 +82,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.2.5**
+ - add **setEnable(boolean)** function
+
 ####**v1.2.4**
 
  - add **callFresh()** method, used to call the refresh operation manual
