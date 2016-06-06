@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.3'
+   compile 'com.liaoinstan.springview:library:1.2.4'
 }
 ```
 or Maven：
@@ -74,7 +74,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.3</version>
+  <version>1.2.4</version>
   <type>pom</type>
 </dependency>
 ```
@@ -82,7 +82,7 @@ or Maven：
 
 **Update log**
 --------
-####**v1.2.3**
+####**v1.2.4**
 
  - add **callFresh()** method, used to call the refresh operation manual
  - fixes the lateral sliding conflict
