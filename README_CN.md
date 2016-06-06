@@ -82,6 +82,9 @@ dependencies {
 
 **更新日志**
 --------
+####**v1.2.5**
+ - 新增 **setEnable(boolean) 方法，用于禁用/启用SpringView
+
 ####**v1.2.4**
 
  - 新增 **callFresh()** 方法, 用于手动调用刷新
