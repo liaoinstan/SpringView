@@ -83,7 +83,7 @@ or Maven：
 **Update log**
 --------
 ####**v1.2.5**
- - add **setEnable(boolean) function
+ - add **setEnable(boolean)** function
 
 ####**v1.2.4**
 
