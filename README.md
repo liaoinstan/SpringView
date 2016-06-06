@@ -82,6 +82,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.2.5**
+ - add **setEnable(boolean) function
+
 ####**v1.2.4**
 
  - add **callFresh()** method, used to call the refresh operation manual
