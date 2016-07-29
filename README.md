@@ -74,7 +74,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.5</version>
+  <version>1.2.6</version>
   <type>pom</type>
 </dependency>
 ```
@@ -82,6 +82,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.2.6**
+ - padding bug fix
+
 ####**v1.2.5**
  - add **setEnable(boolean)** function
 
