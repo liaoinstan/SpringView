@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.5'
+   compile 'com.liaoinstan.springview:library:1.2.6'
 }
 ```
 or Maven：
