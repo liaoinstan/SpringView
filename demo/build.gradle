@@ -27,6 +27,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
 
-//    compile 'com.liaoinstan.springview:library:1.2.5'
+//    compile 'com.liaoinstan.springview:library:1.2.6'
     compile project(':library')
+
+    //recycleView header
+    compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 }

@@ -1,0 +1,13 @@
+<com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_gravity="center_horizontal|top">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="header" />
+
+</com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>

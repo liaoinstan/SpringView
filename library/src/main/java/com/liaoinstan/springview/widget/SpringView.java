@@ -111,7 +111,7 @@ public class SpringView extends ViewGroup{
             return;
         }
         setPadding(0,0,0,0);
-        contentView.setPadding(0,0,0,0);
+        contentView.setPadding(0,contentView.getPaddingTop(),0,contentView.getPaddingBottom());
         if (headerResoureId!=0){
             inflater.inflate(headerResoureId, this, true);
             header = getChildAt(getChildCount()-1);
@@ -210,6 +210,7 @@ public class SpringView extends ViewGroup{
                 isMoveNow = true;
                 isNeedMyMove = isNeedMyMove();
                 if(isNeedMyMove && !isInControl){
+
                     //把内部控件的事件转发给本控件处理
                     isInControl = true;
                     event.setAction(MotionEvent.ACTION_CANCEL);
@@ -221,9 +222,12 @@ public class SpringView extends ViewGroup{
                 break;
             case MotionEvent.ACTION_UP:
                 isMoveNow = false;
+//                getParent().requestDisallowInterceptTouchEvent(false);
                 lastMoveTime = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_CANCEL:
+                isMoveNow = false;
+//                getParent().requestDisallowInterceptTouchEvent(false);
                 break;
         }
         return super.dispatchTouchEvent(event);
@@ -252,6 +256,7 @@ public class SpringView extends ViewGroup{
                 //if (!mScroller.isFinished()) mScroller.abortAnimation();//不需要处理
                 break;
             case MotionEvent.ACTION_MOVE:
+                getParent().requestDisallowInterceptTouchEvent(true);
                 if (isNeedMyMove){
                     needResetAnim = false;      //按下的时候关闭回弹
                     //执行位移操作
@@ -467,10 +472,10 @@ public class SpringView extends ViewGroup{
         //滚动回调过程中mScroller.isFinished会多次返回true，导致判断条件被多次进入，设置标志位保证只调用一次
         if (!isMoveNow && type==Type.FOLLOW && mScroller.isFinished()){
             if (isFullAnim) {
-               if (!hasCallFull){
+                if (!hasCallFull){
                     hasCallFull = true;
                     callOnAfterFullAnim();
-               }
+                }
             } else {
                 if (!hasCallRefresh) {
                     hasCallRefresh = true;
