@@ -3,6 +3,7 @@ package com.liaoinstan.springview.container;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,11 @@ public class MeituanHeader extends BaseHeader {
         animationRefresh = new AnimationDrawable();
         for (int i=1;i< this.pullAnimSrcs.length;i++) {
             animationPull.addFrame(ContextCompat.getDrawable(context, this.pullAnimSrcs[i]),100);
-            animationRefresh.setOneShot(true);
+            animationPull.setOneShot(true);
         }
         for (int i= this.pullAnimSrcs.length-1;i>=0;i--){
             animationPullFan.addFrame(ContextCompat.getDrawable(context, this.pullAnimSrcs[i]), 100);
-            animationRefresh.setOneShot(true);
+            animationPullFan.setOneShot(true);
         }
         for (int src: this.refreshAnimSrcs) {
             animationRefresh.addFrame(ContextCompat.getDrawable(context, src),150);
@@ -75,9 +76,11 @@ public class MeituanHeader extends BaseHeader {
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
         if (!upORdown){
+            Log.e("spring","down");
             header_img.setImageDrawable(animationPull);
             animationPull.start();
         }else {
+            Log.e("spring","up");
             header_img.setImageDrawable(animationPullFan);
             animationPullFan.start();
         }

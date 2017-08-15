@@ -6,154 +6,172 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".test.TestActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#68b3f3"
-        android:textColor="#FFFFFF"
         android:gravity="center"
-        android:text="test for SpringView"/>
+        android:text="test for SpringView"
+        android:textColor="#FFFFFF" />
 
     <com.liaoinstan.springview.widget.SpringView
         android:id="@+id/my"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:paddingBottom="40dp"
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
         android:paddingTop="30dp"
-        android:paddingBottom="40dp"
+        app:footer="@layout/footer"
         app:header="@layout/header"
-        app:footer="@layout/footer">
+        app:type="overlap">
 
-
-        <ScrollView
-            android:layout_margin="10dp"
-            android:padding="10dp"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#55ff0000" />
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/text"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#28d3ff"
-                    android:textColor="#FFFFFF"
-                    android:gravity="center"
-                    android:text="We are in ScrollView"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#68b3f3"/>
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#28d3ff"
+                        android:gravity="center"
+                        android:text="We are in ScrollView"
+                        android:textColor="#FFFFFF" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#28d3ff"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#68b3f3" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#68b3f3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#28d3ff" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#28d3ff"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#68b3f3" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#68b3f3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#28d3ff" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#28d3ff"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#68b3f3" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#68b3f3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#28d3ff" />
 
-            </LinearLayout>
-        </ScrollView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#68b3f3" />
 
+                </LinearLayout>
+            </ScrollView>
+
+        </FrameLayout>
 
     </com.liaoinstan.springview.widget.SpringView>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/group_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/group_type"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:text=" 样式:"/>
+                android:text=" 样式:"
+                android:textColor="#000000" />
+
             <RadioButton
+                android:id="@+id/overlap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:text="overlap(重叠)"
-                android:checked="true"
-                android:id="@+id/overlap"/>
+                android:textSize="12sp" />
+
             <RadioButton
+                android:id="@+id/follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:checked="true"
                 android:text="follow(跟随)"
-                android:id="@+id/follow"/>
+                android:textSize="12sp" />
 
         </RadioGroup>
 
         <RadioGroup
+            android:id="@+id/group_give"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/group_give"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:text=" 停顿:"/>
+                android:text=" 停顿:"
+                android:textColor="#000000" />
+
             <RadioButton
+                android:id="@+id/both"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="both"
                 android:checked="true"
-                android:textSize="12sp"
-                android:id="@+id/both"/>
+                android:text="both"
+                android:textSize="12sp" />
+
             <RadioButton
+                android:id="@+id/top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="only top"
-                android:textSize="12sp"
-                android:id="@+id/top"/>
+                android:textSize="12sp" />
+
             <RadioButton
+                android:id="@+id/bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:text="only bottom"
-                android:id="@+id/bottom"/>
+                android:textSize="12sp" />
+
             <RadioButton
+                android:id="@+id/none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:text="none"
-                android:id="@+id/none"/>
+                android:textSize="12sp" />
 
         </RadioGroup>
 

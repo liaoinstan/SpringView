@@ -32,11 +32,10 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:type="overlap"
             android:background="#ffffff">
 
             <ScrollView
-                android:layout_margin="10dp"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
@@ -59,7 +58,7 @@
                         android:textColor="#9dd2fc"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:text="SprigView能够动态替换头\尾部\n\n这是一个简单定制的仿qq刷红包的效果"
+                        android:text="SprigView能够动态替换头/尾部\n\n这是一个简单定制的仿qq刷红包的效果"
                         android:background="#e3f1fc"/>
 
                     <TextView

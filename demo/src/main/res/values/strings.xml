@@ -9,5 +9,6 @@
     <string name="title_activity_demo6">Demo6Activity</string>
     <string name="title_activity_demo7">Demo7Activity</string>
     <string name="title_activity_demo8">Demo8Activity</string>
+    <string name="title_activity_demo9">Demo9Activity</string>
     <string name="title_activity_warning">Warning</string>
 </resources>

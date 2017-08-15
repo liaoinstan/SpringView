@@ -17,28 +17,29 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="#ffffff">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycle"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
 
         </com.liaoinstan.springview.widget.SpringView>
 

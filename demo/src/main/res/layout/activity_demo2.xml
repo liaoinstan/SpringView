@@ -28,40 +28,42 @@
 
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:layout_weight="1"
+            android:background="#ffffff"
+            app:type="overlap">
 
             <ListView
                 android:id="@+id/list"
-                android:divider="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#f9f9f9"/>
+                android:background="#f9f9f9"
+                android:divider="@null" />
 
         </com.liaoinstan.springview.widget.SpringView>
 
         <LinearLayout
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="90dp"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="90dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
             <Button
                 android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:text="+"/>
+                android:text="+" />
+
             <Button
                 android:id="@+id/sub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:text="-"/>
+                android:text="-" />
         </LinearLayout>
 
     </FrameLayout>

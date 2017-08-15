@@ -1,30 +1,32 @@
-package com.liaoinstan.demospring.demo1;
+package com.liaoinstan.demospring.demo9;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.DefaultFooter;
-import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.container.AcFunFooter;
+import com.liaoinstan.springview.container.AcFunHeader;
+import com.liaoinstan.springview.container.AliFooter;
+import com.liaoinstan.springview.container.AliHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class Demo1Activity extends AppCompatActivity {
-
-
+public class Demo9Activity extends AppCompatActivity {
     private SpringView springView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo1);
+        setContentView(R.layout.activity_demo9);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         springView = (SpringView) findViewById(R.id.springview);
-        springView.setType(SpringView.Type.FOLLOW);
+        springView.setHeader(new AliHeader(this, false));
+        springView.setFooter(new AliFooter(this, false));
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -46,7 +48,5 @@ public class Demo1Activity extends AppCompatActivity {
                 }, 1000);
             }
         });
-        springView.setHeader(new DefaultHeader(this));
-        springView.setFooter(new DefaultFooter(this));
     }
 }

@@ -13,6 +13,7 @@ import com.liaoinstan.demospring.demo3.Demo3Activity;
 import com.liaoinstan.demospring.demo7.Demo7Activity;
 import com.liaoinstan.demospring.demo4.Demo4Activity;
 import com.liaoinstan.demospring.demo8.Demo8Activity;
+import com.liaoinstan.demospring.demo9.Demo9Activity;
 import com.liaoinstan.demospring.test.TestActivity;
 import com.liaoinstan.demospring.warning.WarningActivity;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.demo6).setOnClickListener(this);
         findViewById(R.id.demo7).setOnClickListener(this);
         findViewById(R.id.demo8).setOnClickListener(this);
+        findViewById(R.id.demo9).setOnClickListener(this);
         findViewById(R.id.warning).setOnClickListener(this);
         findViewById(R.id.test).setOnClickListener(this);
     }
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.demo8:
                 intent.setClass(this,Demo8Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demo9:
+                intent.setClass(this,Demo9Activity.class);
                 startActivity(intent);
                 break;
             case R.id.warning:
