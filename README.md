@@ -13,7 +13,7 @@ SpringView
 **SpringView** Provides two methods for drag and drop (overlap and follow), can be dynamically switching
 
 **SpringView** For lazy people don't want to go to the custom head/tail provides 7 kinds of the default implementation (mimics the ali, tencent, Meituan etc. Various style) as follows, will continue to increase
-　
+
 **SpringView** support AppBarLayout
  
  
