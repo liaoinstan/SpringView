@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.6'
+   compile 'com.liaoinstan.springview:library:1.3.0'
 }
 ```
 or Maven：
@@ -74,7 +74,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.6</version>
+  <version>1.3.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -82,6 +82,12 @@ or Maven：
 
 **Update log**
 --------
+####**v1.3.0**
+ - support AppBarLayout,fix sliding conflict
+
+####**v1.2.7**
+ - bug fix
+
 ####**v1.2.6**
  - padding bug fix
 
