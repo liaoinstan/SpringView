@@ -6,14 +6,15 @@ SpringView
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/springview.png)
 **SpringView** 单独将头部/尾部独立出来，几乎可是实现任何你想要的效果，只需要继承BaseHeader(或Footer)实现接口
 
-**SpringView** 能动态地替换头部/尾部，只需要设置不同的头尾即可：springView.setHeader(MyHeader());
+**SpringView** 能在运行时动态地替换头部/尾部，只需要设置不同的头尾即可：springView.setHeader(MyHeader());
 
 **SpringView** 支持多点触控，可以两只手连续拖拽，你可以定制一些有趣味的效果
 
 **SpringView** 提供了2种拖拽方式（重叠和跟随），可以动态地切换
 
 **SpringView** 为不想去自定义头/尾的懒人提供了7种默认的实现（模仿了阿里，腾讯，美团等多种风格）如下，还会继续增加 
-　
+
+**SpringView** 支持和 AppBarLayout 联动
 　
 
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212323072.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212372609.gif)
