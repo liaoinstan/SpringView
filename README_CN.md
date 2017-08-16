@@ -66,7 +66,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.2.6'
+   compile 'com.liaoinstan.springview:library:1.3.0'
 }
 ```
 或者 Maven：
@@ -74,7 +74,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.2.6</version>
+  <version>1.3.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -82,6 +82,12 @@ dependencies {
 
 **更新日志**
 --------
+####**v1.3.0**
+ - 支持和 AppBarLayout 联动，修复滚动冲突的问题
+
+####**v1.2.7**
+ - 修复一些bug
+
 ####**v1.2.6**
  - 修复了内边距的失效的问题
 
