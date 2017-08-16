@@ -14,8 +14,9 @@ SpringView
 
 **SpringView** For lazy people don't want to go to the custom head/tail provides 7 kinds of the default implementation (mimics the ali, tencent, Meituan etc. Various style) as follows, will continue to increase
 　
-　
-
+**SpringView** support AppBarLayout
+ 
+ 
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212323072_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212372609_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212462800_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212485237_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212517801_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212658972_s.gif)
