@@ -119,6 +119,7 @@
                 android:id="@+id/overlap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="overlap(重叠)"
                 android:textSize="12sp" />
 
@@ -126,7 +127,6 @@
                 android:id="@+id/follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="follow(跟随)"
                 android:textSize="12sp" />
 

@@ -1,15 +1,11 @@
 package com.liaoinstan.demospring.demo9;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.AcFunFooter;
-import com.liaoinstan.springview.container.AcFunHeader;
 import com.liaoinstan.springview.container.AliFooter;
 import com.liaoinstan.springview.container.AliHeader;
 import com.liaoinstan.springview.widget.SpringView;

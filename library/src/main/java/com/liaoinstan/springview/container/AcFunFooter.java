@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.liaoinstan.springview.R;
 import com.liaoinstan.springview.utils.DensityUtil;
-import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/23.

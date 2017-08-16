@@ -1,8 +1,6 @@
 package com.liaoinstan.springview.container;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.liaoinstan.springview.widget.SpringView;
 

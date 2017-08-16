@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.liaoinstan.demospring.demo1.Demo1Activity;
 import com.liaoinstan.demospring.demo2.Demo2Activity;
+import com.liaoinstan.demospring.demo3.Demo3Activity;
+import com.liaoinstan.demospring.demo4.Demo4Activity;
 import com.liaoinstan.demospring.demo5.Demo5Activity;
 import com.liaoinstan.demospring.demo6.Demo6Activity;
-import com.liaoinstan.demospring.demo3.Demo3Activity;
 import com.liaoinstan.demospring.demo7.Demo7Activity;
-import com.liaoinstan.demospring.demo4.Demo4Activity;
 import com.liaoinstan.demospring.demo8.Demo8Activity;
 import com.liaoinstan.demospring.demo9.Demo9Activity;
 import com.liaoinstan.demospring.test.TestActivity;

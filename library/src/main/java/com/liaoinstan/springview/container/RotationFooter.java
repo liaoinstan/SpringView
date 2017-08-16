@@ -9,10 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.liaoinstan.springview.R;
-import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.

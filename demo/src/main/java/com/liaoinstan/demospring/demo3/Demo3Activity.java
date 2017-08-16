@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.AliFooter;
 import com.liaoinstan.springview.container.AliHeader;

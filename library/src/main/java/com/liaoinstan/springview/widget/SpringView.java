@@ -16,8 +16,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ListView;
 import android.widget.OverScroller;
 
-import com.liaoinstan.springview.listener.AppBarStateChangeListener;
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.listener.AppBarStateChangeListener;
 
 /**
  * Created by liaoinstan on 2016/3/11.

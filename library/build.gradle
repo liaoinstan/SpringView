@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.2.7"                                                              // #CONFIG# // project version
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -28,6 +26,7 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
 }
 
+version = "1.3.1"                                                              // #CONFIG# // project version
 // 根节点添加
 def siteUrl = 'https://github.com/liaoinstan/SpringView'                    // #CONFIG# // project homepage
 def gitUrl = 'https://github.com/liaoinstan/SpringView.git'                 // #CONFIG# // project git
@@ -97,7 +96,6 @@ bintray {
         publish = true
     }
 }
-
 
 //gradlew javadocJar
 //gradlew sourcesJar

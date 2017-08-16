@@ -9,9 +9,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.demospring.demo6.QQHeader;
-import com.liaoinstan.springview.container.DefaultFooter;
-import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.widget.SpringView;
 
