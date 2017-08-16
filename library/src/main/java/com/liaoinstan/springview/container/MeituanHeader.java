@@ -65,7 +65,7 @@ public class MeituanHeader extends BaseHeader {
 
     @Override
     public void onDropAnim(View rootView, int dy) {
-        int maxw = DensityUtil.dip2px(context, 45);
+        int maxw = DensityUtil.dp2px(45);
         float w = maxw*Math.abs(dy)/rootView.getMeasuredHeight();
         if (w>maxw) return;
         ViewGroup.LayoutParams layoutParams = header_img.getLayoutParams();
@@ -76,11 +76,9 @@ public class MeituanHeader extends BaseHeader {
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
         if (!upORdown){
-            Log.e("spring","down");
             header_img.setImageDrawable(animationPull);
             animationPull.start();
         }else {
-            Log.e("spring","up");
             header_img.setImageDrawable(animationPullFan);
             animationPullFan.start();
         }

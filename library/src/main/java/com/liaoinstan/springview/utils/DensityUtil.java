@@ -1,23 +1,39 @@
 package com.liaoinstan.springview.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 
 /**
  * Created by Administrator on 2016/3/24.
  */
 public class DensityUtil {
     /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     * dp转px
      */
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    public static int dp2px(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, Resources.getSystem().getDisplayMetrics());
     }
+
     /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     * sp转px
      */
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+    public static int sp2px(float spVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, Resources.getSystem().getDisplayMetrics());
+    }
+
+    /**
+     * px转dp
+     */
+    public static float px2dp(float pxVal) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (pxVal / scale);
+    }
+
+    /**
+     * px转sp
+     */
+    public static float px2sp(float pxVal) {
+        return (pxVal / Resources.getSystem().getDisplayMetrics().scaledDensity);
     }
 }

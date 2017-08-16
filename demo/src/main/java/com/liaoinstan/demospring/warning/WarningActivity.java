@@ -60,7 +60,7 @@ public class WarningActivity extends AppCompatActivity implements RadioGroup.OnC
                 break;
             case R.id.sethard:
                 textView = (TextView) springView.getHeaderView().findViewById(R.id.textView);
-                textView.getLayoutParams().width = DensityUtil.dip2px(this,120);
+                textView.getLayoutParams().width = DensityUtil.dp2px(120);
                 break;
         }
     }

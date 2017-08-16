@@ -32,7 +32,7 @@ public class AcFunHeader extends BaseHeader {
 
     @Override
     public int getDragLimitHeight(View rootView) {
-        return DensityUtil.dip2px(context, 70);
+        return DensityUtil.dp2px( 70);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AcFunHeader extends BaseHeader {
 
     @Override
     public int getDragSpringHeight(View rootView) {
-        return DensityUtil.dip2px(context,70);
+        return DensityUtil.dp2px(70);
     }
 
     @Override
