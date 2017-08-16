@@ -1,4 +1,4 @@
-More, please visit：[My CSDN](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk demo：[download](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-debug.apk?raw=true)  　　　　中文文档：[中文文档](https://github.com/liaoinstan/SpringView/blob/master/README_CN.md)
+More, please visit：[My CSDN](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk demo：[download](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-release.apk?raw=true)  　　　　中文文档：[中文文档](https://github.com/liaoinstan/SpringView/blob/master/README_CN.md)
 
 SpringView
 =====
