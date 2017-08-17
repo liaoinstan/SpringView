@@ -29,72 +29,61 @@
         app:header="@layout/header"
         app:type="overlap">
 
-        <FrameLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#55ff0000" />
+                android:orientation="vertical">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    android:background="#28d3ff"
+                    android:gravity="center"
+                    android:text="We are in ScrollView"
+                    android:textColor="#FFFFFF" />
 
-                    <TextView
-                        android:id="@+id/text"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#28d3ff"
-                        android:gravity="center"
-                        android:text="We are in ScrollView"
-                        android:textColor="#FFFFFF" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#28d3ff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#28d3ff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#28d3ff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#28d3ff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#28d3ff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#28d3ff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
-
-                </LinearLayout>
-            </ScrollView>
-
-        </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </com.liaoinstan.springview.widget.SpringView>
 

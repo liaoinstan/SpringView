@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liaoinstan.springview.widget.SpringView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/springview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="We are in ScrollView"
+                android:textColor="#cccccc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#e3f1fc"
+                android:gravity="center"
+                android:text="SpringView支持了AppBarLayout\n\n不会再和AppBarLayout滚动冲突"
+                android:textColor="#9dd2fc"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ffffff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#e3f1fc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ffffff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#e3f1fc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ffffff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#e3f1fc" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</com.liaoinstan.springview.widget.SpringView>

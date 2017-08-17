@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".demo9.Demo9Activity">
 
     <android.support.design.widget.AppBarLayout
@@ -40,80 +39,30 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.liaoinstan.springview.widget.SpringView
-        android:id="@+id/springview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fefeff"
-        app:type="follow"
+        android:background="#ffffff"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v4.widget.NestedScrollView
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="#5793e6"
+            app:tabIndicatorHeight="1dp"
+            app:tabSelectedTextColor="#5793e6"
+            app:tabTextColor="#665793e6" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+        <!--app:tabTextAppearance="@style/TabLayoutTextStyle"-->
 
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#bce1d8"
-                    android:gravity="center"
-                    android:text="We are in ScrollView"
-                    android:textColor="#ffffff" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff"
-                    android:gravity="center"
-                    android:text="SpringView支持了AppBarLayout\n\n不会再和AppBarLayout滚动冲突"
-                    android:textColor="#cccccc"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#bce1d8" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#bce1d8" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#bce1d8" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#bce1d8" />
-
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
-
-
-    </com.liaoinstan.springview.widget.SpringView>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

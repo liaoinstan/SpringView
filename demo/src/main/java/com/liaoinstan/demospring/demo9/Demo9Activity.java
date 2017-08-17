@@ -1,17 +1,20 @@
 package com.liaoinstan.demospring.demo9;
 
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.AliFooter;
-import com.liaoinstan.springview.container.AliHeader;
-import com.liaoinstan.springview.widget.SpringView;
 
 public class Demo9Activity extends AppCompatActivity {
-    private SpringView springView;
+    private TabLayout tab;
+    private ViewPager pager;
+    private PagerAdapter adapterPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,29 +23,44 @@ public class Demo9Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        springView = (SpringView) findViewById(R.id.springview);
-        springView.setHeader(new AliHeader(this, false));
-        springView.setFooter(new AliFooter(this, false));
-        springView.setListener(new SpringView.OnFreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
-            }
+        tab = (TabLayout) findViewById(R.id.tab);
+        pager = (ViewPager) findViewById(R.id.pager);
 
-            @Override
-            public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+        adapterPager = new PagerAdapter(getSupportFragmentManager(), new String[]{"ScrollView", "RecyclerView", "note"});
+        pager.setAdapter(adapterPager);
+        tab.setupWithViewPager(pager);
+    }
+
+    private class PagerAdapter extends FragmentPagerAdapter {
+        private String[] titles;
+
+        public PagerAdapter(FragmentManager fm, String[] titles) {
+            super(fm);
+            this.titles = titles;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return titles.length;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return Demo9FragmentScrollView.newInstance(position);
+                case 1:
+                    return Demo9FragmentRecyclerView.newInstance(position);
+                case 2:
+                    return Demo9FragmentNote.newInstance(position);
+                default:
+                    return null;
             }
-        });
+        }
     }
 }
