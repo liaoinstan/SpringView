@@ -3,13 +3,15 @@ package com.liaoinstan.demospring.test;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class TestActivity extends Activity implements RadioGroup.OnCheckedChangeListener {
+public class TestActivity extends Activity implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener {
     private SpringView springView;
 
     @Override
@@ -19,6 +21,9 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
 
         ((RadioGroup) findViewById(R.id.group_type)).setOnCheckedChangeListener(this);
         ((RadioGroup) findViewById(R.id.group_give)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.check_enableheader)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.check_enableFooter)).setOnCheckedChangeListener(this);
+
 
         springView = (SpringView) findViewById(R.id.my);
         springView.setListener(new SpringView.OnFreshListener() {
@@ -66,6 +71,18 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
                 break;
             case R.id.none:
                 springView.setGive(SpringView.Give.NONE);
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.check_enableheader:
+                springView.setEnableHeader(!isChecked);
+                break;
+            case R.id.check_enableFooter:
+                springView.setEnableFooter(!isChecked);
                 break;
         }
     }

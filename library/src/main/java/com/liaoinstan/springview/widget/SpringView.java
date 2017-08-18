@@ -38,6 +38,8 @@ public class SpringView extends ViewGroup {
     private boolean isMoveNow = false;       //当前是否正在拖动
     private long lastMoveTime;
     private boolean enable = true;           //是否禁用（默认可用）
+    private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
+    private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
 
     private int MOVE_TIME = 400;
     private int MOVE_TIME_OVER = 200;
@@ -543,6 +545,14 @@ public class SpringView extends ViewGroup {
         }
         boolean isTop = isChildScrollToTop();
         boolean isBottom = isChildScrollToBottomFull(isFullEnable);     //false不满一屏也算在底部，true不满一屏不算在底部
+        //用户禁止了下拉操作，则不控制
+        if (!enableHeader && isTop && dy > 0) {
+            return false;
+        }
+        //用户禁止了上拉操作，则不控制
+        if (!enableFooter && isBottom && dy < 0) {
+            return false;
+        }
         if (type == Type.OVERLAP) {
             if (header != null) {
                 if (isTop && dy > 0 || contentView.getTop() > 0 + 20) {
@@ -960,6 +970,22 @@ public class SpringView extends ViewGroup {
 
     public boolean isEnable() {
         return enable;
+    }
+
+    public boolean isEnableHeader() {
+        return enableHeader;
+    }
+
+    public void setEnableHeader(boolean enableHeader) {
+        this.enableHeader = enableHeader;
+    }
+
+    public boolean isEnableFooter() {
+        return enableFooter;
+    }
+
+    public void setEnableFooter(boolean enableFooter) {
+        this.enableFooter = enableFooter;
     }
 
     /**

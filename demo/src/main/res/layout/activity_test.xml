@@ -92,6 +92,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/group_enable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 禁用:"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/check_enableheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="禁止header"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/check_enableFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="禁止footer"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
         <RadioGroup
             android:id="@+id/group_type"
             android:layout_width="wrap_content"
