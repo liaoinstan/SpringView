@@ -19,11 +19,11 @@ public class DefaultFooter extends BaseFooter {
     private TextView footerTitle;
     private ProgressBar footerProgressbar;
 
-    public DefaultFooter(Context context){
-        this(context,R.drawable.progress_small);
+    public DefaultFooter(Context context) {
+        this(context, R.drawable.progress_small);
     }
 
-    public DefaultFooter(Context context,int rotationSrc){
+    public DefaultFooter(Context context, int rotationSrc) {
         this.context = context;
         this.rotationSrc = rotationSrc;
     }
@@ -33,7 +33,7 @@ public class DefaultFooter extends BaseFooter {
         View view = inflater.inflate(R.layout.default_footer, viewGroup, true);
         footerTitle = (TextView) view.findViewById(R.id.default_footer_title);
         footerProgressbar = (ProgressBar) view.findViewById(R.id.default_footer_progressbar);
-        footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context,rotationSrc));
+        footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         return view;
     }
 

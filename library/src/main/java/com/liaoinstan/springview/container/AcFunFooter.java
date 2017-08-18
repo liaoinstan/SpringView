@@ -17,7 +17,7 @@ public class AcFunFooter extends BaseFooter {
     private int imgSrc;
     private ImageView acfun_footer_img;
 
-    public AcFunFooter(Context context,int imgSrc){
+    public AcFunFooter(Context context, int imgSrc) {
         this.context = context;
         this.imgSrc = imgSrc;
     }

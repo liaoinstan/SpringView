@@ -9,9 +9,9 @@ import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.BaseHeader;
 
 /**
- * Created by Administrator on 2016/3/28.
+ * Created by liaoinstan on 2016/3/28.
  */
-public class WarningHeader extends BaseHeader{
+public class WarningHeader extends BaseHeader {
     private TextView textView;
 
     private int i = 0;
@@ -19,7 +19,7 @@ public class WarningHeader extends BaseHeader{
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.header_warning, viewGroup, true);
-        textView = (TextView)view.findViewById(R.id.textView);
+        textView = (TextView) view.findViewById(R.id.textView);
         return view;
     }
 
@@ -36,7 +36,7 @@ public class WarningHeader extends BaseHeader{
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
         i++;
-        textView.setText("this is TextView "+i);
+        textView.setText("this is TextView " + i);
     }
 
     @Override

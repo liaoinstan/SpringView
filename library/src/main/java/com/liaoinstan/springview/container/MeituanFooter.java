@@ -19,26 +19,27 @@ public class MeituanFooter extends BaseFooter {
 
     private Context context;
     private ImageView footer_img;
-    private int[] loadingAnimSrcs = new int[]{R.drawable.mt_loading01,R.drawable.mt_loading02};
+    private int[] loadingAnimSrcs = new int[]{R.drawable.mt_loading01, R.drawable.mt_loading02};
 
-    public MeituanFooter(Context context){
-        this(context,null);
+    public MeituanFooter(Context context) {
+        this(context, null);
     }
-    public MeituanFooter(Context context,int[] loadingAnimSrcs){
+
+    public MeituanFooter(Context context, int[] loadingAnimSrcs) {
         this.context = context;
-        if (loadingAnimSrcs!=null) this.loadingAnimSrcs = loadingAnimSrcs;
+        if (loadingAnimSrcs != null) this.loadingAnimSrcs = loadingAnimSrcs;
         animationLoading = new AnimationDrawable();
-        for (int src: this.loadingAnimSrcs) {
-            animationLoading.addFrame(ContextCompat.getDrawable(context, src),150);
+        for (int src : this.loadingAnimSrcs) {
+            animationLoading.addFrame(ContextCompat.getDrawable(context, src), 150);
             animationLoading.setOneShot(false);
         }
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.meituan_footer, viewGroup, true);
         footer_img = (ImageView) view.findViewById(R.id.meituan_footer_img);
-        if (animationLoading!=null)
+        if (animationLoading != null)
             footer_img.setImageDrawable(animationLoading);
         return view;
     }
@@ -46,7 +47,7 @@ public class MeituanFooter extends BaseFooter {
     @Override
     public void onPreDrag(View rootView) {
         animationLoading.stop();
-        if (animationLoading!=null && animationLoading.getNumberOfFrames()>0)
+        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0)
             footer_img.setImageDrawable(animationLoading.getFrame(0));
     }
 
@@ -60,7 +61,7 @@ public class MeituanFooter extends BaseFooter {
 
     @Override
     public void onStartAnim() {
-        if (animationLoading!=null)
+        if (animationLoading != null)
             footer_img.setImageDrawable(animationLoading);
         animationLoading.start();
     }
@@ -68,7 +69,7 @@ public class MeituanFooter extends BaseFooter {
     @Override
     public void onFinishAnim() {
         animationLoading.stop();
-        if (animationLoading!=null && animationLoading.getNumberOfFrames()>0)
+        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0)
             footer_img.setImageDrawable(animationLoading.getFrame(0));
     }
 }

@@ -10,14 +10,14 @@ import com.liaoinstan.springview.R;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
- * Created by Administrator on 2016/3/23.
+ * Created by liaoinstan on 2016/3/23.
  */
 public class AcFunHeader extends BaseHeader {
     private Context context;
     private int imgSrc;
     private ImageView acfun_header_img;
 
-    public AcFunHeader(Context context,int imgSrc){
+    public AcFunHeader(Context context, int imgSrc) {
         this.context = context;
         this.imgSrc = imgSrc;
     }
@@ -32,7 +32,7 @@ public class AcFunHeader extends BaseHeader {
 
     @Override
     public int getDragLimitHeight(View rootView) {
-        return DensityUtil.dp2px( 70);
+        return DensityUtil.dp2px(70);
     }
 
     @Override

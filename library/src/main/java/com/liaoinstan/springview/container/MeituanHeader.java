@@ -23,38 +23,39 @@ public class MeituanHeader extends BaseHeader {
 
     private Context context;
     private ImageView header_img;
-    private int[] pullAnimSrcs = new int[]{R.drawable.mt_pull,R.drawable.mt_pull01,R.drawable.mt_pull02,R.drawable.mt_pull03,R.drawable.mt_pull04,R.drawable.mt_pull05};
-    private int[] refreshAnimSrcs = new int[]{R.drawable.mt_refreshing01,R.drawable.mt_refreshing02,R.drawable.mt_refreshing03,R.drawable.mt_refreshing04,R.drawable.mt_refreshing05,R.drawable.mt_refreshing06};
+    private int[] pullAnimSrcs = new int[]{R.drawable.mt_pull, R.drawable.mt_pull01, R.drawable.mt_pull02, R.drawable.mt_pull03, R.drawable.mt_pull04, R.drawable.mt_pull05};
+    private int[] refreshAnimSrcs = new int[]{R.drawable.mt_refreshing01, R.drawable.mt_refreshing02, R.drawable.mt_refreshing03, R.drawable.mt_refreshing04, R.drawable.mt_refreshing05, R.drawable.mt_refreshing06};
 
-    public MeituanHeader(Context context){
-        this(context,null,null);
+    public MeituanHeader(Context context) {
+        this(context, null, null);
     }
-    public MeituanHeader(Context context,int[] pullAnimSrcs,int[] refreshAnimSrcs){
+
+    public MeituanHeader(Context context, int[] pullAnimSrcs, int[] refreshAnimSrcs) {
         this.context = context;
-        if (pullAnimSrcs!=null) this.pullAnimSrcs = pullAnimSrcs;
-        if (refreshAnimSrcs!=null) this.refreshAnimSrcs = refreshAnimSrcs;
+        if (pullAnimSrcs != null) this.pullAnimSrcs = pullAnimSrcs;
+        if (refreshAnimSrcs != null) this.refreshAnimSrcs = refreshAnimSrcs;
         animationPull = new AnimationDrawable();
         animationPullFan = new AnimationDrawable();
         animationRefresh = new AnimationDrawable();
-        for (int i=1;i< this.pullAnimSrcs.length;i++) {
-            animationPull.addFrame(ContextCompat.getDrawable(context, this.pullAnimSrcs[i]),100);
+        for (int i = 1; i < this.pullAnimSrcs.length; i++) {
+            animationPull.addFrame(ContextCompat.getDrawable(context, this.pullAnimSrcs[i]), 100);
             animationPull.setOneShot(true);
         }
-        for (int i= this.pullAnimSrcs.length-1;i>=0;i--){
+        for (int i = this.pullAnimSrcs.length - 1; i >= 0; i--) {
             animationPullFan.addFrame(ContextCompat.getDrawable(context, this.pullAnimSrcs[i]), 100);
             animationPullFan.setOneShot(true);
         }
-        for (int src: this.refreshAnimSrcs) {
-            animationRefresh.addFrame(ContextCompat.getDrawable(context, src),150);
+        for (int src : this.refreshAnimSrcs) {
+            animationRefresh.addFrame(ContextCompat.getDrawable(context, src), 150);
             animationRefresh.setOneShot(false);
         }
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.meituan_header, viewGroup, true);
         header_img = (ImageView) view.findViewById(R.id.meituan_header_img);
-        if (pullAnimSrcs !=null&& pullAnimSrcs.length>0)
+        if (pullAnimSrcs != null && pullAnimSrcs.length > 0)
             header_img.setImageResource(pullAnimSrcs[0]);
         return view;
     }
@@ -66,8 +67,8 @@ public class MeituanHeader extends BaseHeader {
     @Override
     public void onDropAnim(View rootView, int dy) {
         int maxw = DensityUtil.dp2px(45);
-        float w = maxw*Math.abs(dy)/rootView.getMeasuredHeight();
-        if (w>maxw) return;
+        float w = maxw * Math.abs(dy) / rootView.getMeasuredHeight();
+        if (w > maxw) return;
         ViewGroup.LayoutParams layoutParams = header_img.getLayoutParams();
         layoutParams.width = (int) w;
         header_img.setLayoutParams(layoutParams);
@@ -75,10 +76,10 @@ public class MeituanHeader extends BaseHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        if (!upORdown){
+        if (!upORdown) {
             header_img.setImageDrawable(animationPull);
             animationPull.start();
-        }else {
+        } else {
             header_img.setImageDrawable(animationPullFan);
             animationPullFan.start();
         }
@@ -92,7 +93,7 @@ public class MeituanHeader extends BaseHeader {
 
     @Override
     public void onFinishAnim() {
-        if (pullAnimSrcs !=null&& pullAnimSrcs.length>0)
+        if (pullAnimSrcs != null && pullAnimSrcs.length > 0)
             header_img.setImageResource(pullAnimSrcs[0]);
     }
 }

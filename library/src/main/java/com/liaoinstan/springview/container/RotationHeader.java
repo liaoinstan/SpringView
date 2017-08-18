@@ -32,40 +32,40 @@ public class RotationHeader extends BaseHeader {
     private ProgressBar progress4;
     private ProgressBar progress5;
 
-    public RotationHeader(Context context){
-        this(context,R.drawable.progress_gear,R.drawable.progress_gear_fu);
+    public RotationHeader(Context context) {
+        this(context, R.drawable.progress_gear, R.drawable.progress_gear_fu);
     }
 
-    public RotationHeader(Context context,int rotationSrc,int rotationFuSrc){
+    public RotationHeader(Context context, int rotationSrc, int rotationFuSrc) {
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.rotationFuSrc = rotationFuSrc;
 
-        mRotateUpAnim = new RotateAnimation(0.0f, 360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setInterpolator(new LinearInterpolator());
         mRotateUpAnim.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim.setDuration(1200);
         mRotateUpAnim.setFillAfter(true);
 
-        mRotateUpAnim2 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim2 = new RotateAnimation(0.0f, -360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim2.setInterpolator(new LinearInterpolator());
         mRotateUpAnim2.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim2.setDuration(800);
         mRotateUpAnim2.setFillAfter(true);
 
-        mRotateUpAnim3 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim3 = new RotateAnimation(0.0f, -360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim3.setInterpolator(new LinearInterpolator());
         mRotateUpAnim3.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim3.setDuration(500);
         mRotateUpAnim3.setFillAfter(true);
 
-        mRotateUpAnim4 = new RotateAnimation(0.0f, 360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim4 = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim4.setInterpolator(new LinearInterpolator());
         mRotateUpAnim4.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim4.setDuration(400);
         mRotateUpAnim4.setFillAfter(true);
 
-        mRotateUpAnim5 = new RotateAnimation(0.0f, -360.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim5 = new RotateAnimation(0.0f, -360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim5.setInterpolator(new LinearInterpolator());
         mRotateUpAnim5.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim5.setDuration(800);
@@ -73,7 +73,7 @@ public class RotationHeader extends BaseHeader {
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.rotation_header, viewGroup, true);
         progress1 = (ProgressBar) view.findViewById(R.id.progress1);
         progress2 = (ProgressBar) view.findViewById(R.id.progress2);
@@ -90,7 +90,7 @@ public class RotationHeader extends BaseHeader {
 
     @Override
     public int getDragLimitHeight(View rootView) {
-        return rootView.getMeasuredHeight()/4;
+        return rootView.getMeasuredHeight() / 4;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class RotationHeader extends BaseHeader {
 
     @Override
     public void onDropAnim(View rootView, int dy) {
-        float rota = 360*dy/rootView.getMeasuredHeight();
+        float rota = 360 * dy / rootView.getMeasuredHeight();
         progress1.setRotation(rota);
         progress2.setRotation(-rota);
         progress3.setRotation(-rota);

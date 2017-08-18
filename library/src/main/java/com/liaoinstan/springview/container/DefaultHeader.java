@@ -32,11 +32,11 @@ public class DefaultHeader extends BaseHeader {
     private ImageView headerArrow;
     private ProgressBar headerProgressbar;
 
-    public DefaultHeader(Context context){
-        this(context, R.drawable.progress_small,R.drawable.arrow);
+    public DefaultHeader(Context context) {
+        this(context, R.drawable.progress_small, R.drawable.arrow);
     }
 
-    public DefaultHeader(Context context,int rotationSrc,int arrowSrc){
+    public DefaultHeader(Context context, int rotationSrc, int arrowSrc) {
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;
@@ -54,7 +54,7 @@ public class DefaultHeader extends BaseHeader {
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.default_header, viewGroup, true);
         headerTitle = (TextView) view.findViewById(R.id.default_header_title);
         headerTime = (TextView) view.findViewById(R.id.default_header_time);
@@ -67,19 +67,19 @@ public class DefaultHeader extends BaseHeader {
 
     @Override
     public void onPreDrag(View rootView) {
-        if (freshTime==0){
+        if (freshTime == 0) {
             freshTime = System.currentTimeMillis();
-        }else {
-            int m = (int) ((System.currentTimeMillis()-freshTime)/1000/60);
-            if(m>=1 && m<60){
-                headerTime.setText( m +"分钟前");
-            }else if (m>=60){
-                int h = m/60;
-                headerTime.setText( h +"小时前");
-            }else if(m>60*24){
-                int d = m/(60*24);
-                headerTime.setText( d +"天前");
-            }else if(m==0){
+        } else {
+            int m = (int) ((System.currentTimeMillis() - freshTime) / 1000 / 60);
+            if (m >= 1 && m < 60) {
+                headerTime.setText(m + "分钟前");
+            } else if (m >= 60) {
+                int h = m / 60;
+                headerTime.setText(h + "小时前");
+            } else if (m > 60 * 24) {
+                int d = m / (60 * 24);
+                headerTime.setText(d + "天前");
+            } else if (m == 0) {
                 headerTime.setText("刚刚");
             }
         }
@@ -91,14 +91,13 @@ public class DefaultHeader extends BaseHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        if (!upORdown){
+        if (!upORdown) {
             headerTitle.setText("松开刷新数据");
-            if (headerArrow.getVisibility()==View.VISIBLE)
+            if (headerArrow.getVisibility() == View.VISIBLE)
                 headerArrow.startAnimation(mRotateUpAnim);
-        }
-        else {
+        } else {
             headerTitle.setText("下拉刷新");
-            if (headerArrow.getVisibility()==View.VISIBLE)
+            if (headerArrow.getVisibility() == View.VISIBLE)
                 headerArrow.startAnimation(mRotateDownAnim);
         }
     }

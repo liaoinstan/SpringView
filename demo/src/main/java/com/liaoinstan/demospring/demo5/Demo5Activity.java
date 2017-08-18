@@ -33,7 +33,7 @@ public class Demo5Activity extends AppCompatActivity {
             public void onLoadmore() {
             }
         });
-        springView.setHeader(new AcFunHeader(this,R.drawable.acfun_header));
-        springView.setFooter(new AcFunFooter(this,R.drawable.acfun_footer));
+        springView.setHeader(new AcFunHeader(this, R.drawable.acfun_header));
+        springView.setFooter(new AcFunFooter(this, R.drawable.acfun_footer));
     }
 }

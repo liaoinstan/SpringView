@@ -12,7 +12,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 public class MyItemTouchCallback extends ItemTouchHelper.Callback {
 
     private ItemTouchAdapter itemTouchAdapter;
-    public MyItemTouchCallback(ItemTouchAdapter itemTouchAdapter){
+
+    public MyItemTouchCallback(ItemTouchAdapter itemTouchAdapter) {
         this.itemTouchAdapter = itemTouchAdapter;
     }
 
@@ -44,7 +45,7 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         int fromPosition = viewHolder.getAdapterPosition();//得到拖动ViewHolder的position
         int toPosition = target.getAdapterPosition();//得到目标ViewHolder的position
-        itemTouchAdapter.onMove(fromPosition,toPosition);
+        itemTouchAdapter.onMove(fromPosition, toPosition);
         return true;
     }
 
@@ -68,6 +69,7 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
 
     public interface ItemTouchAdapter {
         void onMove(int fromPosition, int toPosition);
+
         void onSwiped(int position);
     }
 }

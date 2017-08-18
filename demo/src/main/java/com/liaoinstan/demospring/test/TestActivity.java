@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class TestActivity extends Activity implements RadioGroup.OnCheckedChangeListener{
+public class TestActivity extends Activity implements RadioGroup.OnCheckedChangeListener {
     private SpringView springView;
 
     @Override
@@ -17,8 +17,8 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        ((RadioGroup)findViewById(R.id.group_type)).setOnCheckedChangeListener(this);
-        ((RadioGroup)findViewById(R.id.group_give)).setOnCheckedChangeListener(this);
+        ((RadioGroup) findViewById(R.id.group_type)).setOnCheckedChangeListener(this);
+        ((RadioGroup) findViewById(R.id.group_give)).setOnCheckedChangeListener(this);
 
         springView = (SpringView) findViewById(R.id.my);
         springView.setListener(new SpringView.OnFreshListener() {
@@ -48,7 +48,7 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.overlap:
                 springView.setType(SpringView.Type.OVERLAP);
                 break;

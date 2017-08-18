@@ -33,47 +33,48 @@ public class AliHeader extends BaseHeader {
     private ProgressBar headerProgressbar;
     private View frame;
 
-    public AliHeader(Context context){
-        this(context, 0,R.drawable.arrow,0,false);
+    public AliHeader(Context context) {
+        this(context, 0, R.drawable.arrow, 0, false);
     }
 
-    public AliHeader(Context context,boolean isShowText){
-        this(context, 0,R.drawable.arrow,0,isShowText);
+    public AliHeader(Context context, boolean isShowText) {
+        this(context, 0, R.drawable.arrow, 0, isShowText);
     }
 
-    public AliHeader(Context context,int logoSrc){
-        this(context, 0,R.drawable.arrow,logoSrc,false);
+    public AliHeader(Context context, int logoSrc) {
+        this(context, 0, R.drawable.arrow, logoSrc, false);
     }
 
-    public AliHeader(Context context,int logoSrc,boolean isShowText){
-        this(context, 0,R.drawable.arrow,logoSrc,isShowText);
+    public AliHeader(Context context, int logoSrc, boolean isShowText) {
+        this(context, 0, R.drawable.arrow, logoSrc, isShowText);
     }
 
-    public AliHeader(Context context,int rotationSrc,int arrowSrc,int logoSrc,boolean isShowText){
+    public AliHeader(Context context, int rotationSrc, int arrowSrc, int logoSrc, boolean isShowText) {
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;
         this.logoSrc = logoSrc;
         this.isShowText = isShowText;
-        mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateUpAnim.setFillAfter(true);
-        mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.ali_header, viewGroup, true);
         headerTitle = (TextView) view.findViewById(R.id.ali_header_text);
         headerArrow = (ImageView) view.findViewById(R.id.ali_header_arrow);
         headerLogo = (ImageView) view.findViewById(R.id.ali_header_logo);
         headerProgressbar = (ProgressBar) view.findViewById(R.id.ali_header_progressbar);
         frame = view.findViewById(R.id.ali_frame);
-        if(logoSrc!=0) headerLogo.setImageResource(logoSrc);
-        if(!isShowText) headerTitle.setVisibility(View.GONE);
-        if(rotationSrc!=0) headerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
+        if (logoSrc != 0) headerLogo.setImageResource(logoSrc);
+        if (!isShowText) headerTitle.setVisibility(View.GONE);
+        if (rotationSrc != 0)
+            headerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         headerArrow.setImageResource(arrowSrc);
         return view;
     }
@@ -98,14 +99,13 @@ public class AliHeader extends BaseHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        if (!upORdown){
+        if (!upORdown) {
             headerTitle.setText("松开刷新");
-            if (headerArrow.getVisibility()==View.VISIBLE)
+            if (headerArrow.getVisibility() == View.VISIBLE)
                 headerArrow.startAnimation(mRotateUpAnim);
-        }
-        else {
+        } else {
             headerTitle.setText("下拉刷新");
-            if (headerArrow.getVisibility()==View.VISIBLE)
+            if (headerArrow.getVisibility() == View.VISIBLE)
                 headerArrow.startAnimation(mRotateDownAnim);
         }
     }

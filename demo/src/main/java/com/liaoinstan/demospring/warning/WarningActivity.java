@@ -12,7 +12,7 @@ import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class WarningActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
+public class WarningActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     private TextView textView;
     private SpringView springView;
@@ -24,7 +24,7 @@ public class WarningActivity extends AppCompatActivity implements RadioGroup.OnC
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ((RadioGroup)findViewById(R.id.group_text)).setOnCheckedChangeListener(this);
+        ((RadioGroup) findViewById(R.id.group_text)).setOnCheckedChangeListener(this);
 
         springView = (SpringView) findViewById(R.id.springview);
         springView.setListener(new SpringView.OnFreshListener() {
@@ -53,7 +53,7 @@ public class WarningActivity extends AppCompatActivity implements RadioGroup.OnC
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.setwrap:
                 textView = (TextView) springView.getHeaderView().findViewById(R.id.textView);
                 textView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;

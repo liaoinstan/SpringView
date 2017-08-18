@@ -10,7 +10,7 @@ import android.webkit.WebView;
 
 import com.liaoinstan.demospring.R;
 
-public class Demo4Activity extends AppCompatActivity{
+public class Demo4Activity extends AppCompatActivity {
 
     private WebView webView;
 

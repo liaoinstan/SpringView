@@ -33,47 +33,48 @@ public class AliFooter extends BaseFooter {
     private ProgressBar footerProgressbar;
     private View frame;
 
-    public AliFooter(Context context){
-        this(context, 0,R.drawable.arrow,0,false);
+    public AliFooter(Context context) {
+        this(context, 0, R.drawable.arrow, 0, false);
     }
 
-    public AliFooter(Context context,boolean isShowText){
-        this(context, 0,R.drawable.arrow,0,isShowText);
+    public AliFooter(Context context, boolean isShowText) {
+        this(context, 0, R.drawable.arrow, 0, isShowText);
     }
 
-    public AliFooter(Context context,int logoSrc){
-        this(context, 0,R.drawable.arrow,logoSrc,false);
+    public AliFooter(Context context, int logoSrc) {
+        this(context, 0, R.drawable.arrow, logoSrc, false);
     }
 
-    public AliFooter(Context context,int logoSrc,boolean isShowText){
-        this(context, 0,R.drawable.arrow,logoSrc,isShowText);
+    public AliFooter(Context context, int logoSrc, boolean isShowText) {
+        this(context, 0, R.drawable.arrow, logoSrc, isShowText);
     }
 
-    public AliFooter(Context context,int rotationSrc,int arrowSrc,int logoSrc,boolean isShowText){
+    public AliFooter(Context context, int rotationSrc, int arrowSrc, int logoSrc, boolean isShowText) {
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;
         this.logoSrc = logoSrc;
         this.isShowText = isShowText;
-        mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateUpAnim.setFillAfter(true);
-        mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.ali_footer, viewGroup, true);
         footerTitle = (TextView) view.findViewById(R.id.ali_footer_text);
         footerArrow = (ImageView) view.findViewById(R.id.ali_footer_arrow);
         footerLogo = (ImageView) view.findViewById(R.id.ali_footer_logo);
         footerProgressbar = (ProgressBar) view.findViewById(R.id.ali_footer_progressbar);
         frame = view.findViewById(R.id.ali_frame);
-        if(logoSrc!=0) footerLogo.setImageResource(logoSrc);
-        if(!isShowText) footerTitle.setVisibility(View.GONE);
-        if(rotationSrc!=0) footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
+        if (logoSrc != 0) footerLogo.setImageResource(logoSrc);
+        if (!isShowText) footerTitle.setVisibility(View.GONE);
+        if (rotationSrc != 0)
+            footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         footerArrow.setImageResource(arrowSrc);
         return view;
     }
@@ -98,14 +99,13 @@ public class AliFooter extends BaseFooter {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        if (upORdown){
+        if (upORdown) {
             footerTitle.setText("松开加载");
-            if (footerArrow.getVisibility()==View.VISIBLE)
+            if (footerArrow.getVisibility() == View.VISIBLE)
                 footerArrow.startAnimation(mRotateUpAnim);
-        }
-        else {
+        } else {
             footerTitle.setText("上拉加载");
-            if (footerArrow.getVisibility()==View.VISIBLE)
+            if (footerArrow.getVisibility() == View.VISIBLE)
                 footerArrow.startAnimation(mRotateDownAnim);
         }
     }

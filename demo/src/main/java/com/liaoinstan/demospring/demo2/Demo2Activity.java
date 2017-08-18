@@ -70,21 +70,21 @@ public class Demo2Activity extends AppCompatActivity {
         springView.setFooter(new RotationFooter(this));
     }
 
-    private void initData(){
+    private void initData() {
         for (int i = 0; i < 8; i++) {
-            mDatas.add(i==0?"We are in ListView":(i==1?"SpringView支持ListView\n\n你可以轻易定制个性化的头部和尾部并在任何控件中使用它":""));
+            mDatas.add(i == 0 ? "We are in ListView" : (i == 1 ? "SpringView支持ListView\n\n你可以轻易定制个性化的头部和尾部并在任何控件中使用它" : ""));
         }
     }
 
-    public void onClick(View v){
-        switch (v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.add: {
                 mDatas.add("add item");
                 listAdapter.notifyDataSetChanged();
                 break;
             }
             case R.id.sub:
-                if (mDatas.size()>0) {
+                if (mDatas.size() > 0) {
                     int position = mDatas.size() - 1;
                     mDatas.remove(position);
                     listAdapter.notifyDataSetChanged();
@@ -94,14 +94,15 @@ public class Demo2Activity extends AppCompatActivity {
     }
 
 
-
     private class AdapterForList extends BaseAdapter {
         private Context context = null;
         private List<String> results;
-        public AdapterForList(Context context,List<String> results){
+
+        public AdapterForList(Context context, List<String> results) {
             this.context = context;
             this.results = results;
         }
+
         @Override
         public long getItemId(int position) {
             return position;
@@ -120,18 +121,17 @@ public class Demo2Activity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView item_text;
-            if(convertView == null){
+            if (convertView == null) {
                 convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-                item_text = (TextView)convertView.findViewById(R.id.item_text);
+                item_text = (TextView) convertView.findViewById(R.id.item_text);
                 convertView.setTag(item_text);
-            }else {
+            } else {
                 item_text = (TextView) convertView.getTag();
             }
-            if (position%2==1) {
+            if (position % 2 == 1) {
                 item_text.setBackgroundColor(Color.parseColor("#e3f1fc"));
                 item_text.setTextColor(Color.parseColor("#9dd2fc"));
-            }
-            else {
+            } else {
                 item_text.setBackgroundColor(Color.parseColor("#ffffff"));
                 item_text.setTextColor(Color.parseColor("#cccccc"));
             }

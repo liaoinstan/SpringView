@@ -17,7 +17,7 @@ import com.liaoinstan.demospring.demo9.Demo9Activity;
 import com.liaoinstan.demospring.test.TestActivity;
 import com.liaoinstan.demospring.warning.WarningActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,41 +39,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.demo1:
-                intent.setClass(this,Demo1Activity.class);
+                intent.setClass(this, Demo1Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo2:
-                intent.setClass(this,Demo2Activity.class);
+                intent.setClass(this, Demo2Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo3:
-                intent.setClass(this,Demo3Activity.class);
+                intent.setClass(this, Demo3Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo4:
-                intent.setClass(this,Demo4Activity.class);
+                intent.setClass(this, Demo4Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo5:
-                intent.setClass(this,Demo5Activity.class);
+                intent.setClass(this, Demo5Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo6:
-                intent.setClass(this,Demo6Activity.class);
+                intent.setClass(this, Demo6Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo7:
-                intent.setClass(this,Demo7Activity.class);
+                intent.setClass(this, Demo7Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo8:
-                intent.setClass(this,Demo8Activity.class);
+                intent.setClass(this, Demo8Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demo9:
-                intent.setClass(this,Demo9Activity.class);
+                intent.setClass(this, Demo9Activity.class);
                 startActivity(intent);
                 break;
             case R.id.warning:

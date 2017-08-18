@@ -70,9 +70,9 @@ public class Demo8Activity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void initData(){
+    private void initData() {
         for (int i = 0; i < 20; i++) {
-            mDatas.add(i==0?"SpringView处理了水平滑动的手势冲突，侧滑删除试试":"item"+i);
+            mDatas.add(i == 0 ? "SpringView处理了水平滑动的手势冲突，侧滑删除试试" : "item" + i);
         }
     }
 
@@ -82,7 +82,7 @@ public class Demo8Activity extends AppCompatActivity {
         private int src;
         private List<String> results;
 
-        public RecyclerAdapter(int src, List<String> results){
+        public RecyclerAdapter(int src, List<String> results) {
             this.results = results;
             this.src = src;
         }
@@ -114,7 +114,7 @@ public class Demo8Activity extends AppCompatActivity {
             notifyItemRemoved(position);
         }
 
-        public class MyViewHolder extends RecyclerView.ViewHolder{
+        public class MyViewHolder extends RecyclerView.ViewHolder {
 
             public TextView textView;
 

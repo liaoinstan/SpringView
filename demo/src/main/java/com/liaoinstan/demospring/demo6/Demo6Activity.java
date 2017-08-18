@@ -13,7 +13,7 @@ import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class Demo6Activity extends AppCompatActivity  implements RadioGroup.OnCheckedChangeListener{
+public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     private SpringView springView;
 
@@ -26,7 +26,7 @@ public class Demo6Activity extends AppCompatActivity  implements RadioGroup.OnCh
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
-        ((RadioGroup)findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
+        ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 
         springView = (SpringView) findViewById(R.id.springview);
 //        springView.setGive(SpringView.Give.NONE);
@@ -55,12 +55,12 @@ public class Demo6Activity extends AppCompatActivity  implements RadioGroup.OnCh
             }
         });
         springView.setHeader(new QQHeader());
-        springView.setFooter(new DefaultFooter(this,R.drawable.progress_small));
+        springView.setFooter(new DefaultFooter(this, R.drawable.progress_small));
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.drag_header:
                 springView.setType(SpringView.Type.OVERLAP); //重叠模式
                 springView.setHeader(new QQHeader());

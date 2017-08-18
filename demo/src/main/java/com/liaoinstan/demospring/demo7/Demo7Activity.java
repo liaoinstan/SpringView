@@ -12,13 +12,13 @@ import com.liaoinstan.springview.container.MeituanFooter;
 import com.liaoinstan.springview.container.MeituanHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
-public class Demo7Activity extends AppCompatActivity{
+public class Demo7Activity extends AppCompatActivity {
 
     private SpringView springView;
 
-    private int[] pullAnimSrcs = new int[]{R.drawable.mt_pull,R.drawable.mt_pull01,R.drawable.mt_pull02,R.drawable.mt_pull03,R.drawable.mt_pull04,R.drawable.mt_pull05};
-    private int[] refreshAnimSrcs = new int[]{R.drawable.mt_refreshing01,R.drawable.mt_refreshing02,R.drawable.mt_refreshing03,R.drawable.mt_refreshing04,R.drawable.mt_refreshing05,R.drawable.mt_refreshing06};
-    private int[] loadingAnimSrcs = new int[]{R.drawable.mt_loading01,R.drawable.mt_loading02};
+    private int[] pullAnimSrcs = new int[]{R.drawable.mt_pull, R.drawable.mt_pull01, R.drawable.mt_pull02, R.drawable.mt_pull03, R.drawable.mt_pull04, R.drawable.mt_pull05};
+    private int[] refreshAnimSrcs = new int[]{R.drawable.mt_refreshing01, R.drawable.mt_refreshing02, R.drawable.mt_refreshing03, R.drawable.mt_refreshing04, R.drawable.mt_refreshing05, R.drawable.mt_refreshing06};
+    private int[] loadingAnimSrcs = new int[]{R.drawable.mt_loading01, R.drawable.mt_loading02};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class Demo7Activity extends AppCompatActivity{
                 }, 2000);
             }
         });
-        springView.setHeader(new MeituanHeader(this,pullAnimSrcs,refreshAnimSrcs));
-        springView.setFooter(new MeituanFooter(this,loadingAnimSrcs));
+        springView.setHeader(new MeituanHeader(this, pullAnimSrcs, refreshAnimSrcs));
+        springView.setFooter(new MeituanFooter(this, loadingAnimSrcs));
     }
 }

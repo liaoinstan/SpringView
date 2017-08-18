@@ -23,15 +23,15 @@ public class RotationFooter extends BaseFooter {
 
     private ProgressBar footer_progress;
 
-    public RotationFooter(Context context){
-        this(context,R.drawable.progress_gear);
+    public RotationFooter(Context context) {
+        this(context, R.drawable.progress_gear);
     }
 
-    public RotationFooter(Context context,int rotationSrc){
+    public RotationFooter(Context context, int rotationSrc) {
         this.context = context;
         this.rotationSrc = rotationSrc;
 
-        mRotateUpAnim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,0.5f);
+        mRotateUpAnim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setInterpolator(new LinearInterpolator());
         mRotateUpAnim.setRepeatCount(Integer.MAX_VALUE);
         mRotateUpAnim.setDuration(600);
@@ -39,7 +39,7 @@ public class RotationFooter extends BaseFooter {
     }
 
     @Override
-    public View getView(LayoutInflater inflater,ViewGroup viewGroup) {
+    public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.rotation_footer, viewGroup, true);
         footer_progress = (ProgressBar) view.findViewById(R.id.rotation_footer_progress);
         footer_progress.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
@@ -52,7 +52,7 @@ public class RotationFooter extends BaseFooter {
 
     @Override
     public void onDropAnim(View rootView, int dy) {
-        float rota = 360*Math.abs(dy)/rootView.getMeasuredHeight();
+        float rota = 360 * Math.abs(dy) / rootView.getMeasuredHeight();
         footer_progress.setRotation(rota);
     }
 
