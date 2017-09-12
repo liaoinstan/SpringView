@@ -99,7 +99,7 @@ public class Demo9FragmentRecyclerView extends Fragment {
 
     private void initData() {
         for (int i = 0; i < 9; i++) {
-            mDatas.add(i == 0 ? "We are in RecyclerView" : (i == 1 ? "单个拖拽事件能够在AppBarLayout、SpringView\n和RecyclerView中自由地传递和切换\n\n按住RecyclerView不断上下拖拽试试\n\n感受事件在不同滚动控件中的传递" : ""));
+            mDatas.add(i == 0 ? "We are in RecyclerView" : (i == 1 ? "单个拖拽事件能够在AppBarLayout、SpringView\n和RecyclerView中自由地传递和切换\n\n按住RecyclerView不断上下拖拽试试" : ""));
         }
     }
 

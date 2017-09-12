@@ -3,6 +3,7 @@ package com.liaoinstan.demospring.test;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -83,6 +84,14 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
                 break;
             case R.id.check_enableFooter:
                 springView.setEnableFooter(!isChecked);
+                break;
+        }
+    }
+
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.btn_callfresh:
+                springView.callFresh();
                 break;
         }
     }

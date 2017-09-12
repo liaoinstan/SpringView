@@ -28,7 +28,7 @@
                 android:layout_height="200dp"
                 android:background="#e3f1fc"
                 android:gravity="center"
-                android:text="使用AppBarLayout + ViewPager + Fragment的方式\n\n也很常见，你需要一个兼容他们的下拉控件"
+                android:text="使用AppBarLayout + ViewPager + Fragment的方式\n\n也很常见"
                 android:textColor="#9dd2fc"
                 android:textSize="12sp" />
 

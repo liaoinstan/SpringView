@@ -48,10 +48,12 @@
             android:name=".demo7.Demo7Activity"
             android:label="@string/title_activity_demo7"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".demo8.Demo8Activity"
+        <activity
+            android:name=".demo8.Demo8Activity"
             android:label="@string/title_activity_demo8"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".demo9.Demo9Activity"
+        <activity
+            android:name=".demo9.Demo9Activity"
             android:label="@string/title_activity_demo9"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

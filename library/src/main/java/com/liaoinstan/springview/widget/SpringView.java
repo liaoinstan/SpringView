@@ -7,7 +7,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,7 +36,6 @@ public class SpringView extends ViewGroup {
     private boolean isFullEnable = false;   //是否超过一屏时才允许上拉，为false则不满一屏也可以上拉，注意样式为isOverlap时，无论如何也不允许在不满一屏时上拉
     private boolean isMoveNow = false;       //当前是否正在拖动
     private long lastMoveTime;
-    private boolean enable = true;           //是否禁用（默认可用）
     private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
     private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
 
@@ -225,30 +223,32 @@ public class SpringView extends ViewGroup {
         dealMulTouchEvent(event);
         int action = event.getAction();
         switch (action) {
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN: {
                 hasCallFull = false;
                 hasCallRefresh = false;
                 mfirstY = event.getY();
                 boolean isTop = isChildScrollToTop();
-                boolean isBottom = isChildScrollToBottomFull(isFullEnable);
+                boolean isBottom = isChildScrollToBottom();
                 if (isTop || isBottom) isNeedMyMove = false;
                 break;
+            }
             case MotionEvent.ACTION_MOVE:
-                //appBarLayout处于展开状态 || appBarLayout处于折叠状态并且手势上向上拉，则SpirngView处理滑动事件，否则不处理
-                //这里之所以增加一个isResetEvent标识是为了解决当SpringView包裹recyclerView同时recyclerView又没有数据的时候recyclerView不能同appBarLayout交互，所以SpringView要处理首次上滑事件与appBarLayout进行事件切换保证正常拖拽，这一点SwipeRefreshLayout并没有做到
-                if (!isResetEvent) {
-                    if (appbarState == AppBarStateChangeListener.State.EXPANDED && dy > 0 || appbarState == AppBarStateChangeListener.State.COLLAPSED && dy < 0) {
-                        isResetEvent = true;
-                    } else {
+                boolean isTop = isChildScrollToTop();
+                boolean isBottom = isChildScrollToBottom();
+                //如果列表内容不满一屏（既已经到最顶部同时有在最底部），这时对appbar进行特殊处理（展开状态向上滚动、折叠状态向下滚动不进行处理）
+                //TODO:列表不满一屏的时候存在拖拽粘滞的情况，有待优化，主要问题是如何将springView已经得到的事件传递给Appbar？
+                if (isTop && isBottom) {
+                    if (appbarState == AppBarStateChangeListener.State.EXPANDED && dy < 0) {
                         break;
-                    }
-                } else {
-                    if (appbarState == AppBarStateChangeListener.State.EXPANDED || appbarState == AppBarStateChangeListener.State.COLLAPSED && dy < 0) {
-                    } else {
+                    } else if (appbarState == AppBarStateChangeListener.State.COLLAPSED && dy > 0) {
                         break;
                     }
                 }
-
+                //appBarLayout处于展开状态 || appBarLayout处于折叠状态并且手势上向上拉，则SpirngView处理滑动事件，否则不处理
+                if (appbarState == AppBarStateChangeListener.State.EXPANDED || appbarState == AppBarStateChangeListener.State.COLLAPSED && dy < 0) {
+                } else {
+                    break;
+                }
                 dsY += dy;
                 isMoveNow = true;
                 isNeedMyMove = isNeedMyMove();
@@ -275,10 +275,8 @@ public class SpringView extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        return isNeedMyMove && enable;
+        return isNeedMyMove;
     }
-
-    private boolean isResetEvent = false;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -292,7 +290,7 @@ public class SpringView extends ViewGroup {
                 //if (!mScroller.isFinished()) mScroller.abortAnimation();//不需要处理
                 break;
             case MotionEvent.ACTION_MOVE:
-                getParent().requestDisallowInterceptTouchEvent(true);
+                //getParent().requestDisallowInterceptTouchEvent(true);
                 if (isNeedMyMove) {
                     needResetAnim = false;      //按下的时候关闭回弹
                     //执行位移操作
@@ -544,7 +542,7 @@ public class SpringView extends ViewGroup {
             return false;
         }
         boolean isTop = isChildScrollToTop();
-        boolean isBottom = isChildScrollToBottomFull(isFullEnable);     //false不满一屏也算在底部，true不满一屏不算在底部
+        boolean isBottom = isChildScrollToBottom();
         //用户禁止了下拉操作，则不控制
         if (!enableHeader && isTop && dy > 0) {
             return false;
@@ -835,20 +833,8 @@ public class SpringView extends ViewGroup {
     /**
      * 是否滑动到底部
      */
-    private boolean isChildScrollToBottomFull(boolean isFull) {
-        return !ViewCompat.canScrollVertically(contentView, 1);
-    }
-
     private boolean isChildScrollToBottom() {
-        return isChildScrollToBottomFull(true);
-    }
-
-    private boolean isFullScrean() {
-        boolean isBottom = isChildScrollToBottomFull(false);
-        if (isBottom) {
-            return isChildScrollToBottomFull(true);
-        }
-        return true;
+        return !ViewCompat.canScrollVertically(contentView, 1);
     }
 
     /**
@@ -965,11 +951,12 @@ public class SpringView extends ViewGroup {
      * 是否禁用SpringView
      */
     public void setEnable(boolean enable) {
-        this.enable = enable;
+        this.enableHeader = enable;
+        this.enableFooter = enable;
     }
 
     public boolean isEnable() {
-        return enable;
+        return enableHeader && enableFooter;
     }
 
     public boolean isEnableHeader() {
