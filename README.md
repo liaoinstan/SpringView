@@ -4,6 +4,7 @@ SpringView
 =====
 **SpringView**  is one provides the function of the upper and lower drag and drop components, can be highly customized, implement all kinds of drop-down \ pull painting effect, implementation in the demo: imitation ali travel, imitation Meituan, imitation QQ drop-down brush red envelopes, imitation acfun etc., is fully compatible with the source control such as ListView, RecyclerView, ScrollView, WebView, etc., using a simple, easily customize their style of drag and drop page
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/springview.png)
+
 **SpringView** Individual independence will head/foot,  almost achieve the effect of whatever you want, just need to inherit BaseHeader (or Footer) to implement the interface
 
 **SpringView** Can dynamically replace the head/tail, you just need to set up different Footer：springView.setHeader(MyHeader());
@@ -67,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.0'
+   compile 'com.liaoinstan.springview:library:1.3.1'
 }
 ```
 or Maven：
@@ -75,7 +76,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.0</version>
+  <version>1.3.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -83,6 +84,10 @@ or Maven：
 
 **Update log**
 --------
+####**v1.3.1**
+ - fix the bug of the linkage damping of AppBarLayout in the case of null data,
+new setEnableFooter(Boolean), setEnableHeader(Boolean) disable or enable header/footer.
+ 
 ####**v1.3.0**
  - support AppBarLayout,fix sliding conflict
 
