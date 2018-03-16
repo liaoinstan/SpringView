@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.1'
+   compile 'com.liaoinstan.springview:library:1.3.2'
 }
 ```
 or Maven：
@@ -76,7 +76,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.1</version>
+  <version>1.3.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,7 +84,7 @@ or Maven：
 
 **Update log**
 --------
-####**v1.3.1**
+####**v1.3.2**
  - fix the bug of the linkage damping of AppBarLayout in the case of null data,
 new setEnableFooter(Boolean), setEnableHeader(Boolean) disable or enable header/footer.
  
