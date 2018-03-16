@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.1'
+   compile 'com.liaoinstan.springview:library:1.3.2'
 }
 ```
 或者 Maven：
@@ -76,7 +76,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.1</version>
+  <version>1.3.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,7 +84,7 @@ dependencies {
 
 **更新日志**
 --------
-####**v1.3.1**
+####**v1.3.2**
  - 修复空数据情况下和AppBarLayout联动阻尼的bug，新增setEnableFooter(boolean)，setEnableHeader(boolean)禁用或启用header/footer
  
 ####**v1.3.0**
