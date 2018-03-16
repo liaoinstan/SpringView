@@ -86,12 +86,14 @@ public class SpringView extends ViewGroup {
 
     //记录AppBarLayout的当前状态（展开或折叠）
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
+    private boolean appBarCouldScroll = false;
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         //解决和CollapsingToolbarLayout冲突的问题
         AppBarLayout appBarLayout = SpringHelper.findAppBarLayout(this);
+        appBarCouldScroll = SpringHelper.couldScroll(appBarLayout);
         if (appBarLayout != null) {
             appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
                 @Override
@@ -237,18 +239,21 @@ public class SpringView extends ViewGroup {
                 boolean isBottom = isChildScrollToBottom();
                 //如果列表内容不满一屏（既已经到最顶部同时有在最底部），这时对appbar进行特殊处理（展开状态向上滚动、折叠状态向下滚动不进行处理）
                 //TODO:列表不满一屏的时候存在拖拽粘滞的情况，有待优化，主要问题是如何将springView已经得到的事件传递给Appbar？
-                if (isTop && isBottom) {
-                    if (appbarState == AppBarStateChangeListener.State.EXPANDED && dy < 0) {
-                        break;
-                    } else if (appbarState == AppBarStateChangeListener.State.COLLAPSED && dy > 0) {
+                if (appBarCouldScroll) {
+                    if (isTop && isBottom) {
+                        if (appbarState == AppBarStateChangeListener.State.EXPANDED && dy < 0) {
+                            break;
+                        } else if (appbarState == AppBarStateChangeListener.State.COLLAPSED && dy > 0) {
+                            break;
+                        }
+                    }
+                    //appBarLayout处于展开状态 || appBarLayout处于折叠状态并且手势上向上拉，则SpirngView处理滑动事件，否则不处理
+                    if (appbarState == AppBarStateChangeListener.State.EXPANDED || appbarState == AppBarStateChangeListener.State.COLLAPSED && dy < 0) {
+                    } else {
                         break;
                     }
                 }
-                //appBarLayout处于展开状态 || appBarLayout处于折叠状态并且手势上向上拉，则SpirngView处理滑动事件，否则不处理
-                if (appbarState == AppBarStateChangeListener.State.EXPANDED || appbarState == AppBarStateChangeListener.State.COLLAPSED && dy < 0) {
-                } else {
-                    break;
-                }
+                /////////////////////////////////////////////////////
                 dsY += dy;
                 isMoveNow = true;
                 isNeedMyMove = isNeedMyMove();
