@@ -41,7 +41,7 @@ Add Spring View in the layout file, note that Spring View and ScrollView have th
 
      </com.liaoinstan.springview.widget.SpringView>
 ```
-Of course, you also can not add in the layout, use the code dynamically added：
+Of course, you can also add the header/footer in java code：
 
 ```
 	springView.setHeader(new DefaultHeader(this));
