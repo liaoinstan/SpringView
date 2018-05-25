@@ -3,6 +3,7 @@ package com.liaoinstan.springview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
@@ -27,6 +28,7 @@ public class SpringView extends ViewGroup {
     private Context context;
     private LayoutInflater inflater;
     private OverScroller mScroller;
+    private Handler handler = new Handler();
     private OnFreshListener listener;         //监听回调
     private boolean isCallDown = false;     //用于判断是否在下拉时到达临界点
     private boolean isCallUp = false;       //用于判断是否在上拉时到达临界点
@@ -137,7 +139,7 @@ public class SpringView extends ViewGroup {
             return;
         }
         setPadding(0, 0, 0, 0);
-        contentView.setPadding(0, contentView.getPaddingTop(), 0, contentView.getPaddingBottom());
+        //contentView.setPadding(0, contentView.getPaddingTop(), 0, contentView.getPaddingBottom());
         if (headerResoureId != 0) {
             inflater.inflate(headerResoureId, this, true);
             header = getChildAt(getChildCount() - 1);
@@ -229,9 +231,10 @@ public class SpringView extends ViewGroup {
                 hasCallFull = false;
                 hasCallRefresh = false;
                 mfirstY = event.getY();
-                boolean isTop = isChildScrollToTop();
-                boolean isBottom = isChildScrollToBottom();
-                if (isTop || isBottom) isNeedMyMove = false;
+//                boolean isTop = isChildScrollToTop();
+//                boolean isBottom = isChildScrollToBottom();
+//                if (isTop || isBottom) isNeedMyMove = false;
+                isNeedMyMove = false;
                 break;
             }
             case MotionEvent.ACTION_MOVE:
@@ -341,7 +344,7 @@ public class SpringView extends ViewGroup {
             case MotionEvent.ACTION_CANCEL:
                 break;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -937,11 +940,37 @@ public class SpringView extends ViewGroup {
         }
     }
 
+    public void onFinishFreshAndLoadDelay(int delay) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onFinishFreshAndLoad();
+            }
+        }, delay);
+    }
+
+    public void onFinishFreshAndLoadDelay() {
+        onFinishFreshAndLoadDelay(100);
+    }
+
     /**
      * 手动调用该方法使SpringView进入拉动更新的状态
      */
     public void callFresh() {
         _callFresh();
+    }
+
+    public void callFreshDelay(int delay) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callFresh();
+            }
+        }, delay);
+    }
+
+    public void callFreshDelay() {
+        callFreshDelay(100);
     }
 
     public void setMoveTime(int time) {
