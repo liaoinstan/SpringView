@@ -35,7 +35,7 @@ Add Spring View in the layout file, note that Spring View and ScrollView have th
             app:header="@layout/myheader"
             app:footer="@layout/myfooter">
 
-            <listView
+            <ListView RecyclerView ScrollView or others
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.2'
+   compile 'com.liaoinstan.springview:library:1.3.3'
 }
 ```
 or Maven：
@@ -76,7 +76,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.2</version>
+  <version>1.3.3</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,6 +84,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.3.3**
+ - Optimize several experiential issues,Added onFinishFreshAndLoadDelay(int delay), callFreshDelay(int delay) method,Optimizing performance with BottomSheetBehavior,Optimize the performance used in BottomSheetDialog
+
 ####**v1.3.2**
  - fix the bug of the linkage damping of AppBarLayout in the case of null data,
 new setEnableFooter(Boolean), setEnableHeader(Boolean) disable or enable header/footer.

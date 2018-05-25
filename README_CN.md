@@ -35,7 +35,7 @@ SpringView
             app:header="@layout/myheader"
             app:footer="@layout/myfooter">
 
-            <ListView
+            <ListView RecyclerView ScrollView or others
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.2'
+   compile 'com.liaoinstan.springview:library:1.3.3'
 }
 ```
 或者 Maven：
@@ -76,7 +76,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.2</version>
+  <version>1.3.3</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,6 +84,9 @@ dependencies {
 
 **更新日志**
 --------
+####**v1.3.3**
+ - 优化几个体验性问题，新增onFinishFreshAndLoadDelay(int delay)，callFreshDelay(int delay)方法，优化和BottomSheetBehavior联用的表现，优化在BottomSheetDialog中使用的表现
+
 ####**v1.3.2**
  - 修复空数据情况下和AppBarLayout联动阻尼的bug，新增setEnableFooter(boolean)，setEnableHeader(boolean)禁用或启用header/footer
  
