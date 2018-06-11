@@ -4,6 +4,7 @@
         <attr name="type">
             <enum name="overlap" value="0"/>
             <enum name="follow" value="1"/>
+            <enum name="drag" value="2"/>
         </attr>
         <attr name="give">
             <enum name="both" value="0"/>

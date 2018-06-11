@@ -33,8 +33,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ffffff"
-            app:footer="@layout/header_recycle"
-            app:header="@layout/header_recycle"
             app:type="follow">
 
 

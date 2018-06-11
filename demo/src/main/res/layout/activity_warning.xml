@@ -29,94 +29,54 @@
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             app:type="overlap">
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#68b3f3"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:background="#68b3f3"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="这是一个自定义的header，在拉动到达下边界时改变header上textview的文字"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="这个问题已经解决"
+                        android:layout_marginTop="200dp"
                         android:textColor="#ffffff" />
 
                     <TextView
-                        android:id="@+id/text"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#68b3f3"
-                        android:padding="20dp"
-                        android:text="但是拉动时发生了位置错乱，使拉动回到了头部\n\n这是由于当textView的宽度为wrap_content时，调用textView.setText()方法，textView会重新计算内容占据的高宽，并重新进行layout，丢失原来的高度，最终导致拉动回到顶部\n\n解决方法：\n设置textView的宽为match_parent或固定值\n\n这个问题来自textView，springView无法进行处理，如果需要动态改变内容的textView,请不要设置宽度为wrap_content\n\n\n只有设置springView为OVERLAP(重叠)模式时才会出现这个问题"
-                        android:textColor="#ffffff"
-                        android:textSize="12sp" />
+                        android:layout_marginTop="600dp"
+                        android:text="关注我"
+                        android:textColor="#ffffff" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="600dp"
-                        android:background="#68b3f3"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:src="@drawable/me" />
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="关注我"
-                            android:textColor="#ffffff" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
-                            android:src="@drawable/me" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="http://blog.csdn.net/liaoinstan"
-                            android:textColor="#ffffff" />
-                    </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="100dp"
+                        android:text="http://blog.csdn.net/liaoinstan"
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
             </ScrollView>
 
         </com.liaoinstan.springview.widget.SpringView>
 
-
-        <RadioGroup
-            android:id="@+id/group_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="90dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/setwrap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="设置TextView宽为wrap_content" />
-
-            <RadioButton
-                android:id="@+id/sethard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="设置TextView宽为120dp" />
-        </RadioGroup>
 
     </FrameLayout>
 

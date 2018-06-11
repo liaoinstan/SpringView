@@ -61,6 +61,9 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
             case R.id.follow:
                 springView.setType(SpringView.Type.FOLLOW);
                 break;
+            case R.id.drag:
+                springView.setType(SpringView.Type.DRAG);
+                break;
             case R.id.both:
                 springView.setGive(SpringView.Give.BOTH);
                 break;
