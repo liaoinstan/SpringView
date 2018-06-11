@@ -586,7 +586,9 @@ public class SpringView extends ViewGroup {
         return false;
     }
 
+    //在完成全部动作后会回调此方法
     private void callOnAfterFullAnim() {
+        //如果在回弹动作中没有进行回调，那么在这里进行
         if (callFreshORload != 0) {
             callOnFinishAnim();
         }
@@ -604,6 +606,7 @@ public class SpringView extends ViewGroup {
         }
     }
 
+    //在回弹到刷新位置的时候会回调此方法
     private void callOnAfterRefreshAnim() {
         if (type == Type.FOLLOW) {
             if (isTop()) {
