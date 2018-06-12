@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".demo7.Demo7Activity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.liaoinstan.springview.widget.SpringView
+            android:id="@+id/springview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#ffffff"
+                            android:gravity="center"
+                            android:text="We are in ScrollView"
+                            android:textColor="#cccccc" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#dbfbf8"
+                            android:gravity="center"
+                            android:text="内部嵌套"
+                            android:textColor="#18cfbe"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#dbfbf8" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#dbfbf8" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#dbfbf8" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:text="SpringView 现在支持内部嵌套布局了"
+                    android:background="#18cfbe"/>
+
+            </FrameLayout>
+        </com.liaoinstan.springview.widget.SpringView>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

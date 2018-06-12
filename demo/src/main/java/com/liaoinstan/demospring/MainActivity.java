@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.liaoinstan.demospring.demo1.Demo1Activity;
+import com.liaoinstan.demospring.demo10.Demo10Activity;
+import com.liaoinstan.demospring.demo11.Demo11Activity;
 import com.liaoinstan.demospring.demo2.Demo2Activity;
 import com.liaoinstan.demospring.demo3.Demo3Activity;
 import com.liaoinstan.demospring.demo4.Demo4Activity;
@@ -17,26 +19,13 @@ import com.liaoinstan.demospring.demo9.Demo9Activity;
 import com.liaoinstan.demospring.test.TestActivity;
 import com.liaoinstan.demospring.warning.WarningActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        findViewById(R.id.demo1).setOnClickListener(this);
-        findViewById(R.id.demo2).setOnClickListener(this);
-        findViewById(R.id.demo3).setOnClickListener(this);
-        findViewById(R.id.demo4).setOnClickListener(this);
-        findViewById(R.id.demo5).setOnClickListener(this);
-        findViewById(R.id.demo6).setOnClickListener(this);
-        findViewById(R.id.demo7).setOnClickListener(this);
-        findViewById(R.id.demo8).setOnClickListener(this);
-        findViewById(R.id.demo9).setOnClickListener(this);
-        findViewById(R.id.warning).setOnClickListener(this);
-        findViewById(R.id.test).setOnClickListener(this);
     }
 
-    @Override
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -74,6 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.demo9:
                 intent.setClass(this, Demo9Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demo10:
+                intent.setClass(this, Demo10Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demo11:
+                intent.setClass(this, Demo11Activity.class);
                 startActivity(intent);
                 break;
             case R.id.warning:

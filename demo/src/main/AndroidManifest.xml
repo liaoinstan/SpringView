@@ -57,6 +57,14 @@
             android:label="@string/title_activity_demo9"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".demo10.Demo10Activity"
+            android:label="@string/title_activity_demo10"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".demo11.Demo11Activity"
+            android:label="@string/title_activity_demo11"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".test.TestActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />

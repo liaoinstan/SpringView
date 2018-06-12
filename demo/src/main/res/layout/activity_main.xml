@@ -13,16 +13,19 @@
             android:id="@+id/demo1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:onClick="onClick"
             android:text="demo1" />
 
         <Button
             android:id="@+id/demo2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:onClick="onClick"
             android:text="demo2" />
 
         <Button
             android:id="@+id/demo3"
+            android:onClick="onClick"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="demo3" />
@@ -30,30 +33,35 @@
         <Button
             android:id="@+id/demo4"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="demo4" />
 
         <Button
             android:id="@+id/demo5"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="demo5" />
 
         <Button
             android:id="@+id/demo6"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="demo6" />
 
         <Button
             android:id="@+id/demo7"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="demo7" />
 
         <Button
             android:id="@+id/demo8"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="demo8" />
 
@@ -61,18 +69,35 @@
             android:id="@+id/demo9"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:onClick="onClick"
             android:text="demo9" />
+
+        <Button
+            android:id="@+id/demo10"
+            android:layout_width="match_parent"
+            android:onClick="onClick"
+            android:layout_height="50dp"
+            android:text="demo10" />
+
+        <Button
+            android:id="@+id/demo11"
+            android:layout_width="match_parent"
+            android:onClick="onClick"
+            android:layout_height="50dp"
+            android:text="demo11" />
 
         <Button
             android:id="@+id/warning"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:onClick="onClick"
             android:layout_marginTop="50dp"
             android:text="warning" />
 
         <Button
             android:id="@+id/test"
             android:layout_width="match_parent"
+            android:onClick="onClick"
             android:layout_height="50dp"
             android:text="test" />
     </LinearLayout>
