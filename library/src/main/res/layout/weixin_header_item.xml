@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:layout_height="200dp"
+    tools:layout_width="100dp">
+
+    <ImageView
+        android:id="@+id/img_header"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shape_oval_dot" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="78dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#888"
+        android:textSize="12sp"
+        tools:text="名字好长好长好长" />
+
+</LinearLayout>

@@ -61,7 +61,7 @@
                             android:layout_height="200dp"
                             android:background="#dbfbf8"
                             android:gravity="center"
-                            android:text="内部嵌套"
+                            android:text=""
                             android:textColor="#18cfbe"
                             android:textSize="12sp" />
 

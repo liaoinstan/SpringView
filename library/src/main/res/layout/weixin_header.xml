@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="380dp"
+    android:background="#11000000"
+    android:clipToPadding="false"
+    android:paddingTop="200dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/lay_dot"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:orientation="horizontal"
+        tools:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/img_dot1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/shape_oval_dot"
+            tools:layout_height="wrap_content"
+            tools:layout_marginRight="10dp"
+            tools:layout_width="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/img_dot2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/shape_oval_dot"
+            tools:layout_height="wrap_content"
+            tools:layout_width="wrap_content" />
+
+        <ImageView
+            android:id="@+id/img_dot3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/shape_oval_dot"
+            tools:layout_height="wrap_content"
+            tools:layout_marginLeft="10dp"
+            tools:layout_width="wrap_content" />
+    </FrameLayout>
+
+</FrameLayout>

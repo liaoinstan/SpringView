@@ -37,7 +37,6 @@ public class SpringView extends ViewGroup {
     private boolean isFirst = true;         //用于判断是否是拖动动作的第一次move
     private boolean needChange = false;     //是否需要改变样式
     private boolean needResetAnim = false;  //是否需要弹回的动画
-    private boolean isFullEnable = false;   //是否超过一屏时才允许上拉，为false则不满一屏也可以上拉，注意样式为isOverlap时，无论如何也不允许在不满一屏时上拉
     private boolean isMoveNow = false;       //当前是否正在拖动
     private long lastMoveTime;
     private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
@@ -58,7 +57,7 @@ public class SpringView extends ViewGroup {
     private Type _type;
 
     //移动参数：计算手指移动量的时候会用到这个值，值越大，移动量越小，若值为1则手指移动多少就滑动多少px
-    private final double MOVE_PARA = 2;
+    private double MOVE_PARA = 2;
     //最大拉动距离(px)，拉动距离越靠近这个值拉动就越缓慢
     private int MAX_HEADER_PULL_HEIGHT = 600;
     private int MAX_FOOTER_PULL_HEIGHT = 600;
@@ -505,6 +504,7 @@ public class SpringView extends ViewGroup {
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
             scrollTo(0, mScroller.getCurrY());
+            callOnDropAnim();
             if (type == Type.OVERLAP) {
                 if (header != null) header.setTranslationY(header.getHeight() + getScrollY());
                 if (footer != null) footer.setTranslationY(-footer.getHeight() + getScrollY());
@@ -542,7 +542,8 @@ public class SpringView extends ViewGroup {
         if (contentLay == null) {
             return false;
         }
-        if (Math.abs(dy) < Math.abs(dx)) {
+        //横向拖拽距离大于竖直距离则不拦截
+        if (Math.abs(dy) <= Math.abs(dx)) {
             return false;
         }
         boolean isTop = isChildScrollToTop();
@@ -811,6 +812,10 @@ public class SpringView extends ViewGroup {
 
     public void setMoveTimeOver(int time) {
         this.MOVE_TIME_OVER = time;
+    }
+
+    public void setMovePara(double movePara) {
+        this.MOVE_PARA = movePara;
     }
 
     /**
