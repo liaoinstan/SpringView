@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 使用 Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.3'
+   compile 'com.liaoinstan.springview:library:1.4.0'
 }
 ```
 或者 Maven：
@@ -76,7 +76,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.3</version>
+  <version>1.4.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,6 +84,9 @@ dependencies {
 
 **更新日志**
 --------
+####**v1.4.0**
+ - 新增setMovePara()方法用于设置拖拽时的阻尼系数，新增了一个WeixinHeader仿微信小程序header，现在新的新的模式：DRAG 拖拽模式，可以实现类似于SwipeRefreshLayout的交互效果，重新设计了overLap模式的实现方式，更加稳定，弃用了support部分过时api，优化拖拽流畅性和交互细节效果
+
 ####**v1.3.3**
  - 优化几个体验性问题，新增onFinishFreshAndLoadDelay(int delay)，callFreshDelay(int delay)方法，优化和BottomSheetBehavior联用的表现，优化在BottomSheetDialog中使用的表现
 
