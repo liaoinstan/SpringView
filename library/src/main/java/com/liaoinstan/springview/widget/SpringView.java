@@ -2,13 +2,16 @@ package com.liaoinstan.springview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.OverScroller;
 
@@ -65,6 +68,8 @@ public class SpringView extends ViewGroup {
     private float dsY;
     //滑动事件目前是否在本控件的控制中（用于过渡滑动事件：比如正在滚动recyclerView到顶部后自动切换到SpringView处理后续事件进行下拉）
     private boolean isInControl = false;
+    //存储拉动前的位置
+    private Rect mRect = new Rect();
 
     //头尾视图
     private View header;

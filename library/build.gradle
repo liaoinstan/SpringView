@@ -26,7 +26,7 @@ dependencies {
     implementation "com.android.support:design:$supportLibraryVersion"
 }
 
-version = "1.3.3"                                                              // #CONFIG# // project version
+version = "1.4.0"                                                              // #CONFIG# // project version
 // 根节点添加
 def siteUrl = 'https://github.com/liaoinstan/SpringView'                    // #CONFIG# // project homepage
 def gitUrl = 'https://github.com/liaoinstan/SpringView.git'                 // #CONFIG# // project git

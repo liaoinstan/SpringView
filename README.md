@@ -68,7 +68,7 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.3.3'
+   compile 'com.liaoinstan.springview:library:1.4.0'
 }
 ```
 or Maven：
@@ -76,7 +76,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.3.3</version>
+  <version>1.4.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,6 +84,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.4.0**
+ - new function setMovePara(),a new header for weixin:WeixinHeader,a new type DRAG like SwipeRefreshLayout:spring.setType(Type.DRAG)
+
 ####**v1.3.3**
  - Optimize several experiential issues,Added onFinishFreshAndLoadDelay(int delay), callFreshDelay(int delay) method,Optimizing performance with BottomSheetBehavior,Optimize the performance used in BottomSheetDialog
 
