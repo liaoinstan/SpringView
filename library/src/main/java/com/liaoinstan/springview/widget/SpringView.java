@@ -2,16 +2,13 @@ package com.liaoinstan.springview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.OverScroller;
 
@@ -33,12 +30,10 @@ public class SpringView extends ViewGroup {
     private boolean needChange = false;     //是否需要改变样式
     private boolean needResetAnim = false;  //是否需要弹回的动画
     private boolean isMoveNow = false;       //当前是否正在拖动
-    private long lastMoveTime;
     private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
     private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
 
     private int MOVE_TIME = 400;
-    private int MOVE_TIME_OVER = 200;
 
     //是否需要回调接口：TOP 只回调刷新、BOTTOM 只回调加载更多、BOTH 都需要、NONE 都不
     public enum Give {
@@ -64,15 +59,12 @@ public class SpringView extends ViewGroup {
     //储存上次的Y坐标
     private float mLastY;
     private float mLastX;
-    //储存当前的y坐标
     //储存第一次的Y坐标
     private float mfirstY;
     //储存手指拉动的总距离
     private float dsY;
     //滑动事件目前是否在本控件的控制中（用于过渡滑动事件：比如正在滚动recyclerView到顶部后自动切换到SpringView处理后续事件进行下拉）
     private boolean isInControl = false;
-    //存储拉动前的位置
-    private Rect mRect = new Rect();
 
     //头尾视图
     private View header;
@@ -283,7 +275,6 @@ public class SpringView extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
                 isMoveNow = false;
-                lastMoveTime = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_CANCEL:
                 isMoveNow = false;
@@ -785,10 +776,6 @@ public class SpringView extends ViewGroup {
 
     public void setMoveTime(int time) {
         this.MOVE_TIME = time;
-    }
-
-    public void setMoveTimeOver(int time) {
-        this.MOVE_TIME_OVER = time;
     }
 
     public void setMovePara(double movePara) {

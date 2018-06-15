@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.BaseHeader;
-import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
  * Created by liaoinstan on 2016/3/23.
