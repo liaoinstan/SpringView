@@ -3,9 +3,15 @@ package com.liaoinstan.springview.widget;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.WebView;
+import android.widget.ListView;
+import android.widget.ScrollView;
 
 /**
  * Created by liaoinstan on 2017/8/15.
@@ -67,6 +73,38 @@ class SpringHelper {
         } else {
             Log.e("SpringView", "view检查出现异常");
             return false;
+        }
+    }
+
+    //检查当前View是否是可以滚动的View（限定垂直方向）
+    public static boolean isViewCouldScroll(View view) {
+        //如果是以下的view ,则直接返回true
+        if (view instanceof ListView
+                || view instanceof ScrollView
+                || view instanceof NestedScrollView
+                || view instanceof RecyclerView
+                || view instanceof WebView) {
+            return true;
+        } else {
+            //否则，检查view是否可以在垂直方向上滚动
+            return view.canScrollVertically(-1) || view.canScrollVertically(1);
+        }
+    }
+
+    //递归查找当前view和所有子view，找到可滚动的view，找不到则返回null
+    public static View findViewCouldScroll(View view) {
+        if (isViewCouldScroll(view)) {
+            return view;
+        } else if (view instanceof ViewGroup) {
+            //view group
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                return findViewCouldScroll(viewGroup.getChildAt(i));
+            }
+            return null;
+        } else {
+            //view
+            return null;
         }
     }
 }

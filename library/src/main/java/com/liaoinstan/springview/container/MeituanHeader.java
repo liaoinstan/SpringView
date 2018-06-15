@@ -76,6 +76,7 @@ public class MeituanHeader extends BaseHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
+        Log.e("test","upORdown:" + upORdown);
         if (!upORdown) {
             header_img.setImageDrawable(animationPull);
             animationPull.start();

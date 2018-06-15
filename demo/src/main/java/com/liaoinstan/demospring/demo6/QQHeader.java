@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
  * Created by liaoinstan on 2016/3/23.
@@ -36,7 +37,7 @@ public class QQHeader extends BaseHeader {
 
     @Override
     public int getDragSpringHeight(View rootView) {
-        return rootView.getMeasuredHeight()-100;
+        return rootView.getMeasuredHeight() - 100;//DensityUtil.dp2px(100);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class QQHeader extends BaseHeader {
     @Override
     public void onStartAnim() {
         dotcount++;
-        text_dot.setText("x"+dotcount);
+        text_dot.setText("x" + dotcount);
     }
 
     @Override

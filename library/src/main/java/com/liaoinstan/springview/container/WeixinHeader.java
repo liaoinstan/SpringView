@@ -1,5 +1,11 @@
 package com.liaoinstan.springview.container;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Service;
+import android.content.pm.PackageManager;
+import android.os.Vibrator;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -39,12 +45,18 @@ public class WeixinHeader extends BaseHeader {
     private int dotWidthSide = DensityUtil.dp2px(6.5f);
     //小圆点间距
     private int dotSpace = DensityUtil.dp2px(8);
-    //记录小圆点最大位移距离
-    private float dotMaxTranY;
     //一行最多现实多少个item
     private int maxCountLine = 4;
+    //记录小圆点最大位移距离
+    private float dotMaxTranY;
+    //记录拖拽是否超过弹动高度
+    private boolean hasOverSpringHeight;
 
-    List<Program> results = new ArrayList<>();
+    private List<Program> results = new ArrayList<>();
+    private OnMoreClickListener onMoreClickListener;
+    private OnProgramClickListener onProgramClickListener;
+    private OnProgramLongClickListener onProgramLongClickListener;
+    private OnWeixinHeaderLoadImgCallback imgLoadCallback;
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
@@ -55,15 +67,16 @@ public class WeixinHeader extends BaseHeader {
         img_dot3 = root.findViewById(R.id.img_dot3);
         lay_dot = root.findViewById(R.id.lay_dot);
 
-        adapter = new RecycleAdapterWeixinHeader(imgLoadCallback);
+        adapter = new RecycleAdapterWeixinHeader(this);
         recycler.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recycler.setAdapter(adapter);
 
         StartLinearSnapHelper snapHelper = new StartLinearSnapHelper();
         snapHelper.attachToRecyclerView(recycler);
 
-        adapter.getResults().clear();
-        adapter.getResults().addAll(results);
+        if (results.size() == 0) {
+            results.add(new Program());
+        }
         adapter.notifyDataSetChanged();
 
         //添加布局监听，获取父容器宽度并设置item宽度，从而达到一行item平铺效果
@@ -79,11 +92,42 @@ public class WeixinHeader extends BaseHeader {
         return root;
     }
 
-    public void freshData(List<Program> results) {
+    public void freshItem(List<Program> results) {
         this.results.clear();
         this.results.addAll(results);
         //最后增加一条，因为最后一条是“更多”
         this.results.add(new Program());
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    //添加小程序（添加到末尾，'更多'前面）
+    public void addItem(Program program) {
+        if (results.size() > 0) {
+            int position = results.size() - 1;
+            results.add(position, program);
+            if (adapter != null) {
+                if (results.size() <= 4) {
+                    adapter.notifyItemInserted(position);
+                    adapter.notifyItemRangeChanged(position, results.size() - position);
+                } else {
+                    adapter.notifyDataSetChanged();
+                    recycler.smoothScrollToPosition(results.size() - 1);
+                }
+            }
+        }
+    }
+
+    //删除指定位置的小程序
+    public void removeItem(int position) {
+        if (results.size() > 0) {
+            results.remove(position);
+            if (adapter != null) {
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, results.size() - position);
+            }
+        }
     }
 
     @Override
@@ -104,8 +148,6 @@ public class WeixinHeader extends BaseHeader {
     @Override
     public void onPreDrag(View rootView) {
     }
-
-    private boolean hasOverSpringHeight;
 
     /**
      * 根据下拉的距离不断变化，进行动画交互
@@ -173,8 +215,14 @@ public class WeixinHeader extends BaseHeader {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
+        //下拉超过临界高度时如果有震动权限就震动一下
+        if (!hasOverSpringHeight && !upORdown && PermissionChecker.checkSelfPermission(rootView.getContext(), Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
+            Vibrator vib = (Vibrator) rootView.getContext().getSystemService(Service.VIBRATOR_SERVICE);
+            vib.vibrate(35);
+        }
     }
 
     @Override
@@ -183,7 +231,7 @@ public class WeixinHeader extends BaseHeader {
 
     @Override
     public void onFinishAnim() {
-
+        reset();
     }
 
     private void reset() {
@@ -194,13 +242,59 @@ public class WeixinHeader extends BaseHeader {
         lay_dot.setAlpha(1f);
     }
 
-    private WeixinHeader.OnWeixinHeaderLoadImgCallback imgLoadCallback;
-
-    public void setOnWeixinHeaderLoadImgCallback(OnWeixinHeaderLoadImgCallback imgLoadCallback) {
-        this.imgLoadCallback = imgLoadCallback;
-    }
+    //###################### 外部接口 #######################
 
     public interface OnWeixinHeaderLoadImgCallback {
         void loadImg(ImageView imageView, String imgUrl, int position);
+    }
+
+    public interface OnMoreClickListener {
+        void onMoreClick();
+    }
+
+    public interface OnProgramClickListener {
+        void onClick(Program program, RecyclerView.ViewHolder holder, int position);
+    }
+
+    public interface OnProgramLongClickListener {
+        void onLongClick(Program program, RecyclerView.ViewHolder holder, int position);
+    }
+
+    //#################### get & set #####################
+
+    public List<Program> getResults() {
+        return results;
+    }
+
+    public void setOnMoreClickListener(OnMoreClickListener onMoreClickListener) {
+        this.onMoreClickListener = onMoreClickListener;
+    }
+
+    public void setOnProgramClickListener(OnProgramClickListener onProgramClickListener) {
+        this.onProgramClickListener = onProgramClickListener;
+    }
+
+    public void setOnProgramLongClickListener(OnProgramLongClickListener onProgramLongClickListener) {
+        this.onProgramLongClickListener = onProgramLongClickListener;
+    }
+
+    public void setOnLoadImgCallback(OnWeixinHeaderLoadImgCallback imgLoadCallback) {
+        this.imgLoadCallback = imgLoadCallback;
+    }
+
+    public OnMoreClickListener getOnMoreClickListener() {
+        return onMoreClickListener;
+    }
+
+    public OnProgramClickListener getOnProgramClickListener() {
+        return onProgramClickListener;
+    }
+
+    public OnProgramLongClickListener getOnProgramLongClickListener() {
+        return onProgramLongClickListener;
+    }
+
+    public OnWeixinHeaderLoadImgCallback getImgLoadCallback() {
+        return imgLoadCallback;
     }
 }

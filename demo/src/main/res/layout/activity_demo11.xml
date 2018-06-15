@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#303030"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -59,10 +59,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:background="#dbfbf8"
+                            android:background="#f3f3f7"
                             android:gravity="center"
-                            android:text=""
-                            android:textColor="#18cfbe"
+                            android:text="这是一个仿微信小程序的header\n\n点击'更多'添加小程序，长按可以删除小程序"
+                            android:textColor="#2BA245"
                             android:textSize="12sp" />
 
                         <TextView
@@ -73,7 +73,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:background="#dbfbf8" />
+                            android:background="#f3f3f7" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:background="#dbfbf8" />
+                            android:background="#f3f3f7" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:background="#dbfbf8" />
+                            android:background="#f3f3f7" />
 
                     </LinearLayout>
                 </ScrollView>
@@ -101,10 +101,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="#2BA245"
                     android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:text="SpringView 现在支持内部嵌套布局了"
-                    android:background="#18cfbe"/>
+                    android:text="SpringView 现在支持在内部嵌套布局了"
+                    android:textColor="#ffffff" />
 
             </FrameLayout>
         </com.liaoinstan.springview.widget.SpringView>

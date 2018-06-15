@@ -17,17 +17,11 @@ import java.util.List;
 
 public class RecycleAdapterWeixinHeader extends RecyclerView.Adapter<RecycleAdapterWeixinHeader.Holder> {
 
-    private WeixinHeader.OnWeixinHeaderLoadImgCallback imgLoadCallback;
+    private WeixinHeader weixinHeader;
     private int itemWidth;
 
-    private List<Program> results = new ArrayList<>();
-
-    public List<Program> getResults() {
-        return results;
-    }
-
-    public RecycleAdapterWeixinHeader(WeixinHeader.OnWeixinHeaderLoadImgCallback imgLoadCallback) {
-        this.imgLoadCallback = imgLoadCallback;
+    public RecycleAdapterWeixinHeader(WeixinHeader weixinHeader) {
+        this.weixinHeader = weixinHeader;
     }
 
     @Override
@@ -37,7 +31,7 @@ public class RecycleAdapterWeixinHeader extends RecyclerView.Adapter<RecycleAdap
 
     @Override
     public void onBindViewHolder(final RecycleAdapterWeixinHeader.Holder holder, final int position) {
-        final Program bean = results.get(position);
+        final Program bean = weixinHeader.getResults().get(position);
 
         if (itemWidth != 0) {
             ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
@@ -48,19 +42,46 @@ public class RecycleAdapterWeixinHeader extends RecyclerView.Adapter<RecycleAdap
         if (position != getItemCount() - 1) {
             holder.text_name.setText(bean.getName());
             holder.img_header.setImageResource(R.drawable.shape_oval_dot);
-            if (imgLoadCallback != null) {
-                imgLoadCallback.loadImg(holder.img_header, bean.getImg(), position);
+            if (weixinHeader.getImgLoadCallback() != null) {
+                weixinHeader.getImgLoadCallback().loadImg(holder.img_header, bean.getImg(), position);
             }
         } else {
             //最后一个是“更多”
             holder.text_name.setText("");
             holder.img_header.setImageResource(R.drawable.shape_more);
         }
+
+        holder.img_header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position != getItemCount() - 1) {
+                    if (weixinHeader.getOnProgramClickListener() != null) {
+                        weixinHeader.getOnProgramClickListener().onClick(bean, holder, position);
+                    }
+                } else {
+                    if (weixinHeader.getOnMoreClickListener() != null) {
+                        weixinHeader.getOnMoreClickListener().onMoreClick();
+                    }
+                }
+            }
+        });
+        holder.img_header.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (position != getItemCount() - 1) {
+                    if (weixinHeader.getOnProgramLongClickListener() != null) {
+                        weixinHeader.getOnProgramLongClickListener().onLongClick(bean, holder, position);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return weixinHeader.getResults().size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {
@@ -74,13 +95,11 @@ public class RecycleAdapterWeixinHeader extends RecyclerView.Adapter<RecycleAdap
         }
     }
 
-    private OnRecycleItemClickListener listener;
-
-    public void setOnItemClickListener(OnRecycleItemClickListener listener) {
-        this.listener = listener;
-    }
-
     public void setItemWidth(int itemWidth) {
         this.itemWidth = itemWidth;
     }
+
+    //////////////////////////////////////////////////
+
+
 }

@@ -12,6 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="centerCrop"
+        android:foreground="@drawable/select_oval_dark_trans"
         android:src="@drawable/shape_oval_dot" />
 
     <TextView

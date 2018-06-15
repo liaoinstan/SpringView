@@ -28,7 +28,7 @@
                 android:layout_height="200dp"
                 android:background="#e3f1fc"
                 android:gravity="center"
-                android:text="SpringView支持了AppBarLayout\n\n不会再和AppBarLayout滚动冲突"
+                android:text="SpringView支持了AppBarLayout\n\n不会和AppBarLayout滚动冲突"
                 android:textColor="#9dd2fc"
                 android:textSize="12sp" />
 

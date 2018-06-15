@@ -7,98 +7,122 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        android:paddingBottom="10dp">
 
-        <Button
+        <TextView
             android:id="@+id/demo1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/homeButton"
             android:onClick="onClick"
             android:text="demo1" />
 
-        <Button
+        <TextView
             android:id="@+id/demo2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/homeButton"
             android:onClick="onClick"
             android:text="demo2" />
 
-        <Button
+        <TextView
             android:id="@+id/demo3"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:text="demo3" />
 
-        <Button
+        <TextView
             android:id="@+id/demo4"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="demo4" />
 
-        <Button
+        <TextView
             android:id="@+id/demo5"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="demo5" />
 
-        <Button
+        <TextView
             android:id="@+id/demo6"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="demo6" />
 
-        <Button
+        <TextView
             android:id="@+id/demo7"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="demo7" />
 
-        <Button
+        <TextView
             android:id="@+id/demo8"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="demo8" />
 
-        <Button
+        <TextView
             android:id="@+id/demo9"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/homeButton"
             android:onClick="onClick"
             android:text="demo9" />
 
-        <Button
-            android:id="@+id/demo10"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:onClick="onClick"
-            android:layout_height="50dp"
-            android:text="demo10" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-        <Button
-            android:id="@+id/demo11"
+            <TextView
+                android:id="@+id/demo10"
+                style="@style/homeButton"
+                android:layout_marginTop="0dp"
+                android:onClick="onClick"
+                android:text="demo10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="1dp"
+                android:text="new"
+                android:textColor="#ff0000"
+                android:textSize="11sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:onClick="onClick"
-            android:layout_height="50dp"
-            android:text="demo11" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-        <Button
+            <TextView
+                android:id="@+id/demo11"
+                style="@style/homeButton"
+                android:layout_marginTop="0dp"
+                android:onClick="onClick"
+                android:text="demo11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="1dp"
+                android:text="new"
+                android:textColor="#ff0000"
+                android:textSize="11sp" />
+
+
+        </FrameLayout>
+
+        <TextView
             android:id="@+id/warning"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:onClick="onClick"
+            style="@style/homeButton"
             android:layout_marginTop="50dp"
+            android:onClick="onClick"
             android:text="warning" />
 
-        <Button
+        <TextView
             android:id="@+id/test"
-            android:layout_width="match_parent"
+            style="@style/homeButton"
             android:onClick="onClick"
-            android:layout_height="50dp"
             android:text="test" />
     </LinearLayout>
 

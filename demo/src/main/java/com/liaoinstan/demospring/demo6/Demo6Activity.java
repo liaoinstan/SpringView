@@ -29,7 +29,7 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
         ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 
         springView = (SpringView) findViewById(R.id.springview);
-//        springView.setGive(SpringView.Give.NONE);
+        springView.setMovePara(1.5f);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

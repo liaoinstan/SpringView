@@ -57,7 +57,7 @@
                         android:layout_height="200dp"
                         android:background="#dbfbf8"
                         android:gravity="center"
-                        android:text="这是demo7的仿美团的效果\n\nSpringView 新增了Drag模式，基于这个可以实现\n\n类似SwipeRefreshLayout的交互效果"
+                        android:text="SpringView 新增了Drag模式，基于这个可以实现\n\n类似SwipeRefreshLayout的交互效果\n\n并且可以根据需求定制更加有趣的效果"
                         android:textColor="#18cfbe"
                         android:textSize="12sp" />
 
