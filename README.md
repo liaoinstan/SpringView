@@ -29,7 +29,7 @@ SpringView
 Add Spring View in the layout file, note that Spring View and ScrollView have the same limitation: only one child element：
 
 ```
-	<com.liaoinstan.springview.widget.SpringView
+    <com.liaoinstan.springview.widget.SpringView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:header="@layout/myheader"
@@ -39,7 +39,7 @@ Add Spring View in the layout file, note that Spring View and ScrollView have th
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-     </com.liaoinstan.springview.widget.SpringView>
+    </com.liaoinstan.springview.widget.SpringView>
 ```
 Of course, you can also add the header/footer in java code：
 
