@@ -738,8 +738,8 @@ public class SpringView extends ViewGroup {
      * 重置控件位置，暴露给外部的方法，用于在刷新或者加载完成后调用
      */
     public void onFinishFreshAndLoad() {
+        isLoadingMore = false;
         if (!isMoveNow && needResetAnim) {
-            isLoadingMore = false;
             boolean needTop = isTop() && (give == Give.TOP || give == Give.BOTH);
             boolean needBottom = isBottom() && (give == Give.BOTTOM || give == Give.BOTH);
             if (needTop || needBottom) {
