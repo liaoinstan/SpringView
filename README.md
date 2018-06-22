@@ -29,7 +29,7 @@ SpringView
 Add Spring View in the layout file, note that Spring View and ScrollView have the same limitation: only one child element：
 
 ```
-    <com.liaoinstan.springview.widget.SpringView
+	<com.liaoinstan.springview.widget.SpringView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:header="@layout/myheader"
@@ -39,7 +39,7 @@ Add Spring View in the layout file, note that Spring View and ScrollView have th
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-    </com.liaoinstan.springview.widget.SpringView>
+     </com.liaoinstan.springview.widget.SpringView>
 ```
 Of course, you can also add the header/footer in java code：
 
@@ -68,7 +68,16 @@ springView.setListener(new SpringView.OnFreshListener() {
 use Gradle:
 ```
 dependencies {
-   compile 'com.liaoinstan.springview:library:1.4.0'
+
+   //SpringView core library (only include DefaultHeader/Footer)
+   implementation 'com.liaoinstan.springview:library:1.5.0'
+
+   //other Headers/Footers, choose one or more what you like
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.0'         //AcFun style （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.5.0'           //alitrip style （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.0'       //meituan style （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.5.0'      //mechanical gear style （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.0'        //weichat Mini Program header（only header）
 }
 ```
 or Maven：
@@ -76,7 +85,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -84,6 +93,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.3.0**
+ - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only 26KB,You can import headers/footers separately
+
 ####**v1.4.0**
  - new function setMovePara(),a new header for weixin:WeixinHeader,a new type DRAG like SwipeRefreshLayout:spring.setType(Type.DRAG)
 

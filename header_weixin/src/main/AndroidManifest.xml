@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.liaoinstan.springview.weixinheader" />
+    package="com.liaoinstan.springview.weixinheader" >
+
+    <!--微信header下拉的时候有震动效果，需要该权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+</manifest>
