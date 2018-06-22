@@ -23,7 +23,7 @@ SpringView
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212517801_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212658972_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212769245_s.gif) 
 
-**new** 
+**📌new：** 
 
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_s.gif)
 
