@@ -48,9 +48,7 @@ public class Demo11Activity extends AppCompatActivity {
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(() -> {
-                    springView.onFinishFreshAndLoad();
-                }, 2000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 2000);
             }
         });
         springView.setHeader(springHeader = new WeixinHeader());
