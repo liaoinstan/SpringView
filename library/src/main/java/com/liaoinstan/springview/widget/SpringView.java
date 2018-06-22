@@ -33,6 +33,7 @@ public class SpringView extends ViewGroup {
     private boolean needChange = false;     //是否需要改变样式
     private boolean needResetAnim = false;  //是否需要弹回的动画
     private boolean isMoveNow = false;       //当前是否正在拖动
+    private boolean isLoadingMore;          //正在加载更多的标志 当为false时才能加载更多，开始加载更多置为true，加载完成置为false
     private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
     private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
 
@@ -568,7 +569,10 @@ public class SpringView extends ViewGroup {
         if (isTop()) {
             listener.onRefresh();
         } else if (isBottom()) {
-            listener.onLoadmore();
+            if (!isLoadingMore) {
+                isLoadingMore = true;
+                listener.onLoadmore();
+            }
         }
     }
 
@@ -592,7 +596,10 @@ public class SpringView extends ViewGroup {
             } else if (callFreshORload == 2) {
                 if (footerHander != null) footerHander.onFinishAnim();
                 if (give == Give.TOP || give == Give.NONE) {
-                    listener.onLoadmore();
+                    if (!isLoadingMore) {
+                        isLoadingMore = true;
+                        listener.onLoadmore();
+                    }
                 }
             }
             callFreshORload = 0;
@@ -731,6 +738,7 @@ public class SpringView extends ViewGroup {
      * 重置控件位置，暴露给外部的方法，用于在刷新或者加载完成后调用
      */
     public void onFinishFreshAndLoad() {
+        isLoadingMore = false;
         if (!isMoveNow && needResetAnim) {
             boolean needTop = isTop() && (give == Give.TOP || give == Give.BOTH);
             boolean needBottom = isBottom() && (give == Give.BOTTOM || give == Give.BOTH);
