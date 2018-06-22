@@ -93,7 +93,7 @@ or Maven：
 
 **Update log**
 --------
-####**v1.3.0**
+####**v1.5.0**
  - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only 26KB,You can import headers/footers separately
 
 ####**v1.4.0**
