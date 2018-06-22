@@ -21,8 +21,10 @@ SpringView
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212323072_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212372609_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212462800_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212485237_s.gif)
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212517801_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212658972_s.gif)
-![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212769245_s.gif)
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/1459212769245_s.gif) 
 
+**new ***
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_s.gif)
 **How to use SpringView**
 --------
 
