@@ -15,8 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.RotationFooter;
-import com.liaoinstan.springview.container.RotationHeader;
+import com.liaoinstan.springview.rotationheader.RotationFooter;
+import com.liaoinstan.springview.rotationheader.RotationHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;

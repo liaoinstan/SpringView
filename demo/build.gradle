@@ -32,6 +32,17 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
 
-    implementation 'com.liaoinstan.springview:library:1.4.0'
+    implementation 'com.liaoinstan.springview:library:1.5.0'
+    implementation 'com.liaoinstan.springview:AcfunHeader:1.5.0'
+    implementation 'com.liaoinstan.springview:AliHeader:1.5.0'
+    implementation 'com.liaoinstan.springview:MeituanHeader:1.5.0'
+    implementation 'com.liaoinstan.springview:RotationHeader:1.5.0'
+    implementation 'com.liaoinstan.springview:WeixinHeader:1.5.0'
+
 //    implementation project(':library')
+//    implementation project(':header_ali')
+//    implementation project(':header_meituan')
+//    implementation project(':header_rotation')
+//    implementation project(':header_acfun')
+//    implementation project(':header_weixin')
 }

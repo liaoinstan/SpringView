@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.RotationFooter;
-import com.liaoinstan.springview.container.RotationHeader;
+import com.liaoinstan.springview.rotationheader.RotationFooter;
+import com.liaoinstan.springview.rotationheader.RotationHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 

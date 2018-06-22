@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.AcFunFooter;
-import com.liaoinstan.springview.container.AcFunHeader;
+import com.liaoinstan.springview.acfunheader.AcFunFooter;
+import com.liaoinstan.springview.acfunheader.AcFunHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 public class Demo5Activity extends AppCompatActivity {

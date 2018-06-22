@@ -5,10 +5,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.novoda:bintray-release:0.8.1'
     }
 }
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
 
 allprojects {
     repositories {
@@ -19,14 +22,6 @@ allprojects {
         options.addStringOption('Xdoclint:none', '-quiet')
         options.addStringOption('encoding', 'UTF-8')
     }
-//    tasks.withType(Javadoc) {
-//        options {
-//            encoding "UTF-8"
-//            charSet 'UTF-8'
-//            links "http://docs.oracle.com/javase/7/docs/api"
-//        }
-//        options.addStringOption('Xdoclint:none', '-quiet')
-//    }
 }
 task clean(type: Delete) {
     delete rootProject.buildDir
@@ -38,4 +33,11 @@ ext {
     minSdkVersion = 16
     targetSdkVersion = 27
     supportLibraryVersion = '27.1.0'
+
+    userOrg = 'liaoinstan'
+    repoName = "maven"
+    groupId = 'com.liaoinstan.springview'
+    desc = 'SpringView For Android'
+    website = 'https://github.com/liaoinstan/SpringView'
+    licences = ['Apache-2.0']
 }

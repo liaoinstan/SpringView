@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.MeituanFooter;
-import com.liaoinstan.springview.container.MeituanHeader;
+import com.liaoinstan.springview.meituanheader.MeituanFooter;
+import com.liaoinstan.springview.meituanheader.MeituanHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 public class Demo7Activity extends AppCompatActivity {

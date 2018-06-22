@@ -92,7 +92,7 @@ public class DefaultHeader extends BaseHeader {
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
         if (!upORdown) {
-            headerTitle.setText("松开刷新数据");
+            headerTitle.setText("松开刷新");
             if (headerArrow.getVisibility() == View.VISIBLE)
                 headerArrow.startAnimation(mRotateUpAnim);
         } else {

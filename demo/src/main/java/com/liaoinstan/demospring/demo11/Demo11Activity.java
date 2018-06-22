@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.AliFooter;
-import com.liaoinstan.springview.container.WeixinHeader;
-import com.liaoinstan.springview.ctrl.Program;
+import com.liaoinstan.springview.aliheader.AliFooter;
+import com.liaoinstan.springview.weixinheader.Program;
+import com.liaoinstan.springview.weixinheader.WeixinHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;
