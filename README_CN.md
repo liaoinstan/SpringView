@@ -94,7 +94,7 @@ dependencies {
 **更新日志**
 --------
 ####**v1.5.0**
- - 把所有的header和footer单独从SpringView库中分离出来了（除DefaultHeader/Footer），现在可以只选择单独导入自己想要的headers/footers，彻底精简后的SpringView library只有26KB，后期新增的header/footer都将以独立库的形式发布，不再冗余到SpringView核心库里，库链接参见上述[获取SpringView]内容
+ - 把所有的header和footer单独从SpringView库中分离出来了（除DefaultHeader/Footer），现在可以只选择单独导入自己想要的headers/footers，彻底精简后的SpringView library只有**26KB**，后期新增的header/footer都将以独立库的形式发布，不再冗余到SpringView核心库里，库链接参见上述[获取SpringView]内容
 
 ####**v1.4.0**
  - 新增setMovePara()方法用于设置拖拽时的阻尼系数，新增了一个WeixinHeader仿微信小程序header，新增新的模式：DRAG（拖拽模式），可以实现类似于SwipeRefreshLayout的交互效果，重新设计了overLap模式的实现方式，更加稳定，弃用了support过时api，优化拖拽流畅性和交互效果细节

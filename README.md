@@ -72,7 +72,7 @@ dependencies {
    //SpringView core library (only include DefaultHeader/Footer)
    implementation 'com.liaoinstan.springview:library:1.5.0'
 
-   //other Headers/Footers, choose one or more what you like
+   //other Headers/Footers, choose one or more that you like
    implementation 'com.liaoinstan.springview:AcfunHeader:1.5.0'         //AcFun style （header and footer）
    implementation 'com.liaoinstan.springview:AliHeader:1.5.0'           //alitrip style （header and footer）
    implementation 'com.liaoinstan.springview:MeituanHeader:1.5.0'       //meituan style （header and footer）
@@ -94,7 +94,7 @@ or Maven：
 **Update log**
 --------
 ####**v1.5.0**
- - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only 26KB,You can import headers/footers separately
+ - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only **26KB**,You can import headers/footers separately
 
 ####**v1.4.0**
  - new function setMovePara(),a new header for weixin:WeixinHeader,a new type DRAG like SwipeRefreshLayout:spring.setType(Type.DRAG)
