@@ -291,6 +291,7 @@ public class SpringView extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        isNeedMyMove = isNeedMyMove();
         return isNeedMyMove;
     }
 
