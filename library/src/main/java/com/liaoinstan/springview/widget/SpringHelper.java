@@ -98,7 +98,10 @@ class SpringHelper {
             //view group
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                return findViewCouldScroll(viewGroup.getChildAt(i));
+                View findView = findViewCouldScroll(viewGroup.getChildAt(i));
+                if (findView != null) {
+                    return findView;
+                }
             }
             return null;
         } else {

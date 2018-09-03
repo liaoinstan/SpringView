@@ -26,28 +26,18 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
         ((CheckBox) findViewById(R.id.check_enableFooter)).setOnCheckedChangeListener(this);
 
 
-        springView = (SpringView) findViewById(R.id.my);
+        springView = findViewById(R.id.my);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
                 Toast.makeText(TestActivity.this, "onRefresh", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
                 Toast.makeText(TestActivity.this, "onLoadmore", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
     }
@@ -91,8 +81,8 @@ public class TestActivity extends Activity implements RadioGroup.OnCheckedChange
         }
     }
 
-    public void onClick(View v){
-        switch (v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.btn_callfresh:
                 springView.callFresh();
                 break;
