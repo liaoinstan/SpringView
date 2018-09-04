@@ -74,14 +74,14 @@ springView.setListener(new SpringView.OnFreshListener() {
 dependencies {
 
    //SpringView核心库 (只包含DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.5.0'
+   implementation 'com.liaoinstan.springview:library:1.5.1'
 
    //以下是各个风格的Header/Footer，选择自己喜欢的引入
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.0'         //AcFun风格 （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.5.0'           //阿里旅行风格 （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.0'       //美团风格 （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.5.0'      //齿轮机械风格 （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.0'        //微信小程序header（只有header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'         //AcFun风格 （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.5.1'           //阿里旅行风格 （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.1'       //美团风格 （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.5.1'      //齿轮机械风格 （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.1'        //微信小程序header（只有header）
 }
 ```
 或者 Maven：
@@ -89,7 +89,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -97,6 +97,9 @@ dependencies {
 
 **更新日志**
 --------
+####**v1.5.1**
+ - 修复在SpringView内部嵌套布局无法滚动的bug，修复给SpringView设置Give.NONE熟悉时调用callFresh()无法正确回弹的问题。
+
 ####**v1.5.0**
  - 把所有的header和footer单独从SpringView库中分离出来了（除DefaultHeader/Footer），现在可以只选择单独导入自己想要的headers/footers，彻底精简后的SpringView library只有**26KB**，后期新增的header/footer都将以独立库的形式发布，不再冗余到SpringView核心库里，库链接参见上述[获取SpringView]内容
 

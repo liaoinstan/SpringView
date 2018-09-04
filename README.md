@@ -74,14 +74,14 @@ use Gradle:
 dependencies {
 
    //SpringView core library (only include DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.5.0'
+   implementation 'com.liaoinstan.springview:library:1.5.1'
 
    //other Headers/Footers, choose one or more that you like
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.0'         //AcFun style （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.5.0'           //alitrip style （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.0'       //meituan style （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.5.0'      //mechanical gear style （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.0'        //weichat Mini Program header（only header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'         //AcFun style （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.5.1'           //alitrip style （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.1'       //meituan style （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.5.1'      //mechanical gear style （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.1'        //weichat Mini Program header（only header）
 }
 ```
 or Maven：
@@ -89,7 +89,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -97,6 +97,9 @@ or Maven：
 
 **Update log**
 --------
+####**v1.5.1**
+ - fix bug when nested layout, fix bug callFresh() can't spring back when set SpringView Give.NONE.
+
 ####**v1.5.0**
  - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only **26KB**,You can import headers/footers separately
 
@@ -136,7 +139,7 @@ new setEnableFooter(Boolean), setEnableHeader(Boolean) disable or enable header/
 
 **Feedback**
 --------
-If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com
+If there are any questions or Suggestions, please feedback to my email: liaoinstan@outlook.com;
 Or in my blog
 
 If it works to you, please give me a star for my hardwork ,thank you
