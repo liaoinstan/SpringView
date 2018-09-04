@@ -53,28 +53,18 @@ public class Demo9FragmentScrollView extends Fragment {
 
     private void initView() {
         //初始化SpringView
-        springView = (SpringView) rootView.findViewById(R.id.springview);
+        springView = rootView.findViewById(R.id.springview);
         springView.setHeader(new AliHeader(getContext(), R.drawable.ali, true));
         springView.setFooter(new AliFooter(getContext(), false));
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
     }

@@ -33,37 +33,27 @@ public class Demo2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#999999"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         initData();
 
-        listView = (ListView) findViewById(R.id.list);
-        listAdapter = new AdapterForList(this, mDatas);
+        listView = findViewById(R.id.list);
+        listAdapter = new AdapterForList(mDatas);
         listView.setAdapter(listAdapter);
 
-        springView = (SpringView) findViewById(R.id.springview);
+        springView = findViewById(R.id.springview);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
         springView.setHeader(new RotationHeader(this));
@@ -95,11 +85,9 @@ public class Demo2Activity extends AppCompatActivity {
 
 
     private class AdapterForList extends BaseAdapter {
-        private Context context = null;
         private List<String> results;
 
-        public AdapterForList(Context context, List<String> results) {
-            this.context = context;
+        public AdapterForList(List<String> results) {
             this.results = results;
         }
 
@@ -122,8 +110,8 @@ public class Demo2Activity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView item_text;
             if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-                item_text = (TextView) convertView.findViewById(R.id.item_text);
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+                item_text = convertView.findViewById(R.id.item_text);
                 convertView.setTag(item_text);
             } else {
                 item_text = (TextView) convertView.getTag();

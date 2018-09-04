@@ -18,11 +18,11 @@ public class Demo5Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo5);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff8277")));
 
-        springView = (SpringView) findViewById(R.id.springview);
+        springView = findViewById(R.id.springview);
         springView.setGive(SpringView.Give.NONE);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override

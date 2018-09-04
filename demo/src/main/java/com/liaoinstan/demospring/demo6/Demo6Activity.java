@@ -21,14 +21,14 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo6);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#999999"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
         ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 
-        springView = (SpringView) findViewById(R.id.springview);
+        springView = findViewById(R.id.springview);
         springView.setMovePara(1.5f);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
@@ -36,22 +36,12 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
                 //如果当前设置的头部是QQHeader,则不finish
                 if (springView.getHeader() instanceof QQHeader)
                     return;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
         springView.setHeader(new QQHeader());

@@ -1,6 +1,5 @@
 package com.liaoinstan.demospring.demo8;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -29,38 +28,28 @@ public class Demo8Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo8);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         initData();
 
-        springView = (SpringView) findViewById(R.id.springview);
+        springView = findViewById(R.id.springview);
         springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
         springView.setHeader(new DefaultHeader(this));
         springView.setFooter(new DefaultFooter(this));
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycle);
+        RecyclerView recyclerView = findViewById(R.id.recycle);
         recyclerView.setHasFixedSize(true);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(R.layout.item, mDatas);
         recyclerView.setAdapter(recyclerAdapter);
@@ -78,7 +67,6 @@ public class Demo8Activity extends AppCompatActivity {
 
     private class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> implements MyItemTouchCallback.ItemTouchAdapter {
 
-        private Context context;
         private int src;
         private List<String> results;
 
@@ -89,7 +77,6 @@ public class Demo8Activity extends AppCompatActivity {
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            this.context = parent.getContext();
             View itemView = LayoutInflater.from(parent.getContext()).inflate(src, parent, false);
             return new MyViewHolder(itemView);
         }
@@ -123,7 +110,7 @@ public class Demo8Activity extends AppCompatActivity {
                 ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
                 layoutParams.height = 100;
                 itemView.setLayoutParams(layoutParams);
-                textView = (TextView) itemView.findViewById(R.id.item_text);
+                textView = itemView.findViewById(R.id.item_text);
             }
         }
     }

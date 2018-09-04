@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 /**
- * Created by Administrator on 2016/4/12.
+ * Created by liaoinstan on 2016/4/12.
  * 实现侧滑删除功能
  */
 public class MyItemTouchCallback extends ItemTouchHelper.Callback {

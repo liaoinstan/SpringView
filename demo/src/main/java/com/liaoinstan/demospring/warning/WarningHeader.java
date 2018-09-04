@@ -19,7 +19,7 @@ public class WarningHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.header_warning, viewGroup, true);
-        textView = (TextView) view.findViewById(R.id.textView);
+        textView = view.findViewById(R.id.textView);
         return view;
     }
 

@@ -20,11 +20,11 @@ public class Demo9Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo9);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tab = (TabLayout) findViewById(R.id.tab);
-        pager = (ViewPager) findViewById(R.id.pager);
+        tab = findViewById(R.id.tab);
+        pager = findViewById(R.id.pager);
 
         adapterPager = new PagerAdapter(getSupportFragmentManager(), new String[]{"ScrollView", "RecyclerView", "note"});
         pager.setAdapter(adapterPager);

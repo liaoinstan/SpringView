@@ -310,15 +310,9 @@ public class SpringView extends ViewGroup {
                     doMove();
                     //下拉的时候显示header并隐藏footer，上拉的时候相反
                     if (isTop()) {
-                        if (header != null && header.getVisibility() != View.VISIBLE)
-                            header.setVisibility(View.VISIBLE);
-                        if (footer != null && footer.getVisibility() != View.INVISIBLE)
-                            footer.setVisibility(View.INVISIBLE);
+                        showHeaderAndFooter(true, false);
                     } else if (isBottom()) {
-                        if (header != null && header.getVisibility() != View.INVISIBLE)
-                            header.setVisibility(View.INVISIBLE);
-                        if (footer != null && footer.getVisibility() != View.VISIBLE)
-                            footer.setVisibility(View.VISIBLE);
+                        showHeaderAndFooter(false, true);
                     }
                     //回调onDropAnim接口
                     callbackOnDropAnim();
@@ -625,6 +619,7 @@ public class SpringView extends ViewGroup {
         hasCallRefresh = false;
         callFreshORload = 1;
         if (headerHander != null) headerHander.onStartAnim();
+        showHeaderAndFooter(true, false);
         mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
         invalidate();
     }
@@ -657,6 +652,14 @@ public class SpringView extends ViewGroup {
             }
         }
     }
+
+    private void showHeaderAndFooter(boolean showHeader, boolean showFooter) {
+        if (header != null)
+            header.setVisibility(showHeader ? View.VISIBLE : View.INVISIBLE);
+        if (footer != null)
+            footer.setVisibility(showFooter ? View.VISIBLE : View.INVISIBLE);
+    }
+
 
     /**
      * 判断目标View是否滑动到顶部 还能否继续滑动

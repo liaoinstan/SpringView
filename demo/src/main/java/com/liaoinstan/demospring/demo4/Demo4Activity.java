@@ -18,11 +18,11 @@ public class Demo4Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo4);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#18cfbe")));
 
-        webView = (WebView) findViewById(R.id.webView);
+        webView = findViewById(R.id.webView);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         webView.loadUrl("https://github.com");//https://github.com    //http://cn.bing.com/

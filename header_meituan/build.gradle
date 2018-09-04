@@ -24,14 +24,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
-//    implementation project(':library')
-    implementation 'com.liaoinstan.springview:library:1.5.0'
+    implementation project(':library')
+//    implementation 'com.liaoinstan.springview:library:1.5.1'
 }
 
 publish {
     artifactId = 'MeituanHeader'  // artifactId
     uploadName = 'SpringView:MeituanHeader' // 展示名字
-    publishVersion = '1.5.0' // 版本
+    publishVersion = '1.5.1' // 版本
     desc = rootProject.ext.desc
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId

@@ -64,34 +64,26 @@ public class Demo9FragmentRecyclerView extends Fragment {
 
     private void initView() {
         //初始化recyclerView
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycle);
+        recyclerView = rootView.findViewById(R.id.recycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewAdapter = new RecyclerViewAdapter(mDatas);
         recyclerView.setAdapter(recyclerViewAdapter);
         //初始化SpringView
-        springView = (SpringView) rootView.findViewById(R.id.springview);
+        springView = rootView.findViewById(R.id.springview);
         springView.setHeader(new AliHeader(getContext(), false));
         springView.setFooter(new AliFooter(getContext(), false));
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mDatas.add("add item");
-                        recyclerViewAdapter.notifyItemInserted(mDatas.size() - 1);
-                        springView.onFinishFreshAndLoad();
-                    }
+                new Handler().postDelayed(() -> {
+                    mDatas.add("add item");
+                    recyclerViewAdapter.notifyItemInserted(mDatas.size() - 1);
+                    springView.onFinishFreshAndLoad();
                 }, 1000);
             }
         });
@@ -138,7 +130,7 @@ public class Demo9FragmentRecyclerView extends Fragment {
 
             public SampleViewHolder(View view) {
                 super(view);
-                text_item = (TextView) view.findViewById(R.id.item_text);
+                text_item = view.findViewById(R.id.item_text);
             }
         }
     }

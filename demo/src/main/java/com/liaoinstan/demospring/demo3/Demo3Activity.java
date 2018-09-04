@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -34,42 +35,32 @@ public class Demo3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo3);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#999999"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
         initData();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), 3, GridLayoutManager.VERTICAL, false));
+        recyclerView = findViewById(R.id.recycle);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
 //        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        recyclerViewAdapter = new RecyclerViewAdapter(this, mDatas);
+        recyclerViewAdapter = new RecyclerViewAdapter(mDatas);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        springView = (SpringView) findViewById(R.id.springview);
+        springView = findViewById(R.id.springview);
         springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
         springView.setHeader(new AliHeader(this, R.drawable.ali, true));   //参数为：logo图片资源，是否显示文字
@@ -77,8 +68,8 @@ public class Demo3Activity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 9; i++) {
-            mDatas.add(i == 0 ? "We are in RecyclerView" : (i == 1 ? "SpringView支持RecyclerView\n\n这是一个仿阿里旅行的header，logo可以图片可自行替换" : ""));
+        for (int i = 0; i < 10; i++) {
+            mDatas.add(i == 0 ? "We are in RecyclerView" : (i == 3 ? "SpringView支持RecyclerView\n\n这是一个仿阿里旅行的header\n\nlogo可以图片可自行替换" : ""));
         }
     }
 
@@ -103,7 +94,7 @@ public class Demo3Activity extends AppCompatActivity {
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.SampleViewHolder> {
         private List<String> results;
 
-        public RecyclerViewAdapter(Context context, List<String> results) {
+        public RecyclerViewAdapter(List<String> results) {
             this.results = results;
         }
 
@@ -116,7 +107,7 @@ public class Demo3Activity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final SampleViewHolder holder, final int position) {
             holder.text_item.setText(results.get(position));
-            if (position % 2 == 1) {
+            if ((position+1)/2 % 2 == 1) {
                 holder.text_item.setBackgroundColor(Color.parseColor("#e3f1fc"));
                 holder.text_item.setTextColor(Color.parseColor("#9dd2fc"));
             } else {
@@ -135,7 +126,7 @@ public class Demo3Activity extends AppCompatActivity {
 
             public SampleViewHolder(View view) {
                 super(view);
-                text_item = (TextView) view.findViewById(R.id.item_text);
+                text_item = view.findViewById(R.id.item_text);
             }
         }
     }

@@ -53,31 +53,19 @@ public class Demo9FragmentNote extends Fragment {
 
     private void initView() {
         //初始化SpringView
-        springView = (SpringView) rootView.findViewById(R.id.springview);
-//        springView.setHeader(new AliHeader(getContext(), false));
-//        springView.setFooter(new AliFooter(getContext(), false));
+        springView = rootView.findViewById(R.id.springview);
         springView.setType(SpringView.Type.OVERLAP);    //设为重叠样式
         springView.setHeader(new RotationHeader(getContext()));
         springView.setFooter(new RotationFooter(getContext()));
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 
             @Override
             public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
     }
