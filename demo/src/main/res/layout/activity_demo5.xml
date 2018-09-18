@@ -16,8 +16,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="#ff8277"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Demo5Activity" />
 
     </android.support.design.widget.AppBarLayout>
 

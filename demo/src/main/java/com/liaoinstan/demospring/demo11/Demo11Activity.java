@@ -39,7 +39,6 @@ public class Demo11Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         springView = findViewById(R.id.springview);
-        springView.setType(SpringView.Type.FOLLOW);
         springView.setMovePara(1.5);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override

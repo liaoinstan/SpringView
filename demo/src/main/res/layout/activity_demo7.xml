@@ -16,75 +16,81 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="#18cfbe"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Demo7Activity" />
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="#ffffff">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/text"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="#ffffff"
-                        android:textColor="#cccccc"
                         android:gravity="center"
-                        android:text="We are in ScrollView"/>
+                        android:text="We are in ScrollView"
+                        android:textColor="#cccccc" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:textColor="#18cfbe"
+                        android:background="#dbfbf8"
                         android:gravity="center"
-                        android:textSize="12sp"
                         android:text="这是一个仿美团的效果\n\n你可以自行设置一组图片来展示自己的动画"
-                        android:background="#dbfbf8"/>
+                        android:textColor="#18cfbe"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#dbfbf8"/>
+                        android:background="#ffffff" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#dbfbf8"/>
+                        android:background="#dbfbf8" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
+                        android:background="#ffffff" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#dbfbf8"/>
+                        android:background="#dbfbf8" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#dbfbf8" />
 
                 </LinearLayout>
             </ScrollView>

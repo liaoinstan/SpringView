@@ -112,6 +112,31 @@
 
         </FrameLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/demo12"
+                style="@style/homeButton"
+                android:layout_marginTop="0dp"
+                android:onClick="onClick"
+                android:text="demo12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="1dp"
+                android:text="building"
+                android:textColor="#ff0000"
+                android:textSize="11sp" />
+
+
+        </FrameLayout>
+
         <TextView
             android:id="@+id/warning"
             style="@style/homeButton"

@@ -45,4 +45,6 @@ dependencies {
     implementation project(':header_rotation')
     implementation project(':header_acfun')
     implementation project(':header_weixin')
+
+    implementation project(':header_wangyi')
 }

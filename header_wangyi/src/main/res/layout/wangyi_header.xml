@@ -1,0 +1,12 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_gravity="top">
+
+    <com.liaoinstan.springview.wangyiheader.CircleRoundView
+        android:id="@+id/circle_round"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+</FrameLayout>

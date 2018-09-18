@@ -12,7 +12,7 @@ import com.liaoinstan.springview.widget.SpringView;
 public abstract class BaseFooter implements SpringView.DragHander {
 
     /**
-     * 这个方法用于设置当前View的临界高度(limit hight)，即拉动到多少会被认定为刷新超作，而没到达该高度则不会执行刷新
+     * 这个方法用于设置当前View的临界高度(limit hight)，即拉动到多少会被认定为刷新操作，而没到达该高度则不会执行刷新
      * 返回值大于0才有效，如果<=0 则设置为默认footer的高度
      * 默认返回0
      */
@@ -38,5 +38,43 @@ public abstract class BaseFooter implements SpringView.DragHander {
     @Override
     public int getDragSpringHeight(View rootView) {
         return 0;
+    }
+
+    //###################################################
+    //############ 2018/9/13 新增收场动画接口 ###########
+    //###################################################
+
+    /**
+     * 收场动画执行时间
+     * 返回值大于0才有效
+     * 默认返回0
+     */
+    @Override
+    public int getEndingAnimTime() {
+        return 0;
+    }
+
+    /**
+     * 收场动画回弹高度
+     * 返回值大于0才有效
+     * 默认返回0
+     */
+    @Override
+    public int getEndingAnimHight(View rootView) {
+        return 0;
+    }
+
+    /**
+     * 收场动画开始执行，默认空实现，如需要收场动画重写该方法
+     */
+    @Override
+    public void onEndingAnimStart() {
+    }
+
+    /**
+     * 收场动画结束执行，默认空实现，如需要收场动画重写该方法
+     */
+    @Override
+    public void onEndingAnimEnd() {
     }
 }

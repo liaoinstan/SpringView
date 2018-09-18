@@ -16,77 +16,83 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="#ffffff"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Demo6Activity"
+            app:titleTextColor="#999999" />
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:type="overlap"
-            android:background="#ffffff">
+            android:layout_weight="1"
+            android:background="#ffffff"
+            app:type="overlap">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/text"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="#ffffff"
-                        android:textColor="#cccccc"
                         android:gravity="center"
-                        android:text="We are in ScrollView"/>
+                        android:text="We are in ScrollView"
+                        android:textColor="#cccccc" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:textColor="#9dd2fc"
+                        android:background="#e3f1fc"
                         android:gravity="center"
-                        android:textSize="12sp"
                         android:text="SprigView能够动态替换头/尾部\n\n这是一个简单定制的仿qq刷红包的效果"
-                        android:background="#e3f1fc"/>
+                        android:textColor="#9dd2fc"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#e3f1fc"/>
+                        android:background="#ffffff" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#e3f1fc"/>
+                        android:background="#e3f1fc" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#ffffff"/>
+                        android:background="#ffffff" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#e3f1fc"/>
+                        android:background="#e3f1fc" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#e3f1fc" />
 
                 </LinearLayout>
             </ScrollView>
@@ -94,23 +100,25 @@
         </com.liaoinstan.springview.widget.SpringView>
 
         <RadioGroup
-            android:layout_gravity="bottom|right"
+            android:id="@+id/group_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
             android:layout_margin="20dp"
-            android:id="@+id/group_header"
             android:orientation="vertical">
+
             <RadioButton
+                android:id="@+id/drag_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="drag header"
                 android:checked="true"
-                android:id="@+id/drag_header"/>
+                android:text="drag header" />
+
             <RadioButton
+                android:id="@+id/nomal_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nomal header"
-                android:id="@+id/nomal_header"/>
+                android:text="nomal header" />
 
         </RadioGroup>
 

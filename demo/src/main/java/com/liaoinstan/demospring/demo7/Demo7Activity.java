@@ -26,7 +26,6 @@ public class Demo7Activity extends AppCompatActivity {
         setContentView(R.layout.activity_demo7);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#18cfbe")));
 
         springView = findViewById(R.id.springview);
         springView.setType(SpringView.Type.FOLLOW);

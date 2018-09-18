@@ -17,85 +17,87 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Demo1Activity" />
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.liaoinstan.springview.widget.SpringView
             android:id="@+id/springview"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="#68b3f3"
-                        android:textColor="#ffffff"
                         android:gravity="center"
-                        android:text="We are in ScrollView"/>
+                        android:text="We are in ScrollView"
+                        android:textColor="#ffffff" />
 
                     <TextView
                         android:id="@+id/text"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:textSize="12sp"
-                        android:textColor="#ffffff"
+                        android:background="#68b3f3"
                         android:gravity="center"
                         android:text="SpringView支持ScrollView\n\n这是一个提供了记录刷新时间的Header"
-                        android:background="#68b3f3"/>
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#68b3f3"/>
+                        android:background="#68b3f3" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="#68b3f3"
-                        android:textColor="#ffffff"
                         android:gravity="center"
-                        android:text="We are in ScrollView"/>
+                        android:text="We are in ScrollView"
+                        android:textColor="#ffffff" />
 
                 </LinearLayout>
             </ScrollView>

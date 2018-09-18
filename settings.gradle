@@ -1,1 +1,1 @@
-include ':library', ':demo', ':header_ali', ':header_meituan', ':header_rotation', ':header_acfun', ':header_weixin'
+include ':library', ':demo', ':header_ali', ':header_meituan', ':header_rotation', ':header_acfun', ':header_weixin', ':header_wangyi'

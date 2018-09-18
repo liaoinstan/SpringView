@@ -22,9 +22,7 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo6);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.parseColor("#999999"));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
         ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 

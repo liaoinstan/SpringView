@@ -25,7 +25,7 @@ import java.util.List;
 public class Demo2Activity extends AppCompatActivity {
 
     private SpringView springView;
-    private List<String> mDatas = new ArrayList<String>();
+    private List<String> mDatas = new ArrayList<>();
     private ListView listView;
     private AdapterForList listAdapter;
 
@@ -34,9 +34,7 @@ public class Demo2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo2);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.parseColor("#999999"));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         initData();
 
