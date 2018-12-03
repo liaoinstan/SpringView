@@ -1,5 +1,8 @@
 package com.liaoinstan.demospring.demo12;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,6 +10,7 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.liaoinstan.springview.utils.DensityUtil;
 
@@ -33,11 +37,10 @@ public class WaveTextView extends AppCompatTextView {
 
     private Paint paint;
     private float radius;
-    private int delayMilliseconds = 30;//每帧间隔时间
-    private int addRadius = 5;
     private float centerX;//圆心x
     private float centerY;//圆心y
     private float maxRadius;
+    private ValueAnimator valueAnimator;
 
     private void initBase() {
         paint = new Paint();
@@ -50,30 +53,51 @@ public class WaveTextView extends AppCompatTextView {
     }
 
 
-
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         //圆心位置
         centerX = w / 2;
         centerY = h / 2;
-        maxRadius = w / 2;
+        maxRadius = (float) Math.sqrt(Math.pow(w / 2d, 2) + Math.pow(h / 2d, 2)) + 10;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
         //绘制扩散的圆
         canvas.drawCircle(centerX, centerY, radius, paint);
-//        radius += addRadius;
-//        postInvalidateDelayed(delayMilliseconds);
+        super.onDraw(canvas);
     }
 
     public void start() {
-        postInvalidate();
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        valueAnimator = ValueAnimator.ofFloat(0, maxRadius);
+        valueAnimator.setDuration(200);
+        valueAnimator.addUpdateListener(animation -> {
+            radius = (float) animation.getAnimatedValue();
+            Log.e("liao", radius + "");
+            postInvalidate();
+        });
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+        });
+        valueAnimator.start();
     }
 
-    public void end() {
+    public void reset() {
+        radius = 0;
+        postInvalidate();
     }
 }
