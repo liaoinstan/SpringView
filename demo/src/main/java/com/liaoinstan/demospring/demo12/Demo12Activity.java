@@ -31,7 +31,7 @@ public class Demo12Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         springView = findViewById(R.id.springview);
-//        springView.setMovePara(1.3);
+        springView.setMovePara(1.3);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

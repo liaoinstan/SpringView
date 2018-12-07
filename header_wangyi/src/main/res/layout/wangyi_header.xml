@@ -1,30 +1,32 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="200dp"
     android:layout_gravity="top">
 
     <FrameLayout
-        android:id="@+id/lay_ending"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_gravity="bottom">
+        android:id="@+id/lay_circle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|center_horizontal">
 
         <com.liaoinstan.springview.wangyiheader.CircleRoundView
             android:id="@+id/circle_round"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_gravity="center" />
 
-        <TextView
-            android:id="@+id/text_ending_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#aace0000"
-            android:gravity="center"
-            android:text="成功为您推荐10条新闻"
-            android:textColor="#ffffff"
-            android:textSize="12sp" />
-
     </FrameLayout>
+
+    <com.liaoinstan.springview.wangyiheader.WaveTextView
+        android:id="@+id/text_ending_title"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="成功为您推荐10条新闻"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        app:wave_color="#aace0000" />
 
 </FrameLayout>

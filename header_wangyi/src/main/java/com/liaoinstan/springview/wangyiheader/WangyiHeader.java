@@ -6,19 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
 
 import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
- * Created by Administrator on 2018/9/4.
+ * Created by liaoinstan on 2018/9/4.
  */
 public class WangyiHeader extends BaseHeader {
 
     private CircleRoundView circle_round;
-    private TextView text_ending_title;
-    private ViewGroup lay_ending;
+    private WaveTextView text_ending_title;
+    private View lay_circle;
 
     //圆圈动画
     private ValueAnimator animator;
@@ -48,7 +47,7 @@ public class WangyiHeader extends BaseHeader {
         View view = inflater.inflate(R.layout.wangyi_header, viewGroup, true);
         circle_round = view.findViewById(R.id.circle_round);
         text_ending_title = view.findViewById(R.id.text_ending_title);
-        lay_ending = view.findViewById(R.id.lay_ending);
+        lay_circle = view.findViewById(R.id.lay_circle);
 
         //动画监听
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -59,10 +58,6 @@ public class WangyiHeader extends BaseHeader {
                 layoutParams.width = nowWidth;
                 layoutParams.height = nowWidth;
                 circle_round.setLayoutParams(layoutParams);
-
-                if (cancelAnimNextMax && nowWidth >= maxWidthDot) {
-                    animator.cancel();
-                }
             }
         });
         //初始化可见性
@@ -72,8 +67,18 @@ public class WangyiHeader extends BaseHeader {
     }
 
     @Override
-    public int getDragSpringHeight(View rootView) {
+    public int getDragMaxHeight(View rootView) {
         return rootView.getMeasuredHeight();
+    }
+
+    @Override
+    public int getDragLimitHeight(View rootView) {
+        return DensityUtil.dp2px(80);
+    }
+
+    @Override
+    public int getDragSpringHeight(View rootView) {
+        return DensityUtil.dp2px(80);
     }
 
     @Override
@@ -82,17 +87,19 @@ public class WangyiHeader extends BaseHeader {
 
     @Override
     public void onDropAnim(View rootView, int dy) {
-        int dragSpringHeight = getDragSpringHeight(rootView);
-        if (dy < dragSpringHeight) {
-            float lv = dy / ((float) dragSpringHeight); //0-1
+        int dragLimitHeight = getDragLimitHeight(rootView);
+        if (dy <= 1) reset();
+        if (dy < dragLimitHeight) {
+            float lv = dy / ((float) dragLimitHeight); //0-1
             int nowWidth = (int) ((maxWidthDot - minWidthDot) * lv + minWidthDot);
             setCircleSize(nowWidth);
         } else {
             setCircleSize(maxWidthDot);
         }
-    }
 
-    private boolean cancelAnimNextMax;
+        //保持圆圈居中
+        lay_circle.setTranslationY(-(dy / 2 - lay_circle.getWidth() / 2));
+    }
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
@@ -105,22 +112,13 @@ public class WangyiHeader extends BaseHeader {
     }
 
     @Override
-    public void onEndingAnimStart() {
-        //这种停止标志下次最大时停止动画
-        cancelAnimNextMax = true;
-//        circle_round.setVisibility(View.INVISIBLE);
-//        text_ending_title.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onEndingAnimEnd() {
-    }
-
-    @Override
     public void onFinishAnim() {
+        reset();
+    }
+
+    private void reset() {
         circle_round.setVisibility(View.VISIBLE);
         text_ending_title.setVisibility(View.INVISIBLE);
-        cancelAnimNextMax = false;
     }
 
     private void setCircleSize(int size) {
@@ -132,12 +130,24 @@ public class WangyiHeader extends BaseHeader {
     }
 
     @Override
+    public void onEndingAnimStart() {
+        animator.cancel();
+        circle_round.setVisibility(View.INVISIBLE);
+        text_ending_title.setVisibility(View.VISIBLE);
+        text_ending_title.start();
+    }
+
+    @Override
+    public void onEndingAnimEnd() {
+    }
+
+    @Override
     public int getEndingAnimTime() {
-        return 3000;
+        return 2000;
     }
 
     @Override
     public int getEndingAnimHight(View rootView) {
-        return lay_ending.getMeasuredHeight();
+        return text_ending_title.getMeasuredHeight();
     }
 }

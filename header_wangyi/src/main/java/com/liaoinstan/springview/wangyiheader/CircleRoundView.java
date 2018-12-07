@@ -1,6 +1,7 @@
 package com.liaoinstan.springview.wangyiheader;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +14,7 @@ import com.liaoinstan.springview.utils.DensityUtil;
 
 public class CircleRoundView extends View {
 
+    private int color_circle;
     // 画圆所在的距形区域
     private RectF mRectF;
     //扇形线宽
@@ -20,28 +22,30 @@ public class CircleRoundView extends View {
 
     private Paint mPaint;
 
-    public CircleRoundView(Context context) {
-        super(context);
-        init();
-    }
-
     public CircleRoundView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs,0);
+        initBase();
     }
 
     public CircleRoundView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        initAttr(attrs);
+        initBase();
     }
 
-    private void init() {
+    private void initAttr(@Nullable AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.WaveTextView, 0, 0);
+        color_circle = a.getColor(R.styleable.WaveTextView_wave_color, Color.parseColor("#aace0000"));
+        a.recycle();
+    }
+
+    private void initBase() {
         mRectF = new RectF();
         mPaint = new Paint();
         strokeWidth = DensityUtil.dp2px(5);
         // 设置画笔相关属性
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.parseColor("#aace0000"));
+        mPaint.setColor(color_circle);
         mPaint.setAntiAlias(true);//取消锯齿
     }
 
