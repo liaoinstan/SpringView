@@ -114,7 +114,6 @@
 
         <!--建设中，目前尚未完成-->
         <FrameLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">

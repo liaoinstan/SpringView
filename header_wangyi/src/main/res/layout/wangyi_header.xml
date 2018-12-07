@@ -3,10 +3,28 @@
     android:layout_height="80dp"
     android:layout_gravity="top">
 
-    <com.liaoinstan.springview.wangyiheader.CircleRoundView
-        android:id="@+id/circle_round"
-        android:layout_width="5dp"
-        android:layout_height="5dp"
-        android:layout_gravity="center_horizontal|bottom" />
+    <FrameLayout
+        android:id="@+id/lay_ending"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom">
+
+        <com.liaoinstan.springview.wangyiheader.CircleRoundView
+            android:id="@+id/circle_round"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/text_ending_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#aace0000"
+            android:gravity="center"
+            android:text="成功为您推荐10条新闻"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+    </FrameLayout>
 
 </FrameLayout>

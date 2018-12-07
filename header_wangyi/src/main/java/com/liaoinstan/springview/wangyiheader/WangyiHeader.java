@@ -1,10 +1,12 @@
 package com.liaoinstan.springview.wangyiheader;
 
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 
 import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
@@ -15,6 +17,8 @@ import com.liaoinstan.springview.utils.DensityUtil;
 public class WangyiHeader extends BaseHeader {
 
     private CircleRoundView circle_round;
+    private TextView text_ending_title;
+    private ViewGroup lay_ending;
 
     //圆圈动画
     private ValueAnimator animator;
@@ -43,6 +47,8 @@ public class WangyiHeader extends BaseHeader {
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.wangyi_header, viewGroup, true);
         circle_round = view.findViewById(R.id.circle_round);
+        text_ending_title = view.findViewById(R.id.text_ending_title);
+        lay_ending = view.findViewById(R.id.lay_ending);
 
         //动画监听
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -53,8 +59,15 @@ public class WangyiHeader extends BaseHeader {
                 layoutParams.width = nowWidth;
                 layoutParams.height = nowWidth;
                 circle_round.setLayoutParams(layoutParams);
+
+                if (cancelAnimNextMax && nowWidth >= maxWidthDot) {
+                    animator.cancel();
+                }
             }
         });
+        //初始化可见性
+        circle_round.setVisibility(View.VISIBLE);
+        text_ending_title.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -65,7 +78,6 @@ public class WangyiHeader extends BaseHeader {
 
     @Override
     public void onPreDrag(View rootView) {
-
     }
 
     @Override
@@ -80,6 +92,8 @@ public class WangyiHeader extends BaseHeader {
         }
     }
 
+    private boolean cancelAnimNextMax;
+
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
 
@@ -91,15 +105,39 @@ public class WangyiHeader extends BaseHeader {
     }
 
     @Override
+    public void onEndingAnimStart() {
+        //这种停止标志下次最大时停止动画
+        cancelAnimNextMax = true;
+//        circle_round.setVisibility(View.INVISIBLE);
+//        text_ending_title.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onEndingAnimEnd() {
+    }
+
+    @Override
     public void onFinishAnim() {
-        animator.cancel();
+        circle_round.setVisibility(View.VISIBLE);
+        text_ending_title.setVisibility(View.INVISIBLE);
+        cancelAnimNextMax = false;
     }
 
     private void setCircleSize(int size) {
         ViewGroup.LayoutParams layoutParam1 = circle_round.getLayoutParams();
-        if (layoutParam1.width ==size) return;
+        if (layoutParam1.width == size) return;
         layoutParam1.height = size;
         layoutParam1.width = size;
         circle_round.setLayoutParams(layoutParam1);
+    }
+
+    @Override
+    public int getEndingAnimTime() {
+        return 3000;
+    }
+
+    @Override
+    public int getEndingAnimHight(View rootView) {
+        return lay_ending.getMeasuredHeight();
     }
 }

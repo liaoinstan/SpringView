@@ -68,7 +68,7 @@ public class CircleRoundView extends View {
             mRectF.bottom -= space;
         }
 
-        if (min <= strokeWidth * 2) {
+        if (min <= strokeWidth * 2 || isFull) {
             mPaint.setStrokeWidth(0);
             mPaint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(width / 2, height / 2, min / 2, mPaint);
@@ -77,5 +77,12 @@ public class CircleRoundView extends View {
             mPaint.setStyle(Paint.Style.STROKE);
             canvas.drawArc(mRectF, 0, 360, false, mPaint);
         }
+    }
+
+    private boolean isFull;
+
+    public void setFull(boolean full) {
+        isFull = full;
+        invalidate();
     }
 }

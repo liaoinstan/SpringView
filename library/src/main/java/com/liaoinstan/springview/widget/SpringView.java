@@ -18,6 +18,7 @@ import com.liaoinstan.springview.listener.AppBarStateChangeListener;
 /**
  * Created by liaoinstan on 2016/3/11.
  */
+@SuppressWarnings("unused ")
 public class SpringView extends ViewGroup {
 
     private Context context;
@@ -57,6 +58,8 @@ public class SpringView extends ViewGroup {
     private int FOOTER_LIMIT_HEIGHT;
     private int HEADER_SPRING_HEIGHT;
     private int FOOTER_SPRING_HEIGHT;
+    private int HEADER_ENDING_HEIGHT;
+    private int FOOTER_ENDING_HEIGHT;
     //储存手指拉动上次的Y坐标
     private float mLastY;
     private float mLastX;
@@ -82,9 +85,10 @@ public class SpringView extends ViewGroup {
     private boolean appBarCouldScroll = false;
 
     private int callFreshORload = 0;
-    private boolean isFullAnim;         //是结束动画（全部回弹）还是弹动动画（回到limit位置）
+    private int scrollAnimType;         //回弹动画类别 0:结束动画1:回弹动画2:退场动画
     private boolean hasCallFull = false;
     private boolean hasCallRefresh = false;
+    private boolean hasCallEnding = false;
 
     @Override
     protected void onAttachedToWindow() {
@@ -197,6 +201,7 @@ public class SpringView extends ViewGroup {
             //设置下拉弹动高度，只有在>0时才生效，否则默认和临界高度一致
             int sh = headerHander.getDragSpringHeight(header);
             HEADER_SPRING_HEIGHT = sh > 0 ? sh : HEADER_LIMIT_HEIGHT;
+            HEADER_ENDING_HEIGHT = headerHander.getEndingAnimHight(header);
         } else {
             //不是动态设置的头部，设置默认值
             if (header != null) HEADER_LIMIT_HEIGHT = header.getMeasuredHeight();
@@ -210,6 +215,7 @@ public class SpringView extends ViewGroup {
             FOOTER_LIMIT_HEIGHT = h > 0 ? h : footer.getMeasuredHeight();
             int sh = footerHander.getDragSpringHeight(footer);
             FOOTER_SPRING_HEIGHT = sh > 0 ? sh : FOOTER_LIMIT_HEIGHT;
+            FOOTER_ENDING_HEIGHT = footerHander.getEndingAnimHight(footer);
         } else {
             if (footer != null) FOOTER_LIMIT_HEIGHT = footer.getMeasuredHeight();
             FOOTER_SPRING_HEIGHT = FOOTER_LIMIT_HEIGHT;
@@ -253,6 +259,7 @@ public class SpringView extends ViewGroup {
             case MotionEvent.ACTION_DOWN: {
                 hasCallFull = false;
                 hasCallRefresh = false;
+                hasCallEnding = false;
                 mfirstY = event.getY();
                 isNeedMyMove = false;
                 break;
@@ -276,7 +283,7 @@ public class SpringView extends ViewGroup {
                         break;
                     }
                 }
-                /////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////appBar end//////////////////////////////////
                 dsY += dy;
                 isMoveNow = true;
                 isNeedMyMove = isNeedMyMove();
@@ -317,7 +324,8 @@ public class SpringView extends ViewGroup {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isNeedMyMove) {
-                    needResetAnim = false;      //按下的时候关闭回弹
+                    //按下的时候关闭回弹
+                    needResetAnim = false;
                     //执行位移操作
                     doMove();
                     //下拉的时候显示header并隐藏footer，上拉的时候相反
@@ -429,6 +437,7 @@ public class SpringView extends ViewGroup {
         callOnScrollAndDrag();
     }
 
+    //滚动回调
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
@@ -441,15 +450,20 @@ public class SpringView extends ViewGroup {
         //在滚动动画完全结束后回调接口
         //滚动回调过程中mScroller.isFinished会多次返回true，导致判断条件被多次进入，设置标志位保证只调用一次
         if (!isMoveNow && mScroller.isFinished()) {
-            if (isFullAnim) {
+            if (scrollAnimType == 0) {
                 if (!hasCallFull) {
                     hasCallFull = true;
                     callOnAfterFullAnim();
                 }
-            } else {
+            } else if (scrollAnimType == 1) {
                 if (!hasCallRefresh) {
                     hasCallRefresh = true;
                     callOnAfterRefreshAnim();
+                }
+            } else if (scrollAnimType == 2) {
+                if (!hasCallEnding) {
+                    hasCallEnding = true;
+                    callOnAfterEndingAnim();
                 }
             }
         }
@@ -498,13 +512,29 @@ public class SpringView extends ViewGroup {
     }
 
     //在回弹到刷新位置的时候会执行此方法
+
+    /**
+     * 只有设置可弹动或者手动调用callFresh才会执行到这个回调，不弹动状态直接执行{@link #callOnAfterFullAnim()}
+     */
     private void callOnAfterRefreshAnim() {
-        /**只有设置可弹动或者手动调用callFresh才会执行到这个回调，不弹动状态直接执行{@link #callOnAfterFullAnim()}*/
         if (isTop()) {
             listener.onRefresh();
         } else if (isBottom()) {
             listener.onLoadmore();
         }
+    }
+
+    //在开始退场动画时会执行此方法
+    private void callOnAfterEndingAnim() {
+        final DragHander dragHander = isTop() ? headerHander : footerHander;
+        if (dragHander == null) return;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dragHander.onEndingAnimEnd();
+                resetPosition();
+            }
+        }, dragHander.getEndingAnimTime());
     }
 
     //回调自定义header/footer OnDropAnim接口
@@ -564,6 +594,7 @@ public class SpringView extends ViewGroup {
     /**
      * 判断是否需要由该控件来控制滑动事件
      */
+    @SuppressWarnings("all")
     private boolean isNeedMyMove() {
         if (contentLay == null) {
             return false;
@@ -600,7 +631,7 @@ public class SpringView extends ViewGroup {
      * 重置控件位置到初始状态
      */
     private void resetPosition() {
-        isFullAnim = true;
+        scrollAnimType = 0;
         isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
         mScroller.startScroll(0, getScrollY(), 0, -getScrollY(), MOVE_TIME);
         invalidate();
@@ -610,7 +641,7 @@ public class SpringView extends ViewGroup {
      * 重置控件位置到刷新状态（或加载状态）
      */
     private void resetRefreshPosition() {
-        isFullAnim = false;
+        scrollAnimType = 1;
         isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
         if (getScrollY() < 0) {     //下拉
             mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
@@ -625,8 +656,17 @@ public class SpringView extends ViewGroup {
      * 重置到收场动画状态
      */
     private void resetEndingPosition() {
-        //TODO:目前暂时没实现，直接跳过
-        resetPosition();
+        scrollAnimType = 2;
+        isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
+        if (getScrollY() < 0) {     //下拉
+            if (headerHander != null) headerHander.onEndingAnimStart();
+            mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_ENDING_HEIGHT, MOVE_TIME);
+            invalidate();
+        } else {       //上拉
+            if (footerHander != null) footerHander.onEndingAnimStart();
+            mScroller.startScroll(0, getScrollY(), 0, -getScrollY() + FOOTER_ENDING_HEIGHT, MOVE_TIME);
+            invalidate();
+        }
     }
 
     /**
@@ -663,7 +703,7 @@ public class SpringView extends ViewGroup {
      */
     private void _callFresh() {
         isCallFresh = true;
-        isFullAnim = false;     //不是全部回弹动画（半回弹到limit位置）
+        scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
         needResetAnim = true;   //允许执行回弹动画
         hasCallRefresh = false;
         callFreshORload = 1;
@@ -965,6 +1005,9 @@ public class SpringView extends ViewGroup {
         requestLayout();
     }
 
+    /**
+     * header/footer核心接口
+     */
     public interface DragHander {
         View getView(LayoutInflater inflater, ViewGroup viewGroup);
 
