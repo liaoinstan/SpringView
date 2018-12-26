@@ -1,11 +1,11 @@
 package com.liaoinstan.springview.wangyiheader;
 
 import android.animation.ValueAnimator;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 
 import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
@@ -17,7 +17,7 @@ public class WangyiHeader extends BaseHeader {
 
     private CircleRoundView circle_round;
     private WaveTextView text_ending_title;
-    private View lay_circle;
+    private FrameLayout lay_circle;
 
     //圆圈动画
     private ValueAnimator animator;
@@ -31,7 +31,7 @@ public class WangyiHeader extends BaseHeader {
     public WangyiHeader() {
         //初始化数据
         maxWidthDot = DensityUtil.dp2px(22);
-        minWidthDot = DensityUtil.dp2px(5);
+        minWidthDot = DensityUtil.dp2px(7);
         minWidthAnimDot = DensityUtil.dp2px(17);
 
         //初始化动画
@@ -88,17 +88,26 @@ public class WangyiHeader extends BaseHeader {
     @Override
     public void onDropAnim(View rootView, int dy) {
         int dragLimitHeight = getDragLimitHeight(rootView);
-        if (dy <= 1) reset();
-        if (dy < dragLimitHeight) {
-            float lv = dy / ((float) dragLimitHeight); //0-1
+        int layHeight = lay_circle.getMeasuredHeight();
+        if (dy <= 5) reset();
+        if (dy < layHeight) {
+            //如果此时动画还没停止，则停止动画
+            if (animator.isRunning()) animator.cancel();
+            //设置圆圈从 0 - 1 的透明度渐变
+//            float lv = dy / (float) layHeight; //0-1
+//            circle_round.setAlpha(lv);
+            setCircleSize(minWidthDot);
+            lay_circle.setTranslationY(0);
+        } else if (dy >= layHeight && dy < dragLimitHeight) {
+            float lv = (dy - layHeight) / (float) (dragLimitHeight - layHeight); //0-1
             int nowWidth = (int) ((maxWidthDot - minWidthDot) * lv + minWidthDot);
             setCircleSize(nowWidth);
+            lay_circle.setTranslationY(-(dy / 2 - lay_circle.getWidth() / 2));
         } else {
+            //保持圆圈居中
             setCircleSize(maxWidthDot);
+            lay_circle.setTranslationY(-(dy / 2 - lay_circle.getWidth() / 2));
         }
-
-        //保持圆圈居中
-        lay_circle.setTranslationY(-(dy / 2 - lay_circle.getWidth() / 2));
     }
 
     @Override

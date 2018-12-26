@@ -6,8 +6,8 @@
 
     <FrameLayout
         android:id="@+id/lay_circle"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_gravity="bottom|center_horizontal">
 
         <com.liaoinstan.springview.wangyiheader.CircleRoundView
