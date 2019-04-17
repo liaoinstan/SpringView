@@ -3,8 +3,6 @@ package com.liaoinstan.springview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.OverScroller;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.liaoinstan.springview.R;
 import com.liaoinstan.springview.listener.AppBarStateChangeListener;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by liaoinstan on 2016/3/11.

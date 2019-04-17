@@ -29,8 +29,8 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation "com.google.android.material:material:$materialLibraryVersion"
 
 //    implementation 'com.liaoinstan.springview:library:1.5.1'
 //    implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'

@@ -5,9 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
-import android.support.v4.content.PermissionChecker;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.PermissionChecker;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

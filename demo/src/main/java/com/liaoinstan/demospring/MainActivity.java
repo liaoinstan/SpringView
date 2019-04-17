@@ -2,7 +2,6 @@ package com.liaoinstan.demospring;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.liaoinstan.demospring.demo1.Demo1Activity;
@@ -19,6 +18,8 @@ import com.liaoinstan.demospring.demo8.Demo8Activity;
 import com.liaoinstan.demospring.demo9.Demo9Activity;
 import com.liaoinstan.demospring.test.TestActivity;
 import com.liaoinstan.demospring.warning.WarningActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override

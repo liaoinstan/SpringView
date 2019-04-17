@@ -1,9 +1,9 @@
 package com.liaoinstan.springview.widget;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +11,8 @@ import android.view.ViewParent;
 import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * Created by liaoinstan on 2017/8/15.
