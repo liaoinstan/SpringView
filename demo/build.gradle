@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -23,14 +22,15 @@ android {
         }
     }
 }
+
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation "com.google.android.material:material:$materialLibraryVersion"
 
 //    implementation 'com.liaoinstan.springview:library:1.5.1'
 //    implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'

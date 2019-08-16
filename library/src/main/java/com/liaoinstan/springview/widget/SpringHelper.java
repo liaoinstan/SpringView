@@ -1,9 +1,9 @@
 package com.liaoinstan.springview.widget;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.appbar.AppBarLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +32,7 @@ class SpringHelper {
             }
             p = p.getParent();
         }
-        if (p instanceof CoordinatorLayout) {
+        if (p != null) {
             CoordinatorLayout coordinatorLayout = (CoordinatorLayout) p;
             final int childCount = coordinatorLayout.getChildCount();
             for (int i = childCount - 1; i >= 0; i--) {

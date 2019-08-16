@@ -1,7 +1,6 @@
 package com.liaoinstan.springview.rotationheader;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseFooter;
 
@@ -42,7 +43,7 @@ public class RotationFooter extends BaseFooter {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.rotation_footer, viewGroup, true);
-        footer_progress = (ProgressBar) view.findViewById(R.id.rotation_footer_progress);
+        footer_progress = view.findViewById(R.id.rotation_footer_progress);
         footer_progress.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         return view;
     }

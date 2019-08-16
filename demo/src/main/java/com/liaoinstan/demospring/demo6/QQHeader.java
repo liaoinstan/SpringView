@@ -36,7 +36,7 @@ public class QQHeader extends BaseHeader {
 
     @Override
     public int getDragSpringHeight(View rootView) {
-        return rootView.getMeasuredHeight() - 100;//DensityUtil.dp2px(100);
+        return rootView.getMeasuredHeight() - 100;
     }
 
     @Override

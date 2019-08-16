@@ -2,12 +2,13 @@ package com.liaoinstan.springview.meituanheader;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
@@ -54,7 +55,7 @@ public class MeituanHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.meituan_header, viewGroup, true);
-        header_img = (ImageView) view.findViewById(R.id.meituan_header_img);
+        header_img = view.findViewById(R.id.meituan_header_img);
         if (pullAnimSrcs != null && pullAnimSrcs.length > 0)
             header_img.setImageResource(pullAnimSrcs[0]);
         return view;
@@ -76,7 +77,7 @@ public class MeituanHeader extends BaseHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        Log.e("test","upORdown:" + upORdown);
+        Log.e("test", "upORdown:" + upORdown);
         if (!upORdown) {
             header_img.setImageDrawable(animationPull);
             animationPull.start();

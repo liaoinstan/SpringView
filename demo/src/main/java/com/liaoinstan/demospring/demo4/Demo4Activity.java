@@ -3,8 +3,8 @@ package com.liaoinstan.demospring.demo4;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -14,6 +14,7 @@ public class Demo4Activity extends AppCompatActivity {
 
     private WebView webView;
 
+    @SuppressWarnings("all")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class Demo4Activity extends AppCompatActivity {
         webView = findViewById(R.id.webView);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        webView.loadUrl("https://github.com");//https://github.com    //http://cn.bing.com/
+        webView.loadUrl("https://github.com");   //https://github.com    //http://cn.bing.com/
 
     }
 }

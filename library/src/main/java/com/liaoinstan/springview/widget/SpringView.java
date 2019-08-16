@@ -3,8 +3,8 @@ package com.liaoinstan.springview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
+import androidx.annotation.Nullable;
+import com.google.android.material.appbar.AppBarLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -802,6 +802,8 @@ public class SpringView extends ViewGroup {
                         //不需要则，直接跳过
                         resetPosition();
                     }
+                } else {
+                    resetPosition();
                 }
             } else {
                 //拉动回弹刷新

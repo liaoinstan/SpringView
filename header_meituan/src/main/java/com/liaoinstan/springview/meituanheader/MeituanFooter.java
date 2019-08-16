@@ -2,11 +2,12 @@ package com.liaoinstan.springview.meituanheader;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseFooter;
 
@@ -38,17 +39,19 @@ public class MeituanFooter extends BaseFooter {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.meituan_footer, viewGroup, true);
-        footer_img = (ImageView) view.findViewById(R.id.meituan_footer_img);
-        if (animationLoading != null)
+        footer_img = view.findViewById(R.id.meituan_footer_img);
+        if (animationLoading != null) {
             footer_img.setImageDrawable(animationLoading);
+        }
         return view;
     }
 
     @Override
     public void onPreDrag(View rootView) {
         animationLoading.stop();
-        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0)
+        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0) {
             footer_img.setImageDrawable(animationLoading.getFrame(0));
+        }
     }
 
     @Override
@@ -61,15 +64,17 @@ public class MeituanFooter extends BaseFooter {
 
     @Override
     public void onStartAnim() {
-        if (animationLoading != null)
+        if (animationLoading != null) {
             footer_img.setImageDrawable(animationLoading);
-        animationLoading.start();
+            animationLoading.start();
+        }
     }
 
     @Override
     public void onFinishAnim() {
         animationLoading.stop();
-        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0)
+        if (animationLoading != null && animationLoading.getNumberOfFrames() > 0) {
             footer_img.setImageDrawable(animationLoading.getFrame(0));
+        }
     }
 }

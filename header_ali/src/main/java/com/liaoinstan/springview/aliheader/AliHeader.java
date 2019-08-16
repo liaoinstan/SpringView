@@ -1,7 +1,6 @@
 package com.liaoinstan.springview.aliheader;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseHeader;
 
@@ -66,10 +67,10 @@ public class AliHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.ali_header, viewGroup, true);
-        headerTitle = (TextView) view.findViewById(R.id.ali_header_text);
-        headerArrow = (ImageView) view.findViewById(R.id.ali_header_arrow);
-        headerLogo = (ImageView) view.findViewById(R.id.ali_header_logo);
-        headerProgressbar = (ProgressBar) view.findViewById(R.id.ali_header_progressbar);
+        headerTitle = view.findViewById(R.id.ali_header_text);
+        headerArrow = view.findViewById(R.id.ali_header_arrow);
+        headerLogo = view.findViewById(R.id.ali_header_logo);
+        headerProgressbar = view.findViewById(R.id.ali_header_progressbar);
         frame = view.findViewById(R.id.ali_frame);
         if (logoSrc != 0) headerLogo.setImageResource(logoSrc);
         if (!isShowText) headerTitle.setVisibility(View.GONE);

@@ -1,16 +1,19 @@
 package com.liaoinstan.demospring.demo9;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
 
+@SuppressWarnings("all")
 public class Demo9Activity extends AppCompatActivity {
     private TabLayout tab;
     private ViewPager pager;
@@ -31,10 +34,13 @@ public class Demo9Activity extends AppCompatActivity {
         tab.setupWithViewPager(pager);
     }
 
+    /**
+     * Adapter for Viewpager
+     */
     private class PagerAdapter extends FragmentPagerAdapter {
         private String[] titles;
 
-        public PagerAdapter(FragmentManager fm, String[] titles) {
+        PagerAdapter(FragmentManager fm, String[] titles) {
             super(fm);
             this.titles = titles;
         }

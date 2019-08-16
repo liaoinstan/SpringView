@@ -1,12 +1,11 @@
 package com.liaoinstan.demospring.demo6;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.RadioGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.DefaultFooter;
@@ -27,13 +26,12 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
         ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 
         springView = findViewById(R.id.springview);
-        springView.setMovePara(1.5f);
+        springView.setMovePara(1.5f);   //设置拖拽系数（值越大，移动越慢）
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
                 //如果当前设置的头部是QQHeader,则不finish
-                if (springView.getHeader() instanceof QQHeader)
-                    return;
+                if (springView.getHeader() instanceof QQHeader) return;
                 new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
 

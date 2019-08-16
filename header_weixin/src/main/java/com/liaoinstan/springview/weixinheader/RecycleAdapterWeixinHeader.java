@@ -1,12 +1,15 @@
 package com.liaoinstan.springview.weixinheader;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * 微信Haader小程序列表适配器
+ */
 public class RecycleAdapterWeixinHeader extends RecyclerView.Adapter<RecycleAdapterWeixinHeader.Holder> {
 
     private WeixinHeader weixinHeader;

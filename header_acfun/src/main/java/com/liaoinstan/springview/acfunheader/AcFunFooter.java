@@ -25,7 +25,7 @@ public class AcFunFooter extends BaseFooter {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.acfun_footer, viewGroup, true);
-        acfun_footer_img = (ImageView) view.findViewById(R.id.acfun_footer_img);
+        acfun_footer_img = view.findViewById(R.id.acfun_footer_img);
         acfun_footer_img.setImageResource(imgSrc);
         return view;
     }

@@ -2,8 +2,8 @@ package com.liaoinstan.demospring.warning;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.widget.SpringView;

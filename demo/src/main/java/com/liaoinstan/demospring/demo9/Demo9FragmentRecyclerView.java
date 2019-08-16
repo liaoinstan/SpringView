@@ -3,14 +3,16 @@ package com.liaoinstan.demospring.demo9;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.aliheader.AliFooter;
@@ -50,7 +52,7 @@ public class Demo9FragmentRecyclerView extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_demo9_recyclerview, container, false);
         return rootView;
     }
@@ -95,21 +97,25 @@ public class Demo9FragmentRecyclerView extends Fragment {
         }
     }
 
+    /**
+     * Adapter for RecyclerView
+     */
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.SampleViewHolder> {
         private List<String> results;
 
-        public RecyclerViewAdapter(List<String> results) {
+        RecyclerViewAdapter(List<String> results) {
             this.results = results;
         }
 
+        @NonNull
         @Override
-        public RecyclerViewAdapter.SampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RecyclerViewAdapter.SampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
             return new RecyclerViewAdapter.SampleViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final RecyclerViewAdapter.SampleViewHolder holder, final int position) {
+        public void onBindViewHolder(@NonNull final RecyclerViewAdapter.SampleViewHolder holder, final int position) {
             holder.text_item.setText(results.get(position));
             if (position % 2 == 1) {
                 holder.text_item.setBackgroundColor(Color.parseColor("#ffffff"));
@@ -125,10 +131,10 @@ public class Demo9FragmentRecyclerView extends Fragment {
             return results.size();
         }
 
-        public class SampleViewHolder extends RecyclerView.ViewHolder {
-            public TextView text_item;
+        class SampleViewHolder extends RecyclerView.ViewHolder {
+            TextView text_item;
 
-            public SampleViewHolder(View view) {
+            SampleViewHolder(View view) {
                 super(view);
                 text_item = view.findViewById(R.id.item_text);
             }

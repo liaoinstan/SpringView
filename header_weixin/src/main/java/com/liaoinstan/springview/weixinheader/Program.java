@@ -1,5 +1,8 @@
 package com.liaoinstan.springview.weixinheader;
 
+/**
+ * 小程序实体类
+ */
 public class Program {
     private int id;
     private String name;

@@ -2,7 +2,7 @@ package com.liaoinstan.demospring;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.liaoinstan.demospring.demo1.Demo1Activity;

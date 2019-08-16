@@ -2,22 +2,14 @@ package com.liaoinstan.demospring.demo12;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.aliheader.AliFooter;
-import com.liaoinstan.springview.aliheader.AliHeader;
 import com.liaoinstan.springview.wangyiheader.WangyiHeader;
-import com.liaoinstan.springview.weixinheader.Program;
-import com.liaoinstan.springview.weixinheader.WeixinHeader;
 import com.liaoinstan.springview.widget.SpringView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Demo12Activity extends AppCompatActivity {
 

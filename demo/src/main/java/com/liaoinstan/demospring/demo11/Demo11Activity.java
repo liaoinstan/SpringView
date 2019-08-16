@@ -2,10 +2,10 @@ package com.liaoinstan.demospring.demo11;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 
 import com.liaoinstan.demospring.R;
@@ -24,8 +24,8 @@ public class Demo11Activity extends AppCompatActivity implements WeixinHeader.On
     private WeixinHeader weixinHeader;
 
     //测试数据
-    //注意这里本应该给每个对象一个网络图片链接，再利用图片加载框架加载在线图片，
-    //但是在本demo中不想引入无关框架，所以这里把本地资源图片转成String类型保存在url中，加载图片的时候再转回int类型设置图片，这样做仅为演示
+    //注意这里本应该给每个对象一个网络图片url链接，再利用图片加载框架加载网络图片，
+    //但是在本demo中不想引入无关框架，所以这里把本地资源图片id转成String类型保存在url字段中，加载图片的时候再转回int类型设置图片，这样做仅为演示
     private List<Program> data = new ArrayList<Program>() {{
         add(new Program("ofo小黄车", String.valueOf(R.drawable.wx_program1)));
         add(new Program("哈图", String.valueOf(R.drawable.wx_program2)));

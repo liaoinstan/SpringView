@@ -1,7 +1,6 @@
 package com.liaoinstan.springview.container;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.R;
 
@@ -56,10 +57,10 @@ public class DefaultHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.default_header, viewGroup, true);
-        headerTitle = (TextView) view.findViewById(R.id.default_header_title);
-        headerTime = (TextView) view.findViewById(R.id.default_header_time);
-        headerArrow = (ImageView) view.findViewById(R.id.default_header_arrow);
-        headerProgressbar = (ProgressBar) view.findViewById(R.id.default_header_progressbar);
+        headerTitle = view.findViewById(R.id.default_header_title);
+        headerTime = view.findViewById(R.id.default_header_time);
+        headerArrow = view.findViewById(R.id.default_header_arrow);
+        headerProgressbar = view.findViewById(R.id.default_header_progressbar);
         headerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         headerArrow.setImageResource(arrowSrc);
         return view;
@@ -73,10 +74,10 @@ public class DefaultHeader extends BaseHeader {
             int m = (int) ((System.currentTimeMillis() - freshTime) / 1000 / 60);
             if (m >= 1 && m < 60) {
                 headerTime.setText(m + "分钟前");
-            } else if (m >= 60) {
+            } else if (m >= 60 && m < 60 * 24) {
                 int h = m / 60;
                 headerTime.setText(h + "小时前");
-            } else if (m > 60 * 24) {
+            } else if (m >= 60 * 24) {
                 int d = m / (60 * 24);
                 headerTime.setText(d + "天前");
             } else if (m == 0) {

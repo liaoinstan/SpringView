@@ -2,11 +2,13 @@ package com.liaoinstan.demospring.demo8;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,7 @@ public class Demo8Activity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycle);
         recyclerView.setHasFixedSize(true);
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(R.layout.item, mDatas);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(mDatas);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -65,24 +67,25 @@ public class Demo8Activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Adapter for RecyclerView
+     */
     private class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> implements MyItemTouchCallback.ItemTouchAdapter {
-
-        private int src;
         private List<String> results;
 
-        public RecyclerAdapter(int src, List<String> results) {
+        RecyclerAdapter(List<String> results) {
             this.results = results;
-            this.src = src;
         }
 
+        @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(src, parent, false);
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
             return new MyViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(final MyViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
             holder.textView.setText(results.get(position));
         }
 
@@ -101,14 +104,14 @@ public class Demo8Activity extends AppCompatActivity {
             notifyItemRemoved(position);
         }
 
-        public class MyViewHolder extends RecyclerView.ViewHolder {
+        class MyViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView textView;
+            TextView textView;
 
-            public MyViewHolder(View itemView) {
+            MyViewHolder(View itemView) {
                 super(itemView);
                 ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
-                layoutParams.height = 100;
+                layoutParams.height = 150;
                 itemView.setLayoutParams(layoutParams);
                 textView = itemView.findViewById(R.id.item_text);
             }

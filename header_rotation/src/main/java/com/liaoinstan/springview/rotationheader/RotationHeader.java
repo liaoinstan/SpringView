@@ -1,7 +1,6 @@
 package com.liaoinstan.springview.rotationheader;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseHeader;
 
@@ -75,11 +76,11 @@ public class RotationHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.rotation_header, viewGroup, true);
-        progress1 = (ProgressBar) view.findViewById(R.id.progress1);
-        progress2 = (ProgressBar) view.findViewById(R.id.progress2);
-        progress3 = (ProgressBar) view.findViewById(R.id.progress3);
-        progress4 = (ProgressBar) view.findViewById(R.id.progress4);
-        progress5 = (ProgressBar) view.findViewById(R.id.progress5);
+        progress1 = view.findViewById(R.id.progress1);
+        progress2 = view.findViewById(R.id.progress2);
+        progress3 = view.findViewById(R.id.progress3);
+        progress4 = view.findViewById(R.id.progress4);
+        progress5 = view.findViewById(R.id.progress5);
         progress1.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         progress2.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationFuSrc));
         progress3.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationFuSrc));

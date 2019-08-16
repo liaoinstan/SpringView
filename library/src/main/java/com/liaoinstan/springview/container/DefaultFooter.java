@@ -1,12 +1,13 @@
 package com.liaoinstan.springview.container;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.R;
 
@@ -31,8 +32,8 @@ public class DefaultFooter extends BaseFooter {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.default_footer, viewGroup, true);
-        footerTitle = (TextView) view.findViewById(R.id.default_footer_title);
-        footerProgressbar = (ProgressBar) view.findViewById(R.id.default_footer_progressbar);
+        footerTitle = view.findViewById(R.id.default_footer_title);
+        footerProgressbar = view.findViewById(R.id.default_footer_progressbar);
         footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         return view;
     }

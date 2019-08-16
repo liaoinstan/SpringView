@@ -5,14 +5,15 @@ import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
-import android.support.v4.content.PermissionChecker;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+
+import androidx.core.content.PermissionChecker;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
@@ -87,6 +88,7 @@ public class WeixinHeader extends BaseHeader {
         return root;
     }
 
+    //加载小程序列表
     public void freshItem(List<Program> results) {
         this.results.clear();
         this.results.addAll(results);
@@ -146,7 +148,7 @@ public class WeixinHeader extends BaseHeader {
 
     /**
      * 根据下拉的距离不断变化，进行动画交互
-     * 主要是3个小圆点的动画
+     * 包括3个小圆点的动画
      */
     @Override
     public void onDropAnim(View rootView, int dy) {
@@ -216,7 +218,7 @@ public class WeixinHeader extends BaseHeader {
         //下拉超过临界高度时如果有震动权限就震动一下
         if (!hasOverSpringHeight && !upORdown && PermissionChecker.checkSelfPermission(rootView.getContext(), Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
             Vibrator vib = (Vibrator) rootView.getContext().getSystemService(Service.VIBRATOR_SERVICE);
-            vib.vibrate(35);
+            if (vib != null) vib.vibrate(35);
         }
     }
 

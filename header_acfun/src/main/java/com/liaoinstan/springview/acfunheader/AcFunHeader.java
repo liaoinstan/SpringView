@@ -25,7 +25,7 @@ public class AcFunHeader extends BaseHeader {
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.acfun_header, viewGroup, true);
-        acfun_header_img = (ImageView) view.findViewById(R.id.acfun_header_img);
+        acfun_header_img = view.findViewById(R.id.acfun_header_img);
         acfun_header_img.setImageResource(imgSrc);
         return view;
     }
