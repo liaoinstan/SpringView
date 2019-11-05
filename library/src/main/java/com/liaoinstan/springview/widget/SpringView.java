@@ -3,8 +3,11 @@ package com.liaoinstan.springview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
+
 import com.google.android.material.appbar.AppBarLayout;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.OverScroller;
 
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.container.InnerFooter;
+import com.liaoinstan.springview.container.InnerHeader;
 import com.liaoinstan.springview.listener.AppBarStateChangeListener;
 
 /**
@@ -150,14 +155,11 @@ public class SpringView extends ViewGroup {
             return;
         }
         setPadding(0, 0, 0, 0);
-        //contentLay.setPadding(0, contentLay.getPaddingTop(), 0, contentLay.getPaddingBottom());
         if (headerResoureId != 0) {
-            inflater.inflate(headerResoureId, this, true);
-            header = getChildAt(getChildCount() - 1);
+            _setHeader(new InnerHeader(headerResoureId));
         }
         if (footerResoureId != 0) {
-            inflater.inflate(footerResoureId, this, true);
-            footer = getChildAt(getChildCount() - 1);
+            _setFooter(new InnerFooter(footerResoureId));
         }
 
         //找到当前布局下可以滚动的view
@@ -499,11 +501,11 @@ public class SpringView extends ViewGroup {
         //动画完成后检查是否需要切换header/footer，是则切换
         if (needChangeHeader) {
             needChangeHeader = false;
-            setHeaderIn(_headerHander);
+            _setHeader(_headerHander);
         }
         if (needChangeFooter) {
             needChangeFooter = false;
-            setFooterIn(_footerHander);
+            _setFooter(_footerHander);
         }
         //动画完成后检查是否需要切换type，是则切换
         if (needChangeType) {
@@ -706,8 +708,12 @@ public class SpringView extends ViewGroup {
         scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
         needResetAnim = true;   //允许执行回弹动画
         hasCallRefresh = false;
+        hasCallFull = false;
         callFreshORload = 1;
-        if (headerHander != null) headerHander.onStartAnim();
+        if (headerHander != null) {
+            headerHander.onPreDrag(header);
+            headerHander.onStartAnim();
+        }
         showHeaderAndFooter(true, false);
         mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
         invalidate();
@@ -972,18 +978,32 @@ public class SpringView extends ViewGroup {
             _headerHander = headerHander;
             resetPosition();
         } else {
-            setHeaderIn(headerHander);
+            _setHeader(headerHander);
         }
     }
 
-    private void setHeaderIn(DragHander headerHander) {
+    /**
+     * {@link #setHeader(DragHander)} 的执行方法，不要暴露在外部
+     */
+    private void _setHeader(DragHander headerHander) {
         this.headerHander = headerHander;
         if (header != null) {
             removeView(this.header);
         }
-        headerHander.getView(inflater, this);
-        this.header = getChildAt(getChildCount() - 1);
-//        contentLay.bringToFront(); //把内容放在最前端
+        View tempView = headerHander.getView(inflater, this);
+        //建议在自定义Header中getView方法中调用inflate(R.layout.header_view, viewGroup, false);时，第三个参数'attachToRoot'传false
+        //这里进行这个判断是为了兼容，无论attachToRoot用的什么参数都能够正常运行
+        //_setFooter(.)同理
+        if (tempView instanceof SpringView) {
+            //如果tempView就是SpringView，则说明自定义Header的getView方法中inflate传入了true，此时header已经被添加到SpringView中了，无需addView
+            //获取最后一个view，即是header view
+            this.header = getChildAt(getChildCount() - 1);
+        } else {
+            //否则，则说明getView方法中inflate传入的是false，需要在这里添加
+            //此时tempView即是header view
+            addView(tempView);
+            this.header = tempView;
+        }
         requestLayout();
     }
 
@@ -993,17 +1013,26 @@ public class SpringView extends ViewGroup {
             _footerHander = footerHander;
             resetPosition();
         } else {
-            setFooterIn(footerHander);
+            _setFooter(footerHander);
         }
     }
 
-    private void setFooterIn(DragHander footerHander) {
+    /**
+     * {@link #setFooter(DragHander)} 的执行方法，不要暴露在外部
+     */
+    private void _setFooter(DragHander footerHander) {
         this.footerHander = footerHander;
         if (footer != null) {
             removeView(footer);
         }
-        footerHander.getView(inflater, this);
-        this.footer = getChildAt(getChildCount() - 1);
+        View tempView = footerHander.getView(inflater, this);
+        //同_setHeader(.),注释详见_setHeader(.)方法
+        if (tempView instanceof SpringView) {
+            this.footer = getChildAt(getChildCount() - 1);
+        } else {
+            addView(tempView);
+            this.footer = tempView;
+        }
         requestLayout();
     }
 
