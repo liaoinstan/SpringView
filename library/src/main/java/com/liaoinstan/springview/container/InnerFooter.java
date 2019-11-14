@@ -30,8 +30,13 @@ public class InnerFooter extends BaseHeader {
     }
 
     @Override
+    public void onFinishDrag(View rootView) {
+        Log.d(TAG, "onFinishDrag");
+    }
+
+    @Override
     public void onDropAnim(View rootView, int dy) {
-        Log.d(TAG, "onDropAnim:" + dy);
+        Log.v(TAG, "onDropAnim:" + dy);
     }
 
     @Override

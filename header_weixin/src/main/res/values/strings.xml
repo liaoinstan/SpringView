@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">weixinheader</string>
+    <string name="weixin_v2_delete_in">松手即可删除</string>
+    <string name="weixin_v2_delete_out">拖到此处删除</string>
 </resources>

@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:layout_height="110dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:background="@drawable/shape_rect_gradient_weixinheader_bg">
+
+    <ImageView
+        android:id="@+id/img_more"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:foreground="@drawable/select_oval_dark_trans"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shape_more" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:text="" />
+
+</LinearLayout>

@@ -3,11 +3,6 @@ package com.liaoinstan.springview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
-
-import androidx.annotation.Nullable;
-
-import com.google.android.material.appbar.AppBarLayout;
-
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.OverScroller;
 
+import androidx.annotation.Nullable;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.liaoinstan.springview.R;
 import com.liaoinstan.springview.container.InnerFooter;
 import com.liaoinstan.springview.container.InnerHeader;
@@ -40,7 +38,7 @@ public class SpringView extends ViewGroup {
     private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
     private boolean isCallFresh = false;    //是否手动调用callFresh()进行刷新操作
 
-    private int MOVE_TIME = 400;
+    private int MOVE_TIME = 600;
 
     //是否需要回调接口：TOP 只回调刷新、BOTTOM 只回调加载更多、BOTH 都需要、NONE 都不
     public enum Give {
@@ -54,7 +52,7 @@ public class SpringView extends ViewGroup {
     private Type _type;
 
     //移动参数：计算手指移动量的时候会用到这个值，值越大，移动量越小，若值为1则手指移动多少就滑动多少px
-    private double MOVE_PARA = 2;
+    private float MOVE_PARA = 2;
     //最大拉动距离(px)，拉动距离越靠近这个值拉动就越缓慢
     private int MAX_HEADER_PULL_HEIGHT = 600;
     private int MAX_FOOTER_PULL_HEIGHT = 600;
@@ -89,7 +87,7 @@ public class SpringView extends ViewGroup {
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
     private boolean appBarCouldScroll = false;
 
-    private int callFreshORload = 0;
+    private int callFreshORload = 0;    //0:没有拖拽，1：拖拽超过header阈值，2：拖拽超过footer阈值，3：拖拽header但未超过阈值，4：拖拽footer但未超过阈值
     private int scrollAnimType;         //回弹动画类别 0:结束动画1:回弹动画2:退场动画
     private boolean hasCallFull = false;
     private boolean hasCallRefresh = false;
@@ -253,6 +251,9 @@ public class SpringView extends ViewGroup {
     //记录当前滚动事件是否需要SpringView进行处理，如果需要则SpringView拦截事件（比如已经滚动到顶部了还继续下拉）
     private boolean isNeedMyMove;
 
+    private int downAction;
+    private boolean isContentDown;
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         dealMulTouchEvent(event);
@@ -264,6 +265,12 @@ public class SpringView extends ViewGroup {
                 hasCallEnding = false;
                 mfirstY = event.getY();
                 isNeedMyMove = false;
+                //判断当前down事件是否发生在content区域
+                if (isTop() && mfirstY < -getScrollY()) {
+                    isContentDown = false;
+                } else {
+                    isContentDown = true;
+                }
                 break;
             }
             case MotionEvent.ACTION_MOVE:
@@ -288,8 +295,11 @@ public class SpringView extends ViewGroup {
                 /////////////////////////////////////////////////////appBar end//////////////////////////////////
                 dsY += dy;
                 isMoveNow = true;
-                isNeedMyMove = isNeedMyMove();
-                if (isNeedMyMove && !isInControl) {
+                isNeedMyMove = isNeedMyMove(event);
+                //如果内部控件既在顶部又在最底部，那说明该控件内容不足一屏，还不足以滚动
+                boolean isNotFull = isTop && isBottom;
+                //如果down事件是不是在content区域发生的（比如说header内），则不对这个事件进行跟踪转发
+                if (isNeedMyMove && !isInControl && !isNotFull && isContentDown) {
                     //把内部控件的事件转发给本控件处理
                     isInControl = true;
                     event.setAction(MotionEvent.ACTION_CANCEL);
@@ -343,6 +353,7 @@ public class SpringView extends ViewGroup {
                     //回调onLimitDes接口
                     callbackOnLimitDes();
                     isFirst = false;
+                    isInControl = true;
                 } else {
                     //手指在产生移动的时候（dy!=0）才重置位置
                     if (dy != 0 && isFlow()) {
@@ -354,6 +365,7 @@ public class SpringView extends ViewGroup {
                     }
                 }
                 break;
+            case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 needResetAnim = true;      //松开的时候打开回弹
                 isFirst = true;
@@ -361,8 +373,6 @@ public class SpringView extends ViewGroup {
                 restSmartPosition();
                 dsY = 0;
                 dy = 0;
-                break;
-            case MotionEvent.ACTION_CANCEL:
                 break;
         }
         return false;
@@ -378,6 +388,7 @@ public class SpringView extends ViewGroup {
         final int action = ev.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
+                downAction = action;
                 final int pointerIndex = ev.getActionIndex();
                 final float x = ev.getX(pointerIndex);
                 final float y = ev.getY(pointerIndex);
@@ -401,6 +412,7 @@ public class SpringView extends ViewGroup {
                 mActivePointerId = MotionEvent.INVALID_POINTER_ID;
                 break;
             case MotionEvent.ACTION_POINTER_DOWN: {
+                downAction = action;
                 final int pointerIndex = ev.getActionIndex();
                 final int pointerId = ev.getPointerId(pointerIndex);
                 if (pointerId != mActivePointerId) {
@@ -428,11 +440,19 @@ public class SpringView extends ViewGroup {
     private void doMove() {
         if (!mScroller.isFinished()) mScroller.forceFinished(true);
         //根据下拉高度计算位移距离，（越拉越慢）
+        float movePara;
+        if (dy > 0 && headerHander != null && headerHander.getMovePara() > 0) {
+            movePara = headerHander.getMovePara();
+        } else if (dy < 0 && footerHander != null && footerHander.getMovePara() > 0) {
+            movePara = footerHander.getMovePara();
+        } else {
+            movePara = MOVE_PARA;
+        }
         int movedy;
         if (dy > 0) {
-            movedy = (int) (((MAX_HEADER_PULL_HEIGHT + getScrollY()) / (float) MAX_HEADER_PULL_HEIGHT) * dy / MOVE_PARA);
+            movedy = (int) (((MAX_HEADER_PULL_HEIGHT + getScrollY()) / (float) MAX_HEADER_PULL_HEIGHT) * dy / movePara);
         } else {
-            movedy = (int) (((MAX_FOOTER_PULL_HEIGHT - getScrollY()) / (float) MAX_FOOTER_PULL_HEIGHT) * dy / MOVE_PARA);
+            movedy = (int) (((MAX_FOOTER_PULL_HEIGHT - getScrollY()) / (float) MAX_FOOTER_PULL_HEIGHT) * dy / movePara);
         }
         scrollBy(0, -movedy);
 
@@ -486,6 +506,7 @@ public class SpringView extends ViewGroup {
         //回调onFinishAnim()
         if (callFreshORload == 1) {
             if (headerHander != null) headerHander.onFinishAnim();
+            if (headerHander != null) headerHander.onFinishDrag(header);
             //如果在回弹动作中没有进行回调(说明是设置为不可弹动状态)，那么在这里进行(但是callFresh例外)
             if (give == Give.BOTTOM || give == Give.NONE && !isCallFresh) {
                 listener.onRefresh();
@@ -493,9 +514,14 @@ public class SpringView extends ViewGroup {
             isCallFresh = false;
         } else if (callFreshORload == 2) {
             if (footerHander != null) footerHander.onFinishAnim();
+            if (footerHander != null) footerHander.onFinishDrag(footer);
             if (give == Give.TOP || give == Give.NONE) {
                 listener.onLoadmore();
             }
+        } else if (callFreshORload == 3) {
+            if (headerHander != null) headerHander.onFinishDrag(header);
+        } else if (callFreshORload == 4) {
+            if (footerHander != null) footerHander.onFinishDrag(footer);
         }
         callFreshORload = 0;
         //动画完成后检查是否需要切换header/footer，是则切换
@@ -597,11 +623,17 @@ public class SpringView extends ViewGroup {
      * 判断是否需要由该控件来控制滑动事件
      */
     @SuppressWarnings("all")
-    private boolean isNeedMyMove() {
+    private boolean isNeedMyMove(MotionEvent event) {
         if (contentLay == null) {
             return false;
         }
-        //横向拖拽距离大于竖直距离则不拦截
+        //如果手指的拖拽范围在header内则不拦截（微信header等，需要把事件传递给header内部自行处理，SpringView不干涉）
+        if (downAction == MotionEvent.ACTION_DOWN) {
+            if (getScrollY() < 0 && event.getY() < -getScrollY()) {
+                return false;
+            }
+        }
+        //横向拖拽距离大于竖直距离则不拦截（侧滑删除）
         if (Math.abs(dy) <= Math.abs(dx)) {
             return false;
         }
@@ -679,23 +711,52 @@ public class SpringView extends ViewGroup {
             //没有设置监听器直接复原
             resetPosition();
         } else {
-            if (isTopOverLimit()) {
-                //顶部拉动超过limit位置
-                callbackOnStartAnim();
-                if (give == Give.BOTH || give == Give.TOP)
-                    resetRefreshPosition();
-                else
+//            if (isTopOverLimit()) {
+//                //顶部拉动超过limit位置
+//                callbackOnStartAnim();
+//                if (give == Give.BOTH || give == Give.TOP)
+//                    resetRefreshPosition();
+//                else
+//                    resetPosition();
+//            } else if (isBottomOverLimit()) {
+//                //底部拉动超过limit位置
+//                callbackOnStartAnim();
+//                if (give == Give.BOTH || give == Give.BOTTOM)
+//                    resetRefreshPosition();
+//                else
+//                    resetPosition();
+//            } else {
+//                //顶部和底部拉动均为超过limit位置，直接复原
+//                resetPosition();
+//            }
+            if (isTop()) {
+                //顶部被拉动
+                if (isTopOverLimit()) {
+                    //顶部拉动超过limit位置
+                    callbackOnStartAnim();
+                    if (give == Give.BOTH || give == Give.TOP)
+                        resetRefreshPosition();
+                    else
+                        resetPosition();
+                } else {
+                    //顶部拉动未超过limit位置
+                    callFreshORload = 3;
                     resetPosition();
-            } else if (isBottomOverLimit()) {
-                //底部拉动超过limit位置
-                callbackOnStartAnim();
-                if (give == Give.BOTH || give == Give.BOTTOM)
-                    resetRefreshPosition();
-                else
+                }
+            } else if (isBottom()) {
+                //底部被拉动
+                if (isBottomOverLimit()) {
+                    //底部拉动超过limit位置
+                    callbackOnStartAnim();
+                    if (give == Give.BOTH || give == Give.BOTTOM)
+                        resetRefreshPosition();
+                    else
+                        resetPosition();
+                } else {
+                    //底部拉动未超过limit位置
+                    callFreshORload = 4;
                     resetPosition();
-            } else {
-                //顶部和底部拉动均为超过limit位置，直接复原
-                resetPosition();
+                }
             }
         }
     }
@@ -866,7 +927,16 @@ public class SpringView extends ViewGroup {
         this.MOVE_TIME = time;
     }
 
+    //过时，不再使用double类型了，请调用下面的重载方法
+    @Deprecated
     public void setMovePara(double movePara) {
+        setMovePara((float) movePara);
+    }
+
+    public void setMovePara(float movePara) {
+        //移动参数：计算手指移动量的时候会用到这个值，值越大，移动量越小，若值为1则手指移动多少就滑动多少px (默认为2，建议在1-2之间)
+        //如果 header 或者 footer 实现了 getMovePara() 接口，则会优先使用接口提供的值，建议在自定义header/footer中设置移动参数，而不是通过该方法
+        //自1.6.0起，header 和 footer 的移动参数相互独立，不再是一个值同时决定两头的移动参数了
         this.MOVE_PARA = movePara;
     }
 
@@ -932,6 +1002,14 @@ public class SpringView extends ViewGroup {
      */
     public Type getType() {
         return type;
+    }
+
+    public View getContentLay() {
+        return contentLay;
+    }
+
+    public View getContentView() {
+        return contentView;
     }
 
     /**
@@ -1048,10 +1126,17 @@ public class SpringView extends ViewGroup {
 
         int getDragSpringHeight(View rootView);
 
+        float getMovePara();
+
         /**
          * 即将开始拖拽时的回调，可进行初始化操作
          */
         void onPreDrag(View rootView);
+
+        /**
+         * 拖拽结束时回调，不管是否拖拽超过limit阈值
+         */
+        void onFinishDrag(View rootView);
 
         /**
          * 手指拖动控件过程中的回调，用户可以根据拖动的距离添加拖动过程动画

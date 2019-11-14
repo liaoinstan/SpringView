@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#000"
+    tools:layout_height="150dp">
+
+    <FrameLayout
+        android:id="@+id/lay_title_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_height="70dp">
+
+        <View
+            android:id="@+id/title_bg_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_rect_coner_top_bg" />
+
+        <FrameLayout
+            android:id="@+id/lay_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text_delete"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="top"
+        android:background="@drawable/select_delete_bg"
+        android:drawableTop="@drawable/weixin_ic_drop"
+        android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="@string/weixin_v2_delete_out"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        tools:translationY="70dp" />
+
+    <!--        android:layout_marginTop="70dp"-->
+</FrameLayout>

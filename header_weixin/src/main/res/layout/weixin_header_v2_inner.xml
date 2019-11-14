@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    tools:background="@drawable/shape_rect_gradient_weixinheader_bg">
+
+    <TextView
+        android:id="@+id/text_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_rect_coner_dark"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:drawablePadding="5dp"
+        android:text="搜索小程序"
+        android:drawableLeft="@drawable/weixin_ic_search"
+        android:textColor="@color/weixin_blank"
+        android:textSize="16sp" />
+
+</LinearLayout>

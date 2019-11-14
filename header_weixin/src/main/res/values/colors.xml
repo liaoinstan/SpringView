@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="weixin_white">#f1f1f1</color>
+    <color name="weixin_blank">#191919</color>
+    <color name="weixin_green">#2BA245</color>
+    <color name="weixin_light">#f9f9f9</color>
+    <color name="weixin_bg">#f3f3f7</color>
+    <color name="weixin_delete_bg">#E64340</color>
+    <color name="weixin_delete_bg_shadow">#22000000</color>
+</resources>

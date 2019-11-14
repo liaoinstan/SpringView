@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@drawable/shape_rect_gradient_weixinheader_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:textColor="#99ffffff"
+        android:textSize="11sp"
+        tools:text="最近使用" />
+
+    <TextView
+        android:id="@+id/text_drag_area"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/shape_rect_coner_dash_line"
+        android:gravity="center"
+        android:text="拖动到此处设为我的小程序"
+        android:textColor="#99ffffff"
+        android:textSize="11sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

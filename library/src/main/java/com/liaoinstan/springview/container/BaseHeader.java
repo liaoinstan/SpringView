@@ -41,6 +41,29 @@ public abstract class BaseHeader implements SpringView.DragHander {
         return 0;
     }
 
+    /**
+     * 设置移动参数
+     * 返回值大于0才有效，默认返回0
+     */
+    @Override
+    public float getMovePara() {
+        return 0;
+    }
+
+    /**
+     * 即将开始拖拽时的回调，可进行初始化操作
+     */
+    @Override
+    public void onPreDrag(View rootView) {
+    }
+
+    /**
+     * 拖拽结束时回调，不管是否拖拽超过limit阈值
+     */
+    @Override
+    public void onFinishDrag(View rootView) {
+    }
+
     //###################################################
     //############ 2018/9/13 新增收场动画接口 ###########
     //###################################################

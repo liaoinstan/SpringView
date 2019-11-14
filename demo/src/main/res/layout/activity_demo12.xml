@@ -1,96 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".demo7.Demo7Activity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#ce0000"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Demo12Activity" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    android:background="@color/weixin_bg">
 
     <com.liaoinstan.springview.widget.SpringView
         android:id="@+id/springview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#ffffff"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:type="follow">
+        app:type="overlap">
 
-        <ScrollView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:clipToPadding="false"
+                android:paddingTop="70dp"
+                android:paddingBottom="?attr/actionBarSize">
 
+                <!--内容布局，业务无关-->
+                <include layout="@layout/content_demo12" />
+            </ScrollView>
+
+            <com.liaoinstan.springview.weixinheaderv2.WeixinTitleBar
+                android:id="@+id/weixin_title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <!--WeixinTitleBar是一个FrameLayout，里面的布局你可以自由定制-->
+                <!--WeixinTitleBar的主要目的是为了与微信headerV2产生联动和各种仿微信的交互效果，所以做了一层封装-->
                 <TextView
-                    android:id="@+id/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff"
-                    android:gravity="center"
-                    android:text="We are in ScrollView"
-                    android:textColor="#cccccc" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:text="微信(2)"
+                    android:textColor="@color/weixin_blank"
+                    android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22"
-                    android:gravity="center"
-                    android:text="这是一个仿网易新闻的header"
-                    android:textColor="#ce0000"
-                    android:textSize="12sp" />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:scaleType="center"
+                    android:src="@drawable/weixin_ic_search" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
+            </com.liaoinstan.springview.weixinheaderv2.WeixinTitleBar>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-            </LinearLayout>
-        </ScrollView>
-
+        </FrameLayout>
     </com.liaoinstan.springview.widget.SpringView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/weixin_bg"
+        app:itemIconTint="@color/weixin_color_select"
+        app:itemTextColor="@color/weixin_color_select"
+        app:menu="@menu/bottom_nav_menu" />
+
+</FrameLayout>

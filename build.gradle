@@ -27,8 +27,8 @@ ext {
     compileSdkVersion = 29
     minSdkVersion = 16
     targetSdkVersion = 27
-    supportLibraryVersion = '1.1.0-rc01'
-    materialLibraryVersion = '1.1.0-alpha07'
+    supportLibraryVersion = '1.1.0'
+    materialLibraryVersion = '1.2.0-alpha01'
 
     userOrg = 'liaoinstan'
     repoName = "maven"
