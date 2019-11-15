@@ -24,18 +24,18 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
     implementation "com.google.android.material:material:$materialLibraryVersion"
     implementation project(':library')
-//    implementation 'com.liaoinstan.springview:library:1.5.1'
+//    implementation 'com.liaoinstan.springview:library:1.6.0'
 }
 
 publish {
     artifactId = 'WeixinHeader'  // artifactId
     uploadName = 'SpringView:WeixinHeader' // 展示名字
-    publishVersion = '1.5.1' // 版本
+    publishVersion = '1.6.0' // 版本
     desc = rootProject.ext.desc
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId
     website = rootProject.website
     licences = rootProject.licences
-    autoPublish = true
+    autoPublish = false
     dryRun = false
 }

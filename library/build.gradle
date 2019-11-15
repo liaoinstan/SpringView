@@ -27,12 +27,12 @@ dependencies {
 publish {
     artifactId = 'library'  // artifactId
     uploadName = 'SpringView' // 展示名字
-    publishVersion = '1.5.1' // 版本
+    publishVersion = '1.6.0' // 版本
     desc = rootProject.desc
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId
     website = rootProject.website
     licences = rootProject.licences
-    autoPublish = true
+    autoPublish = false
     dryRun = true
 }
