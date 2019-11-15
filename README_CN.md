@@ -1,4 +1,4 @@
-更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/demo-release.apk?raw=true)  　　　　English document：[English document](https://github.com/liaoinstan/SpringView/blob/master/README.md)
+更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/DemoSpring-1.6.0-release.apk?raw=true)  　　　　English document：[English document](https://github.com/liaoinstan/SpringView/blob/master/README.md)
 
 SpringView
 =====
@@ -74,14 +74,14 @@ springView.setListener(new SpringView.OnFreshListener() {
 dependencies {
 
    //SpringView核心库 (只包含DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.5.1'
+   implementation 'com.liaoinstan.springview:library:1.6.0'
 
    //以下是各个风格的Header/Footer，选择自己喜欢的引入
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'         //AcFun风格 （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.5.1'           //阿里旅行风格 （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.1'       //美团风格 （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.5.1'      //齿轮机械风格 （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.1'        //微信小程序header（只有header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.6.0'         //AcFun风格 （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.6.0'           //阿里旅行风格 （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.6.0'       //美团风格 （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.6.0'      //齿轮机械风格 （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.6.0'        //微信小程序header（只有header）
 }
 ```
 或者 Maven：
@@ -89,7 +89,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.5.1</version>
+  <version>1.6.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -97,42 +97,47 @@ dependencies {
 
 **更新日志**
 --------
-####**v1.5.1**
+#### **v1.6.0**
+ - 新增了仿新版微信(微信7)小程序效果的header (WeixinHeaderV2) 
+ - SpringView的移动参数(MovePara)不再同时影响Header和Footer了，BaseHeader/Footer新增了getMovePara()接口，你可以分别为header和footer设置不同的移动参数以匹配不同的拖拽手感。（如果你没有实现该接口，SpringView仍然兼容以前的规则）
+ - 依赖更新到Android X
+ - 修复几个拖拽粘滞的问题，和callFresh方法回调的问题
+#### **v1.5.1**
  - 修复在SpringView内部嵌套布局无法滚动的bug，修复给SpringView设置Give.NONE熟悉时调用callFresh()无法正确回弹的问题。
 
-####**v1.5.0**
+#### **v1.5.0**
  - 把所有的header和footer单独从SpringView库中分离出来了（除DefaultHeader/Footer），现在可以只选择单独导入自己想要的headers/footers，彻底精简后的SpringView library只有**26KB**，后期新增的header/footer都将以独立库的形式发布，不再冗余到SpringView核心库里，库链接参见上述[获取SpringView]内容
 
-####**v1.4.0**
+#### **v1.4.0**
  - 新增setMovePara()方法用于设置拖拽时的阻尼系数，新增了一个WeixinHeader仿微信小程序header，新增新的模式：DRAG（拖拽模式），可以实现类似于SwipeRefreshLayout的交互效果，重新设计了overLap模式的实现方式，更加稳定，弃用了support过时api，优化拖拽流畅性和交互效果细节
 
-####**v1.3.3**
+#### **v1.3.3**
  - 优化几个体验性问题，新增onFinishFreshAndLoadDelay(int delay)，callFreshDelay(int delay)方法，优化和BottomSheetBehavior联用的表现，优化在BottomSheetDialog中使用的表现
 
-####**v1.3.2**
+#### **v1.3.2**
  - 修复空数据情况下和AppBarLayout联动阻尼的bug，新增setEnableFooter(boolean)，setEnableHeader(boolean)禁用或启用header/footer
  
-####**v1.3.0**
+#### **v1.3.0**
  - 支持和 AppBarLayout 联动，修复滚动冲突的问题
 
-####**v1.2.7**
+#### **v1.2.7**
  - 修复一些bug
 
-####**v1.2.6**
+#### **v1.2.6**
  - 修复了内边距的失效的问题
 
-####**v1.2.5**
+#### **v1.2.5**
  - 新增 **setEnable(boolean)** 方法，用于禁用/启用SpringView
 
-####**v1.2.4**
+#### **v1.2.4**
 
  - 新增 **callFresh()** 方法, 用于手动调用刷新
  - 修复了内置水平滑动控件的事件冲突
 
-####**v1.2.2**
+#### **v1.2.2**
  - 修复了会多次回调刷新的问题
 
-####**v1.2.1**
+#### **v1.2.1**
  - 修复点击事件偶尔失效的问题
 
 
