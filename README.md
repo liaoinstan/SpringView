@@ -74,14 +74,14 @@ use Gradle:
 dependencies {
 
    //SpringView core library (only include DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.5.1'
+   implementation 'com.liaoinstan.springview:library:1.6.0'
 
    //other Headers/Footers, choose one or more that you like
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'         //AcFun style （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.5.1'           //alitrip style （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.5.1'       //meituan style （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.5.1'      //mechanical gear style （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.5.1'        //weichat Mini Program header（only header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.6.0'         //AcFun style （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.6.0'           //alitrip style （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.6.0'       //meituan style （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.6.0'      //mechanical gear style （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.6.0'        //weichat Mini Program header（only header）
 }
 ```
 or Maven：
@@ -89,7 +89,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.5.1</version>
+  <version>1.6.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -97,44 +97,50 @@ or Maven：
 
 **Update log**
 --------
-####**v1.5.1**
- - fix bug when nested layout, fix bug callFresh() can't spring back when set SpringView Give.NONE.
+### **v1.6.0**
+- Add a new header (WeixinHeaderV2) for new version of WeChat (WeChat 7).
+- The mvement parameter of SpringView (MovePara) no longer affects both Header and Footer. BaseHeader/Footer now has a new getMovePara() interface that allows you to set different movement parameters for Header and Footer to match different drag-and-drop feel.(if you don't implement the interface, SpringView is still compatible with the previous rules)
+- Update to Android X.
+- Fixed several drag and drop stickiness issues, and callFresh method callback issues.
+ 
+### **v1.5.1**
+ - Fix bug when nested layout, fix bug callFresh() can't spring back when set SpringView Give.NONE.
 
-####**v1.5.0**
+### **v1.5.0**
  - headers /footers split off from SpringView library(except DefaultHeader/Footer)，simplified core library，now core library's size only **26KB**,You can import headers/footers separately
 
-####**v1.4.0**
- - new function setMovePara(),a new header for weixin:WeixinHeader,a new type DRAG like SwipeRefreshLayout:spring.setType(Type.DRAG)
+### **v1.4.0**
+ - New function setMovePara(),a new header for weixin:WeixinHeader,a new type DRAG like SwipeRefreshLayout:spring.setType(Type.DRAG)
 
-####**v1.3.3**
+### **v1.3.3**
  - Optimize several experiential issues,Added onFinishFreshAndLoadDelay(int delay), callFreshDelay(int delay) method,Optimizing performance with BottomSheetBehavior,Optimize the performance used in BottomSheetDialog
 
-####**v1.3.2**
- - fix the bug of the linkage damping of AppBarLayout in the case of null data,
+### **v1.3.2**
+ - Fix the bug of the linkage damping of AppBarLayout in the case of null data,
 new setEnableFooter(Boolean), setEnableHeader(Boolean) disable or enable header/footer.
  
-####**v1.3.0**
- - support AppBarLayout,fix sliding conflict
+### **v1.3.0**
+ - Support AppBarLayout,fix sliding conflict
 
-####**v1.2.7**
- - bug fix
+### **v1.2.7**
+ - Bug fix
 
-####**v1.2.6**
- - padding bug fix
+### **v1.2.6**
+ - Padding bug fix
 
-####**v1.2.5**
- - add **setEnable(boolean)** function
+### **v1.2.5**
+ - Add **setEnable(boolean)** function
 
-####**v1.2.4**
+### **v1.2.4**
 
- - add **callFresh()** method, used to call the refresh operation manual
- - fixes the lateral sliding conflict
+ - Add **callFresh()** method, used to call the refresh operation manual
+ - Fixes the lateral sliding conflict
 
-####**v1.2.2**
- - repair the callback refresh many times
+### **v1.2.2**
+ - Repair the callback refresh many times
 
-####**v1.2.1**
- - repair the click event occasional failure problem
+### **v1.2.1**
+ - Repair the click event occasional failure problem
 
 
 **Feedback**
