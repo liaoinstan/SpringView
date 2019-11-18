@@ -1,9 +1,7 @@
 package com.liaoinstan.springview.weixinheader;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Service;
-import android.content.pm.PackageManager;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -159,6 +157,7 @@ public class WeixinHeader extends BaseHeader {
             //如果拖拽超过停顿位置，则给内容设置位移系数保持居中
             int offset = dy - dragSpringHeight;
             recycler.setTranslationY(-offset / 2);
+            lay_dot.setAlpha(0);
         } else {
             //如果拖拽未超过停顿位置，则执行交互动画
             if (!hasOverSpringHeight) {
