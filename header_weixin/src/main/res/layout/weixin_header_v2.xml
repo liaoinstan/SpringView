@@ -5,16 +5,15 @@
     android:background="@color/weixin_bg"
     android:clipToPadding="false">
 
-    <FrameLayout
-        android:id="@+id/lay_bg_content"
+    <com.liaoinstan.springview.weixinheaderv2.SmokeView
+        android:id="@+id/smoke_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/shape_rect_gradient_weixinheader_bg">
+        android:layout_height="match_parent" />
 
-        <com.liaoinstan.springview.weixinheaderv2.SmokeView
-            android:id="@+id/smoke_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <FrameLayout
+        android:id="@+id/lay_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <View
             android:id="@+id/bg_view"

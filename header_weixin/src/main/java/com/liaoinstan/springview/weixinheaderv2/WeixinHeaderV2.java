@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -47,7 +46,7 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
     private ImageView img_dot2;
     private ImageView img_dot3;
     private ViewGroup lay_dot;
-    private ViewGroup lay_bg_content;
+    private ViewGroup lay_content;
     private TextView text_title;
     private View bgView;
 
@@ -85,7 +84,7 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
         img_dot2 = root.findViewById(R.id.img_dot2);
         img_dot3 = root.findViewById(R.id.img_dot3);
         lay_dot = root.findViewById(R.id.lay_dot);
-        lay_bg_content = root.findViewById(R.id.lay_bg_content);
+        lay_content = root.findViewById(R.id.lay_content);
         bgView = root.findViewById(R.id.bg_view);
         text_title = root.findViewById(R.id.text_title);
         smokeView = root.findViewById(R.id.smoke_view);
@@ -208,22 +207,16 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
             int nowWidth = (int) (lv * dotWidth);
             int nowWidthSide = (int) (lv * dotWidthSide);
             //小圆点不断变大
-            ViewGroup.LayoutParams layoutParam1 = img_dot1.getLayoutParams();
-            layoutParam1.height = nowWidthSide;
-            layoutParam1.width = nowWidthSide;
-            img_dot1.setLayoutParams(layoutParam1);
-            ViewGroup.LayoutParams layoutParam2 = img_dot2.getLayoutParams();
-            layoutParam2.height = nowWidth;
-            layoutParam2.width = nowWidth;
-            img_dot2.setLayoutParams(layoutParam2);
-            ViewGroup.LayoutParams layoutParam3 = img_dot3.getLayoutParams();
-            layoutParam3.height = nowWidthSide;
-            layoutParam3.width = nowWidthSide;
-            img_dot3.setLayoutParams(layoutParam3);
+            setViewWidthHeight(img_dot1, nowWidthSide, nowWidthSide);
+            setViewWidthHeight(img_dot2, nowWidth, nowWidth);
+            setViewWidthHeight(img_dot3, nowWidthSide, nowWidthSide);
             lay_dot.setTranslationY(-dotDY + DensityUtil.dp2px(25));
             img_dot1.setTranslationX(0);
             img_dot3.setTranslationX(0);
         } else if (dy < dragLimiteHeight) {
+            setViewWidthHeight(img_dot1, dotWidthSide, dotWidthSide);
+            setViewWidthHeight(img_dot2, dotWidth, dotWidth);
+            setViewWidthHeight(img_dot3, dotWidthSide, dotWidthSide);
             //小圆点逐渐分开
             float lv = (dy - (float) dragLimiteHeight / 2) / ((float) dragLimiteHeight / 2); //0-1
             int nowSpace = (int) (lv * (dotSpace + dotWidth));
@@ -251,8 +244,9 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
         //计算内容Y轴位移距离（保持顶部）
         float springMoveHeight = springViewInner.getHeight() * (1 - MIN_SCALE) / 2;
         if (dy < dragLimiteHeight) {
-            lay_bg_content.setAlpha(0);
-            lay_bg_content.setTranslationY(0);
+            smokeView.setAlpha(0);
+            lay_content.setAlpha(0);
+            lay_content.setTranslationY(0);
             if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(1);
             if (contentView != null) contentView.setAlpha(1);
             if (!hasOverSpringHeight) {
@@ -265,7 +259,8 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
         } else if (dy < dragSpringHeight) {
             //计算并背景透明度
             float lv = (dy - (float) dragLimiteHeight) / ((float) dragSpringHeight - dragLimiteHeight); //0-1
-            lay_bg_content.setAlpha(lv);
+            smokeView.setAlpha(lv);
+            lay_content.setAlpha(lv);
             if (contentView != null) contentView.setAlpha(1 - 0.5f * lv); //1-0.5
             if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.5f * lv);  //0-0.5
             //计算内容缩放比例
@@ -277,10 +272,11 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
                 springViewInner.setScaleY(scale);
                 springViewInner.setTranslationY(-springMoveHeight * (1 - lv));
             } else {
-                lay_bg_content.setTranslationY(dy - dragSpringHeight);
+                lay_content.setTranslationY(dy - dragSpringHeight);
             }
         } else {
-            lay_bg_content.setAlpha(1);
+            smokeView.setAlpha(1);
+            lay_content.setAlpha(1);
             if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.5f);
             if (contentView != null) contentView.setAlpha(0f);
             text_title.setScaleX(1);
@@ -288,7 +284,7 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
             springViewInner.setScaleX(1);
             springViewInner.setScaleY(1);
             springViewInner.setTranslationY(0);
-            lay_bg_content.setTranslationY(0);
+            lay_content.setTranslationY(0);
         }
     }
 
@@ -323,6 +319,13 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
         //动画：展开显示底部导航条
         startNavAnim(true);
         reset();
+    }
+
+    private void setViewWidthHeight(View view, int width, int height) {
+        ViewGroup.LayoutParams layoutParam1 = view.getLayoutParams();
+        layoutParam1.height = height;
+        layoutParam1.width = width;
+        view.setLayoutParams(layoutParam1);
     }
 
     //重置状态

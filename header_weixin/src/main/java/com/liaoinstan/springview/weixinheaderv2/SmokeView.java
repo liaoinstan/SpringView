@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.Nullable;
 
@@ -45,13 +47,30 @@ public class SmokeView extends View {
         init();
     }
 
+    @Override
+    protected void onFinishInflate() {
+        setBackgroundResource(R.drawable.shape_rect_gradient_weixinheader_bg);
+        super.onFinishInflate();
+    }
+
     private void init() {
         paint = new Paint();
-        paint.setAlpha(90);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smoke);
-        for (int i = 0; i < 50; i++) {
-            drawInfos.add(new DrawInfo(bitmap));
-        }
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                paint.setAlpha(90);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smoke);
+                for (int i = 0; i < 50; i++) {
+                    drawInfos.add(new DrawInfo(bitmap));
+                }
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
@@ -89,8 +108,6 @@ public class SmokeView extends View {
         float dx;
         float dy;
 
-        //透明度
-        float alpha;
         //xy轴速度
         float moveX;
         float moveY;
@@ -110,6 +127,11 @@ public class SmokeView extends View {
             //初始化一个随机速度
             moveX = random.nextInt(6) + random.nextFloat() - 3;
             moveY = random.nextInt(6) + random.nextFloat() - 3;
+            //随机一个初始位置
+            if (widthParent != 0 && heightParent != 0) {
+                dx = random.nextInt(widthParent) + random.nextFloat();
+                dy = random.nextInt(heightParent) + random.nextFloat();
+            }
 
             if (moveX == 0) moveX = 1;
             if (moveY == 0) moveY = 1;

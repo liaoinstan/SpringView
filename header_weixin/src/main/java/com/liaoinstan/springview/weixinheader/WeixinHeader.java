@@ -170,18 +170,9 @@ public class WeixinHeader extends BaseHeader {
                     int nowWidth = (int) (lv * dotWidth);
                     int nowWidthSide = (int) (lv * dotWidthSide);
                     //小圆点不断变大
-                    ViewGroup.LayoutParams layoutParam1 = img_dot1.getLayoutParams();
-                    layoutParam1.height = nowWidthSide;
-                    layoutParam1.width = nowWidthSide;
-                    img_dot1.setLayoutParams(layoutParam1);
-                    ViewGroup.LayoutParams layoutParam2 = img_dot2.getLayoutParams();
-                    layoutParam2.height = nowWidth;
-                    layoutParam2.width = nowWidth;
-                    img_dot2.setLayoutParams(layoutParam2);
-                    ViewGroup.LayoutParams layoutParam3 = img_dot3.getLayoutParams();
-                    layoutParam3.height = nowWidthSide;
-                    layoutParam3.width = nowWidthSide;
-                    img_dot3.setLayoutParams(layoutParam3);
+                    setViewWidthHeight(img_dot1, nowWidthSide, nowWidthSide);
+                    setViewWidthHeight(img_dot2, nowWidth, nowWidth);
+                    setViewWidthHeight(img_dot3, nowWidthSide, nowWidthSide);
                     //小圆点居中
                     lay_dot.setTranslationY(-(dy / 2 - nowWidth / 2));
                     //记录下小圆点最大位移距离
@@ -189,6 +180,9 @@ public class WeixinHeader extends BaseHeader {
                         dotMaxTranY = Math.abs(lay_dot.getTranslationY());
                     }
                 } else if (dy < dragSpringHeight * 2 / 3) {
+                    setViewWidthHeight(img_dot1, dotWidthSide, dotWidthSide);
+                    setViewWidthHeight(img_dot2, dotWidth, dotWidth);
+                    setViewWidthHeight(img_dot3, dotWidthSide, dotWidthSide);
                     //小圆点逐渐分开
                     float lv = (dy - (float) dragSpringHeight / 2) / ((float) dragSpringHeight * 2 / 3 - (float) dragSpringHeight / 2); //0-1
                     int nowSpace = (int) (lv * (dotSpace + dotWidth));
@@ -230,6 +224,13 @@ public class WeixinHeader extends BaseHeader {
     @Override
     public void onFinishAnim() {
         reset();
+    }
+
+    private void setViewWidthHeight(View view, int width, int height) {
+        ViewGroup.LayoutParams layoutParam1 = view.getLayoutParams();
+        layoutParam1.height = height;
+        layoutParam1.width = width;
+        view.setLayoutParams(layoutParam1);
     }
 
     private void reset() {
