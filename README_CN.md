@@ -25,7 +25,7 @@ SpringView
 
 **📌新增：** 
 
-![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header.gif) 
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_v2.gif) 
 
 **如何使用 SpringView**
 --------
