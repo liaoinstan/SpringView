@@ -1,4 +1,4 @@
-package com.liaoinstan.springview;
+package com.liaoinstan.springview.widget;
 
 import android.view.View;
 
@@ -7,7 +7,7 @@ import com.liaoinstan.springview.widget.SpringView;
 /**
  * Scroll模式的callback处理类
  */
-public class ScrollCallbackHelper {
+class ScrollCallbackHelper {
 
     private int lastHeaderDropDy = -1;
     private int lastFooterDropDy = -1;

@@ -30,7 +30,6 @@ public class Demo7Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         springView = findViewById(R.id.springview);
-        springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

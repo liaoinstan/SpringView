@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.widget.SpringView;
 
 public class AutoFooter extends BaseScrollFooter {
 
@@ -13,6 +14,10 @@ public class AutoFooter extends BaseScrollFooter {
     private ProgressBar progress_auto;
     private View lay_auto_bottom_line;
     private boolean isInProgress;
+
+    public AutoFooter() {
+        setType(SpringView.Type.SCROLL);
+    }
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {

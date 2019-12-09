@@ -11,12 +11,13 @@ import android.widget.ProgressBar;
 
 import androidx.core.content.ContextCompat;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class RotationHeader extends BaseHeader {
+public class RotationHeader extends BaseSimpleHeader {
     private Context context;
     private int rotationSrc;
     private int rotationFuSrc;
@@ -38,6 +39,8 @@ public class RotationHeader extends BaseHeader {
     }
 
     public RotationHeader(Context context, int rotationSrc, int rotationFuSrc) {
+        setType(SpringView.Type.OVERLAP);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.rotationFuSrc = rotationFuSrc;

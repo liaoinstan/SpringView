@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.weixinheader.Program;
 import com.liaoinstan.springview.weixinheader.R;
@@ -27,7 +27,8 @@ import java.util.List;
  * Created by liaoinstan on 2019/11/06.
  * 仿微信小程序header V2 ，微信更新后小程序交互界面和之前老版本区别很大，所以这里再次模仿了一个2.0版本
  */
-public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.OnDragListener {
+@SuppressWarnings("unused")
+public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCallback.OnDragListener {
 
     //根布局
     private View root;
@@ -71,6 +72,9 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
     private OnWeixinHeaderLoadImgCallback imgLoadCallback;
 
     public WeixinHeaderV2(View bottomView, WeixinTitleBar weixinTitleBar) {
+        //header比较长，移动参数设小一点比较合适，这里用1.25感觉和微信手感差不多
+        setMovePara(1.25f);
+        setType(SpringView.Type.OVERLAP);
         this.bottomView = bottomView;
         this.weixinTitleBar = weixinTitleBar;
     }
@@ -153,14 +157,8 @@ public class WeixinHeaderV2 extends BaseHeader implements DragItemTouchCallback.
     }
 
     @Override
-    public float getMovePara() {
-        //header比较长，移动参数设小一点比较合适，这里用1.4感觉和微信手感差不多
-        return 1.25f;
-    }
-
-    @Override
     public int getDragLimitHeight(View rootView) {
-        //下拉阈值设置为固定200dp，和微信基本差不多
+        //下拉阈值设置为固定190dp，和微信基本差不多
         return DensityUtil.dp2px(190);
     }
 

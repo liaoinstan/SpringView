@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.liaoinstan.springview.R;
-import com.liaoinstan.springview.ScrollCallbackHelper;
 import com.liaoinstan.springview.container.InnerFooter;
 import com.liaoinstan.springview.container.InnerHeader;
 import com.liaoinstan.springview.listener.AppBarStateChangeListener;

@@ -56,7 +56,6 @@ public class Demo9FragmentNote extends Fragment {
     private void initView() {
         //初始化SpringView
         springView = rootView.findViewById(R.id.springview);
-        springView.setType(SpringView.Type.OVERLAP);    //设为重叠样式
         springView.setHeader(new RotationHeader(getContext()));
         springView.setFooter(new RotationFooter(getContext()));
         springView.setListener(new SpringView.OnFreshListener() {

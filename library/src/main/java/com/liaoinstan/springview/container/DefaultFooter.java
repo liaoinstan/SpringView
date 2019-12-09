@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class DefaultFooter extends BaseFooter {
+public class DefaultFooter extends BaseSimpleFooter {
     private Context context;
     private int rotationSrc;
     private TextView footerTitle;
@@ -25,6 +26,8 @@ public class DefaultFooter extends BaseFooter {
     }
 
     public DefaultFooter(Context context, int rotationSrc) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
     }

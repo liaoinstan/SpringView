@@ -4,12 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleFooter;
 import com.liaoinstan.springview.utils.DensityUtil;
+import com.liaoinstan.springview.widget.SpringView;
 
-public class WeixinV2InnerFooter extends BaseHeader {
+public class WeixinV2InnerFooter extends BaseSimpleFooter {
 
-    public WeixinV2InnerFooter(OnDragFinishListener onDragFinishListener) {
+    private OnDragFinishListener onDragFinishListener;
+
+    WeixinV2InnerFooter(OnDragFinishListener onDragFinishListener) {
+        setMovePara(2.0f);
+        setType(SpringView.Type.FOLLOW);
         this.onDragFinishListener = onDragFinishListener;
     }
 
@@ -56,12 +61,6 @@ public class WeixinV2InnerFooter extends BaseHeader {
 
     @Override
     public void onFinishAnim() {
-    }
-
-    private OnDragFinishListener onDragFinishListener;
-
-    public void setOnDragFinishListener(OnDragFinishListener onDragFinishListener) {
-        this.onDragFinishListener = onDragFinishListener;
     }
 
     interface OnDragFinishListener {

@@ -13,8 +13,9 @@ import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * Created by liaoinstan on 2018/6/12.
  */
-public class WeixinHeader extends BaseHeader {
+public class WeixinHeader extends BaseSimpleHeader {
 
     private View root;
     private RecyclerView recycler;
@@ -51,6 +52,11 @@ public class WeixinHeader extends BaseHeader {
     private OnProgramClickListener onProgramClickListener;
     private OnProgramLongClickListener onProgramLongClickListener;
     private OnWeixinHeaderLoadImgCallback imgLoadCallback;
+
+    public WeixinHeader() {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(1.5f);
+    }
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {

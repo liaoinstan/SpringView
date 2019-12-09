@@ -26,7 +26,6 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
         ((RadioGroup) findViewById(R.id.group_header)).setOnCheckedChangeListener(this);
 
         springView = findViewById(R.id.springview);
-        springView.setMovePara(1.5f);   //设置拖拽系数（值越大，移动越慢）
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -40,7 +39,7 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
                 new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
-        springView.setHeader(new QQHeader());
+        springView.setHeader(new QQHeader().setMovePara(1.5f));     //设置拖拽系数（值越大，移动越慢）
         springView.setFooter(new DefaultFooter(this, R.drawable.progress_small));
     }
 
@@ -48,11 +47,9 @@ public class Demo6Activity extends AppCompatActivity implements RadioGroup.OnChe
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.drag_header:
-                springView.setType(SpringView.Type.OVERLAP); //重叠模式
                 springView.setHeader(new QQHeader());
                 break;
             case R.id.nomal_header:
-                springView.setType(SpringView.Type.FOLLOW);  //跟随模式
                 springView.setHeader(new DefaultHeader(this));
                 break;
         }

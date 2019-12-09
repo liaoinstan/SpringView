@@ -11,13 +11,14 @@ import android.widget.ProgressBar;
 
 import androidx.core.content.ContextCompat;
 
-import com.liaoinstan.springview.container.BaseFooter;
+import com.liaoinstan.springview.container.BaseSimpleFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class RotationFooter extends BaseFooter {
+public class RotationFooter extends BaseSimpleFooter {
     private Context context;
     private int rotationSrc;
 
@@ -30,6 +31,8 @@ public class RotationFooter extends BaseFooter {
     }
 
     public RotationFooter(Context context, int rotationSrc) {
+        setType(SpringView.Type.OVERLAP);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
 

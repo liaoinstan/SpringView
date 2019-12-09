@@ -2,14 +2,7 @@ package com.liaoinstan.springview.container;
 
 import android.view.View;
 
-import com.liaoinstan.springview.widget.SpringView;
-
-public abstract class BaseScrollFooter extends BaseFooter {
-
-    @Override
-    public final SpringView.Type getType() {
-        return SpringView.Type.SCROLL;
-    }
+public abstract class BaseScrollFooter extends BaseSimpleFooter {
 
     @Override
     public final void onDropAnim(View rootView, int dy) {
@@ -51,11 +44,6 @@ public abstract class BaseScrollFooter extends BaseFooter {
 
     @Override
     public final int getDragSpringHeight(View rootView) {
-        return 0;
-    }
-
-    @Override
-    public final float getMovePara() {
         return 0;
     }
 

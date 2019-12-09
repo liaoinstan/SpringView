@@ -10,13 +10,14 @@ import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class MeituanHeader extends BaseHeader {
+public class MeituanHeader extends BaseSimpleHeader {
 
     private AnimationDrawable animationPull;
     private AnimationDrawable animationPullFan;
@@ -32,6 +33,8 @@ public class MeituanHeader extends BaseHeader {
     }
 
     public MeituanHeader(Context context, int[] pullAnimSrcs, int[] refreshAnimSrcs) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         if (pullAnimSrcs != null) this.pullAnimSrcs = pullAnimSrcs;
         if (refreshAnimSrcs != null) this.refreshAnimSrcs = refreshAnimSrcs;

@@ -13,11 +13,12 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class DefaultHeader extends BaseHeader {
+public class DefaultHeader extends BaseSimpleHeader {
     private Context context;
     private int rotationSrc;
     private int arrowSrc;
@@ -38,6 +39,8 @@ public class DefaultHeader extends BaseHeader {
     }
 
     public DefaultHeader(Context context, int rotationSrc, int arrowSrc) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;

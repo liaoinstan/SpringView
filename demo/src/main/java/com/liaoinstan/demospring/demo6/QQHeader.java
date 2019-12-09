@@ -7,15 +7,22 @@ import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by liaoinstan on 2016/3/23.
  * 简单定制的QQ新年刷红包效果，可以在此基础上自己增加动画特效，这里只是模拟出该效果框架进行演示，故该Header不放在library里面
  */
-public class QQHeader extends BaseHeader {
+public class QQHeader extends BaseSimpleHeader {
 
     private TextView text_dot;
     private int dotcount;
+
+    public QQHeader() {
+        setType(SpringView.Type.OVERLAP);
+        setMovePara(2.0f);
+    }
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {

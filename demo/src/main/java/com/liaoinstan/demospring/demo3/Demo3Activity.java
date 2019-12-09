@@ -46,7 +46,6 @@ public class Demo3Activity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         springView = findViewById(R.id.springview);
-        springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -63,7 +62,7 @@ public class Demo3Activity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 14; i++) {
             mDatas.add(i == 0 ? "We are in RecyclerView" : (i == 3 ? "SpringView支持RecyclerView\n\n这是一个仿阿里旅行的header\n\nlogo可以图片可自行替换" : ""));
         }
     }
