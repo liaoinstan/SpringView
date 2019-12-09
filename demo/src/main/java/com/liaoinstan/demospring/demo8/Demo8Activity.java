@@ -63,7 +63,7 @@ public class Demo8Activity extends AppCompatActivity {
 
     private void initData() {
         for (int i = 0; i < 20; i++) {
-            mDatas.add(i == 0 ? "SpringView处理了水平滑动的手势冲突，侧滑删除试试" : "item" + i);
+            mDatas.add(i == 0 ? "SpringView不会和水平滑动有冲突，侧滑删除试试" : "item" + i);
         }
     }
 

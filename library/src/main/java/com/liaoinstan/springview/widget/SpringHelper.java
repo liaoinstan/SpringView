@@ -1,9 +1,5 @@
 package com.liaoinstan.springview.widget;
 
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +7,11 @@ import android.view.ViewParent;
 import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ScrollingView;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * Created by liaoinstan on 2017/8/15.
@@ -80,8 +81,7 @@ class SpringHelper {
         //如果是以下的view ,则直接返回true
         if (view instanceof ListView
                 || view instanceof ScrollView
-                || view instanceof NestedScrollView
-                || view instanceof RecyclerView
+                || view instanceof ScrollingView
                 || view instanceof WebView) {
             return true;
         } else {

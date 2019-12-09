@@ -2,6 +2,7 @@ package com.liaoinstan.springview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -9,11 +10,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.OverScroller;
+import android.widget.ScrollView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ScrollingView;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.liaoinstan.springview.R;
+import com.liaoinstan.springview.ScrollCallbackHelper;
 import com.liaoinstan.springview.container.InnerFooter;
 import com.liaoinstan.springview.container.InnerHeader;
 import com.liaoinstan.springview.listener.AppBarStateChangeListener;
@@ -45,7 +52,7 @@ public class SpringView extends ViewGroup {
         BOTH, TOP, BOTTOM, NONE
     }
 
-    public enum Type {OVERLAP, FOLLOW, DRAG}
+    public enum Type {OVERLAP, FOLLOW, DRAG, SCROLL}
 
     private Give give = Give.BOTH;
     private Type type = Type.FOLLOW;
@@ -70,6 +77,10 @@ public class SpringView extends ViewGroup {
     private float mfirstY;
     //储存手指拉动的总距离
     private float dsY;
+    //储存当前的Y轴滚动距离
+    private float scrollY;
+    //储存上一次的Y轴滚动距离
+    private float oldScrollY;
     //滑动事件目前是否在本控件的控制中（用于过渡滑动事件：比如正在滚动recyclerView到顶部后自动切换到SpringView处理后续事件进行下拉）
     private boolean isInControl = false;
 
@@ -179,8 +190,121 @@ public class SpringView extends ViewGroup {
             contentLay = content;
         }
 
+        //TODO:在需要的时候才设置监听器？
+        if (contentView instanceof RecyclerView) {
+            //TODO:recyclerView在设置这个监听器的时候就会自动调用一次，ScrollView不会
+            ((RecyclerView) contentView).addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    paddingScroll();
+                }
+            });
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                contentView.setOnScrollChangeListener(new OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                        paddingScroll();
+                    }
+                });
+            }
+        }
+
+        //保存padding
+        paddingTopContent = contentView.getPaddingTop();
+        paddingBottomContent = contentView.getPaddingBottom();
+
         super.onFinishInflate();
     }
+
+    //保存上次ConetentView的paddingTop和paddingBottom
+    int paddingTopContent;
+    int paddingBottomContent;
+
+    private void paddingScroll() {
+        if (judgeType(headerHander) != Type.SCROLL && judgeType(footerHander) != Type.SCROLL) {
+            return;
+        }
+        //计算内容高度和滚动距离
+        int contentHeight;
+        int scrollY;
+        if (contentView instanceof RecyclerView) {
+            contentHeight = ((RecyclerView) contentView).computeVerticalScrollRange();
+            scrollY = ((RecyclerView) contentView).computeVerticalScrollOffset();
+        } else if (contentView instanceof NestedScrollView) {
+            //不知道为何，NestedScrollView获取computeVerticalScrollRange的结果会莫名奇妙多出一个paddingTop的高度？
+            contentHeight = ((ScrollingView) contentView).computeVerticalScrollRange() - contentView.getPaddingTop();
+            scrollY = contentView.getScrollY();
+        } else if (contentView instanceof ScrollView) {
+            contentHeight = ((ViewGroup) contentView).getChildAt(0).getMeasuredHeight();
+            scrollY = contentView.getScrollY();
+        } else {
+            //TODO:?contentView是其他的情况
+            contentHeight = contentView.getMeasuredHeight();
+            scrollY = contentView.getScrollY();
+        }
+
+        //可滚动最大高度
+        int maxY = contentHeight - contentView.getMeasuredHeight() + contentView.getPaddingBottom() + contentView.getPaddingTop();
+        if (maxY < 0) maxY = 0;
+        //上下部分滚动距离
+        //int offsetBottom = footer.getMeasuredHeight() - (maxY - scrollY);
+        //int offsetTop = -(header.getMeasuredHeight() - scrollY);
+        int offsetBottom = FOOTER_SPRING_HEIGHT - (maxY - scrollY);
+        int offsetTop = HEADER_SPRING_HEIGHT - scrollY;
+
+        if (judgeType(headerHander) == Type.SCROLL) {
+            if (offsetTop > 0) {
+                header.setVisibility(VISIBLE);
+                header.setTranslationY(offsetTop);
+                scrollCallbackHelper.onHeaderMove(headerHander, header, offsetTop);
+            } else {
+                header.setTranslationY(0);
+                scrollCallbackHelper.onHeaderMove(headerHander, header, 0);
+            }
+        }
+        if (judgeType(footerHander) == Type.SCROLL) {
+            if (offsetBottom > 0) {
+                footer.setVisibility(VISIBLE);
+                footer.setTranslationY(-offsetBottom);
+                scrollCallbackHelper.onFooterMove(footerHander, footer, offsetBottom);
+            } else {
+                footer.setTranslationY(0);
+                scrollCallbackHelper.onFooterMove(footerHander, footer, 0);
+            }
+        }
+
+        //Log.e("paddingScroll", "maxY:" + maxY + " scrollY:" + scrollY + " contentHeight:" + contentHeight + " offsetBottom:" + offsetBottom + " offsetTop:" + offsetTop);
+
+        //准备回调事件
+        if (scrollY == 0) {
+            //滚动到了顶部
+            if (judgeType(headerHander) == Type.SCROLL) {
+                scrollCallbackHelper.onScrollTop(headerHander, listener);
+            }
+        }
+        if (scrollY == maxY) {
+            //滚动到了底部
+            //如果maxY=0则内部高度不足一屏，此时scrollY也为0，可以认为此时既在顶部同时也在底部
+            if (judgeType(footerHander) == Type.SCROLL) {
+                scrollCallbackHelper.onScrollBottom(footerHander, listener);
+            }
+        }
+        if (maxY <= FOOTER_SPRING_HEIGHT) {
+            //除去footer的高度已经不足一屏了
+            if (judgeType(footerHander) == Type.SCROLL) {
+                scrollCallbackHelper.onScreenFull(footerHander, footer, false);
+            }
+        } else {
+            //超过一屏
+            if (judgeType(footerHander) == Type.SCROLL) {
+                scrollCallbackHelper.onScreenFull(footerHander, footer, true);
+            }
+        }
+    }
+
+    //回调器：SCROLL
+    private ScrollCallbackHelper scrollCallbackHelper = new ScrollCallbackHelper();
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -220,6 +344,22 @@ public class SpringView extends ViewGroup {
             if (footer != null) FOOTER_LIMIT_HEIGHT = footer.getMeasuredHeight();
             FOOTER_SPRING_HEIGHT = FOOTER_LIMIT_HEIGHT;
         }
+        boolean needHeaderScroll = headerHander != null && judgeType(headerHander) == Type.SCROLL;
+        boolean needFooterScroll = footerHander != null && judgeType(footerHander) == Type.SCROLL;
+        if (needHeaderScroll || needFooterScroll) {
+            //设置padding
+            if (contentView instanceof ViewGroup) {
+                int paddingTopAdd = needHeaderScroll ? HEADER_SPRING_HEIGHT : 0;
+                int paddingBottomAdd = needFooterScroll ? FOOTER_SPRING_HEIGHT : 0;
+                contentView.setPadding(0, paddingTopContent + paddingTopAdd, 0, paddingBottomContent + paddingBottomAdd);
+                ((ViewGroup) contentView).setClipToPadding(false);
+            } else {
+                //TODO:
+            }
+        } else {
+            contentView.setPadding(0, paddingTopContent, 0, paddingBottomContent);
+            ((ViewGroup) contentView).setClipToPadding(false);
+        }
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -234,13 +374,32 @@ public class SpringView extends ViewGroup {
             }
             contentLay.layout(0, 0, contentLay.getMeasuredWidth(), contentLay.getMeasuredHeight());
 
-            if (type == Type.OVERLAP) {
-                //overlap模式需要把内容放在最前端
-                contentLay.bringToFront();
-            } else if (type == Type.DRAG) {
-                //drag模式需要把头尾部分放在最前端
-                if (header != null) header.bringToFront();
-                if (footer != null) footer.bringToFront();
+            //设置层级关系
+            if (judgeType(headerHander) == Type.OVERLAP) {
+                if (judgeType(footerHander) == Type.OVERLAP) {
+                    //content:3 header: x footer x
+                    contentLay.bringToFront();
+                } else {
+                    //content:2 header: 1 footer 3
+                    if (header != null) header.bringToFront();
+                    contentLay.bringToFront();
+                    if (footer != null) footer.bringToFront();
+                }
+            } else {
+                if (judgeType(footerHander) == Type.OVERLAP) {
+                    //content:2 header: 3 footer 1
+                    if (footer != null) footer.bringToFront();
+                    contentLay.bringToFront();
+                    if (header != null) header.bringToFront();
+                } else {
+                    //content:1 header: x footer x
+                    if (header != null) header.bringToFront();
+                    if (footer != null) footer.bringToFront();
+                }
+            }
+            if (judgeType(headerHander) == Type.SCROLL || judgeType(footerHander) == Type.SCROLL) {
+                //scroll模式在layout好之后就要刷新一下header/footer位置，因为scroll模式的header/footer默认就是展示的
+                paddingScroll();
             }
         }
     }
@@ -342,9 +501,19 @@ public class SpringView extends ViewGroup {
                     doMove();
                     //下拉的时候显示header并隐藏footer，上拉的时候相反
                     if (isTop()) {
-                        showHeaderAndFooter(true, false);
+                        //TODO:
+                        if (judgeType(footerHander) == Type.SCROLL) {
+                            showHeaderAndFooter(true, true);
+                        } else {
+                            showHeaderAndFooter(true, false);
+                        }
                     } else if (isBottom()) {
-                        showHeaderAndFooter(false, true);
+                        //TODO:
+                        if (judgeType(headerHander) == Type.SCROLL) {
+                            showHeaderAndFooter(true, true);
+                        } else {
+                            showHeaderAndFooter(false, true);
+                        }
                     }
                     //回调onDropAnim接口
                     callbackOnDropAnim();
@@ -493,12 +662,58 @@ public class SpringView extends ViewGroup {
 
     //springView滚动或者拖拽的时候会执行该方法
     private void callOnScrollAndDrag() {
-        if (type == Type.OVERLAP) {
+        //获取type，优先使用header/footer的返回值
+        boolean top = isTop();
+        boolean bottom = isBottom();
+        Type typeIn;
+        if (top) {
+            typeIn = judgeType(headerHander);
+        } else if (bottom) {
+            typeIn = judgeType(footerHander);
+        } else {
+            return;
+        }
+        //只在需要变更布局方式的时候才发起requestLayout()
+        if (isChildScrollToBottom() && oldScrollY <= 0 && scrollY > 0) {
+            //从下拉状态回到上拉时
+            requestLayout();
+        } else if (isChildScrollToTop() && oldScrollY >= 0 && scrollY < 0) {
+            //从上拉状态回到下拉时
+            requestLayout();
+        }
+        //更新位置
+        if (typeIn == Type.OVERLAP) {
             if (header != null) header.setTranslationY(header.getHeight() + getScrollY());
             if (footer != null) footer.setTranslationY(-footer.getHeight() + getScrollY());
-        } else if (type == Type.DRAG) {
+            //重置状态
+            if (contentLay != null) contentLay.setTranslationY(0);
+        } else if (typeIn == Type.DRAG) {
             if (contentLay != null) contentLay.setTranslationY(getScrollY());
+            //重置状态
+            if (header != null) header.setTranslationY(0);
+            if (footer != null) footer.setTranslationY(0);
+        } else if (typeIn == Type.FOLLOW || typeIn == Type.SCROLL) {
+            //重置状态
+            if (contentLay != null) contentLay.setTranslationY(0);
+            if (header != null) header.setTranslationY(0);
+            if (footer != null) footer.setTranslationY(0);
         }
+        //TODO：只在onScrollChanged回调会有闪烁
+        paddingScroll();
+    }
+
+    @Override
+    protected void onScrollChanged(int x, int y, int oldX, int oldY) {
+        super.onScrollChanged(x, y, oldX, oldY);
+        scrollY = y;
+        oldScrollY = oldY;
+        //重置位置
+        if (y == 0) {
+            if (contentLay != null) contentLay.setTranslationY(0);
+            if (header != null) header.setTranslationY(0);
+            if (footer != null) footer.setTranslationY(0);
+        }
+        paddingScroll();
     }
 
     //在完成全部动作后会执行此方法
@@ -535,7 +750,7 @@ public class SpringView extends ViewGroup {
         }
         //动画完成后检查是否需要切换type，是则切换
         if (needChangeType) {
-            changeType(_type);
+            _setType(_type);
         }
     }
 
@@ -637,25 +852,33 @@ public class SpringView extends ViewGroup {
         if (Math.abs(dy) <= Math.abs(dx)) {
             return false;
         }
-        boolean isTop = isChildScrollToTop();
-        boolean isBottom = isChildScrollToBottom();
+        boolean isNowTop = isChildScrollToTop();
+        boolean isNowBottom = isChildScrollToBottom();
         //用户禁止了下拉操作，则不控制
-        if (!enableHeader && isTop && dy > 0) {
+        if (!enableHeader && isNowTop && dy > 0) {
             return false;
         }
         //用户禁止了上拉操作，则不控制
-        if (!enableFooter && isBottom && dy < 0) {
+        if (!enableFooter && isNowBottom && dy < 0) {
             return false;
         }
         if (header != null) {
             //其中的20是一个防止触摸误差的偏移量
-            if (isTop && dy > 0 || getScrollY() < 0 - 20) {
-                return true;
+            if (isNowTop) {
+                if (judgeType(headerHander) != Type.SCROLL) {
+                    if (dy > 0 || getScrollY() < 0 - 20) {
+                        return true;
+                    }
+                }
             }
         }
         if (footer != null) {
-            if (isBottom && dy < 0 || getScrollY() > 0 + 20) {
-                return true;
+            if (isNowBottom) {
+                if (judgeType(footerHander) != Type.SCROLL) {
+                    if (dy < 0 || getScrollY() > 0 + 20) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -711,24 +934,6 @@ public class SpringView extends ViewGroup {
             //没有设置监听器直接复原
             resetPosition();
         } else {
-//            if (isTopOverLimit()) {
-//                //顶部拉动超过limit位置
-//                callbackOnStartAnim();
-//                if (give == Give.BOTH || give == Give.TOP)
-//                    resetRefreshPosition();
-//                else
-//                    resetPosition();
-//            } else if (isBottomOverLimit()) {
-//                //底部拉动超过limit位置
-//                callbackOnStartAnim();
-//                if (give == Give.BOTH || give == Give.BOTTOM)
-//                    resetRefreshPosition();
-//                else
-//                    resetPosition();
-//            } else {
-//                //顶部和底部拉动均为超过limit位置，直接复原
-//                resetPosition();
-//            }
             if (isTop()) {
                 //顶部被拉动
                 if (isTopOverLimit()) {
@@ -787,6 +992,17 @@ public class SpringView extends ViewGroup {
             footer.setVisibility(showFooter ? View.VISIBLE : View.INVISIBLE);
     }
 
+    private Type judgeType(DragHander dragHander) {
+        if (dragHander == null) {
+            return null;
+        } else if (dragHander.getType() != null) {
+            return dragHander.getType();
+        } else if (type != null) {
+            return type;
+        } else {
+            return Type.FOLLOW;
+        }
+    }
 
     /**
      * 判断目标View是否滑动到顶部 还能否继续滑动
@@ -817,14 +1033,14 @@ public class SpringView extends ViewGroup {
     }
 
     /**
-     * 判断当前状态是否拉动到顶部
+     * 判断当前状态是否正在拉动顶部
      */
     private boolean isTop() {
         return getScrollY() < 0;
     }
 
     /**
-     * 判断当前状态是否拉动到底部
+     * 判断当前状态是否正在拉动底部
      */
     private boolean isBottom() {
         return getScrollY() > 0;
@@ -841,7 +1057,7 @@ public class SpringView extends ViewGroup {
      * 切换Type的执行方法，之所以不暴露在外部，是防止用户在拖动过程中调用造成布局错乱，虽然并不会有人这样做
      * 所以在外部方法{@link #setType(Type)}中设置标志，然后在拖动完毕后判断是否需要调用，是则调用本方法执行切换
      */
-    private void changeType(Type type) {
+    private void _setType(Type type) {
         this.type = type;
         requestLayout();
         needChangeType = false;
@@ -907,7 +1123,9 @@ public class SpringView extends ViewGroup {
      * 手动调用该方法使SpringView进入拉动更新的状态
      */
     public void callFresh() {
-        _callFresh();
+        if (judgeType(headerHander) != Type.SCROLL) {
+            _callFresh();
+        }
     }
 
     public void callFreshDelay(int delay) {
@@ -993,7 +1211,7 @@ public class SpringView extends ViewGroup {
             //把参数保持起来
             _type = type;
         } else {
-            changeType(type);
+            _setType(type);
         }
     }
 
@@ -1048,6 +1266,16 @@ public class SpringView extends ViewGroup {
 
     public DragHander getFooter() {
         return footerHander;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <TH extends DragHander> TH getHeader(Class<TH> c) {
+        return (TH) headerHander;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <TF extends DragHander> TF getFooter(Class<TF> c) {
+        return (TF) footerHander;
     }
 
     public void setHeader(DragHander headerHander) {
@@ -1118,6 +1346,7 @@ public class SpringView extends ViewGroup {
      * header/footer核心接口
      */
     public interface DragHander {
+
         View getView(LayoutInflater inflater, ViewGroup viewGroup);
 
         int getDragLimitHeight(View rootView);
@@ -1127,6 +1356,8 @@ public class SpringView extends ViewGroup {
         int getDragSpringHeight(View rootView);
 
         float getMovePara();
+
+        Type getType();
 
         /**
          * 即将开始拖拽时的回调，可进行初始化操作

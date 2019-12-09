@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".demo7.Demo7Activity">
+    tools:context=".demo13.Demo13Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,81 +16,35 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#ce0000"
+            android:background="#ffffff"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Demo12Activity" />
+            app:title="Demo13Activity"
+            app:titleTextColor="#999999" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.liaoinstan.springview.widget.SpringView
-        android:id="@+id/springview"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#ffffff"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:type="follow">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <ScrollView
+        <com.liaoinstan.springview.widget.SpringView
+            android:id="@+id/springview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            app:type="follow">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="#ffffff"
+                android:scrollbars="vertical" />
 
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff"
-                    android:gravity="center"
-                    android:text="We are in ScrollView"
-                    android:textColor="#cccccc" />
+        </com.liaoinstan.springview.widget.SpringView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22"
-                    android:gravity="center"
-                    android:text="这是一个仿网易新闻的header"
-                    android:textColor="#ce0000"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#ffffff" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#66ffdd22" />
-
-            </LinearLayout>
-        </ScrollView>
-
-    </com.liaoinstan.springview.widget.SpringView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
