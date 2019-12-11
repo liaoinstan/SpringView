@@ -11,6 +11,7 @@ import com.liaoinstan.demospring.demo10.Demo10Activity;
 import com.liaoinstan.demospring.demo11.Demo11Activity;
 import com.liaoinstan.demospring.demo12.Demo12Activity;
 import com.liaoinstan.demospring.demo13.Demo13Activity;
+import com.liaoinstan.demospring.demo14.Demo14Activity;
 import com.liaoinstan.demospring.demo2.Demo2Activity;
 import com.liaoinstan.demospring.demo3.Demo3Activity;
 import com.liaoinstan.demospring.demo4.Demo4Activity;
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.demo13:
                 intent.setClass(this, Demo13Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demo14:
+                intent.setClass(this, Demo14Activity.class);
                 startActivity(intent);
                 break;
             case R.id.demox:

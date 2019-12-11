@@ -76,6 +76,10 @@ public abstract class BaseFooter implements SpringView.DragHander {
     public void onFinishDrag(View rootView) {
     }
 
+    @Override
+    public void onResetAnim() {
+    }
+
     //###################################################
     //############ 2018/9/13 新增收场动画接口 ###########
     //###################################################
@@ -96,7 +100,7 @@ public abstract class BaseFooter implements SpringView.DragHander {
      * 默认返回0
      */
     @Override
-    public int getEndingAnimHight(View rootView) {
+    public int getEndingAnimHeight(View rootView) {
         return 0;
     }
 

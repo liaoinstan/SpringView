@@ -24,7 +24,7 @@ class SpringHelper {
      * 在当前布局中查找AppBarLayout并返回，没有找到返回null
      * #解决和AppBarLayout自身滚动冲突的问题#
      */
-    public static AppBarLayout findAppBarLayout(View v) {
+    static AppBarLayout findAppBarLayout(View v) {
         AppBarLayout appBarLayout = null;
         ViewParent p = v.getParent();
         while (p != null) {
@@ -48,7 +48,7 @@ class SpringHelper {
     }
 
     //检查appBarLayout是否可以滚动
-    public static boolean couldScroll(AppBarLayout appBarLayout) {
+    static boolean couldScroll(AppBarLayout appBarLayout) {
         if (appBarLayout == null) return false;
         boolean couldScroll = false;
         for (int i = 0; i < appBarLayout.getChildCount(); i++) {
@@ -77,7 +77,7 @@ class SpringHelper {
     }
 
     //检查当前View是否是可以滚动的View（限定垂直方向）
-    public static boolean isViewCouldScroll(View view) {
+    static boolean isViewCouldScroll(View view) {
         //如果是以下的view ,则直接返回true
         if (view instanceof ListView
                 || view instanceof ScrollView
@@ -91,7 +91,7 @@ class SpringHelper {
     }
 
     //递归查找当前view和所有子view，找到可滚动的view，找不到则返回null
-    public static View findViewCouldScroll(View view) {
+    static View findViewCouldScroll(View view) {
         if (isViewCouldScroll(view)) {
             return view;
         } else if (view instanceof ViewGroup) {

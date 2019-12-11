@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.liaoinstan.demospring.R;
-import com.liaoinstan.springview.container.BaseHeader;
 import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -14,6 +13,7 @@ import com.liaoinstan.springview.widget.SpringView;
  * Created by liaoinstan on 2016/3/23.
  * 简单定制的QQ新年刷红包效果，可以在此基础上自己增加动画特效，这里只是模拟出该效果框架进行演示，故该Header不放在library里面
  */
+//TODO:重构后该demo失效，待修复
 public class QQHeader extends BaseSimpleHeader {
 
     private TextView text_dot;
@@ -51,6 +51,12 @@ public class QQHeader extends BaseSimpleHeader {
     }
 
     @Override
+    public void onFinishDrag(View rootView) {
+        dotcount++;
+        text_dot.setText("x" + dotcount);
+    }
+
+    @Override
     public void onDropAnim(View rootView, int dy) {
     }
 
@@ -60,8 +66,6 @@ public class QQHeader extends BaseSimpleHeader {
 
     @Override
     public void onStartAnim() {
-        dotcount++;
-        text_dot.setText("x" + dotcount);
     }
 
     @Override

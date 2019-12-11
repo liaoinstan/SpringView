@@ -30,33 +30,27 @@ import com.liaoinstan.springview.listener.AppBarStateChangeListener;
 @SuppressWarnings("unused ")
 public class SpringView extends ViewGroup {
 
+    //是否需要回调接口：TOP 只回调刷新、BOTTOM 只回调加载更多、BOTH 都需要、NONE 都不
+    public enum Give {BOTH, TOP, BOTTOM, NONE}
+
+    //拖拽类型
+    public enum Type {OVERLAP, FOLLOW, DRAG, SCROLL}
+
     private Context context;
     private LayoutInflater inflater;
     private OverScroller mScroller;
     private Handler handler = new Handler();
-    private OnFreshListener listener;         //监听回调
-    private int lastScrollY;                 //上一次滚动时的Y轴滚动距离
-    private boolean isFirst = true;         //用于判断是否是拖动动作的第一次move
+    private Flag flag = new Flag();             //Spring使用的标志位
+    private OnFreshListener listener;           //监听回调
+    private int lastScrollY;                    //上一次滚动时的Y轴滚动距离
     private boolean needChangeType = false;     //是否需要改变样式
-    private boolean needResetAnim = false;  //是否需要弹回的动画
-    private boolean isMoveNow = false;       //当前是否正在拖动
-    private boolean enableHeader = true;    //是否禁止header下拉（默认可用）
-    private boolean enableFooter = true;    //是否禁止footer上拉（默认可用）
-    private boolean isCallFresh = false;    //是否手动调用callFresh()进行刷新操作
+    private boolean needResetAnim = false;      //是否需要弹回的动画
+    private boolean isMoveNow = false;          //当前是否正在拖动
+    private boolean enableHeader = true;        //是否禁止header下拉（默认可用）
+    private boolean enableFooter = true;        //是否禁止footer上拉（默认可用）
+    private boolean isCallFresh = false;        //是否手动调用callFresh()进行刷新操作
 
-    private int MOVE_TIME = 600;
-
-    //是否需要回调接口：TOP 只回调刷新、BOTTOM 只回调加载更多、BOTH 都需要、NONE 都不
-    public enum Give {
-        BOTH, TOP, BOTTOM, NONE
-    }
-
-    public enum Type {OVERLAP, FOLLOW, DRAG, SCROLL}
-
-    private Give give = Give.BOTH;
-    private Type type = Type.FOLLOW;
-    private Type _type;
-
+    private int MOVE_TIME = 600;                //统一弹动动画时间
     //移动参数：计算手指移动量的时候会用到这个值，值越大，移动量越小，若值为1则手指移动多少就滑动多少px
     private float MOVE_PARA = 2;
     //最大拉动距离(px)，拉动距离越靠近这个值拉动就越缓慢
@@ -72,8 +66,6 @@ public class SpringView extends ViewGroup {
     //储存手指拉动上次的Y坐标
     private float mLastY;
     private float mLastX;
-    //储存手指拉动第一次的Y坐标
-    private float mfirstY;
     //储存手指拉动的总距离
     private float dsY;
     //储存当前的Y轴滚动距离
@@ -83,6 +75,10 @@ public class SpringView extends ViewGroup {
     //滑动事件目前是否在本控件的控制中（用于过渡滑动事件：比如正在滚动recyclerView到顶部后自动切换到SpringView处理后续事件进行下拉）
     private boolean isInControl = false;
 
+    private Give give = Give.BOTH;
+    private Type type = Type.FOLLOW;
+    private Type _type;
+
     //头尾视图
     private View header;
     private View footer;
@@ -90,18 +86,16 @@ public class SpringView extends ViewGroup {
     private View contentLay;
     private View contentView;
     //头尾布局资源id
-    private int headerResoureId;
-    private int footerResoureId;
+    private int headerResourceId;
+    private int footerResourceId;
 
     //记录AppBarLayout的当前状态（展开或折叠）
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
     private boolean appBarCouldScroll = false;
 
-    private int callFreshORload = 0;    //0:没有拖拽，1：拖拽超过header阈值，2：拖拽超过footer阈值，3：拖拽header但未超过阈值，4：拖拽footer但未超过阈值
-    private int scrollAnimType;         //回弹动画类别 0:结束动画1:回弹动画2:退场动画
-    private boolean hasCallFull = false;
-    private boolean hasCallRefresh = false;
-    private boolean hasCallEnding = false;
+    //保存上次ContentView的paddingTop和paddingBottom
+    int paddingTopContent;
+    int paddingBottomContent;
 
     @Override
     protected void onAttachedToWindow() {
@@ -148,10 +142,10 @@ public class SpringView extends ViewGroup {
             give = Give.values()[give_int];
         }
         if (ta.hasValue(R.styleable.SpringView_header)) {
-            headerResoureId = ta.getResourceId(R.styleable.SpringView_header, 0);
+            headerResourceId = ta.getResourceId(R.styleable.SpringView_header, 0);
         }
         if (ta.hasValue(R.styleable.SpringView_footer)) {
-            footerResoureId = ta.getResourceId(R.styleable.SpringView_footer, 0);
+            footerResourceId = ta.getResourceId(R.styleable.SpringView_footer, 0);
         }
         ta.recycle();
     }
@@ -163,11 +157,11 @@ public class SpringView extends ViewGroup {
             return;
         }
         setPadding(0, 0, 0, 0);
-        if (headerResoureId != 0) {
-            _setHeader(new InnerHeader(headerResoureId));
+        if (headerResourceId != 0) {
+            _setHeader(new InnerHeader(headerResourceId));
         }
-        if (footerResoureId != 0) {
-            _setFooter(new InnerFooter(footerResoureId));
+        if (footerResourceId != 0) {
+            _setFooter(new InnerFooter(footerResourceId));
         }
 
         //找到当前布局下可以滚动的view
@@ -215,10 +209,6 @@ public class SpringView extends ViewGroup {
 
         super.onFinishInflate();
     }
-
-    //保存上次ConetentView的paddingTop和paddingBottom
-    int paddingTopContent;
-    int paddingBottomContent;
 
     private void paddingScroll() {
         if (judgeType(headerHander) != Type.SCROLL && judgeType(footerHander) != Type.SCROLL) {
@@ -324,7 +314,7 @@ public class SpringView extends ViewGroup {
             //设置下拉弹动高度，只有在>0时才生效，否则默认和临界高度一致
             int sh = headerHander.getDragSpringHeight(header);
             HEADER_SPRING_HEIGHT = sh > 0 ? sh : HEADER_LIMIT_HEIGHT;
-            HEADER_ENDING_HEIGHT = headerHander.getEndingAnimHight(header);
+            HEADER_ENDING_HEIGHT = headerHander.getEndingAnimHeight(header);
         } else {
             //不是动态设置的头部，设置默认值
             if (header != null) HEADER_LIMIT_HEIGHT = header.getMeasuredHeight();
@@ -338,7 +328,7 @@ public class SpringView extends ViewGroup {
             FOOTER_LIMIT_HEIGHT = h > 0 ? h : footer.getMeasuredHeight();
             int sh = footerHander.getDragSpringHeight(footer);
             FOOTER_SPRING_HEIGHT = sh > 0 ? sh : FOOTER_LIMIT_HEIGHT;
-            FOOTER_ENDING_HEIGHT = footerHander.getEndingAnimHight(footer);
+            FOOTER_ENDING_HEIGHT = footerHander.getEndingAnimHeight(footer);
         } else {
             if (footer != null) FOOTER_LIMIT_HEIGHT = footer.getMeasuredHeight();
             FOOTER_SPRING_HEIGHT = FOOTER_LIMIT_HEIGHT;
@@ -418,13 +408,14 @@ public class SpringView extends ViewGroup {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
-                hasCallFull = false;
-                hasCallRefresh = false;
-                hasCallEnding = false;
-                mfirstY = event.getY();
+                flag.hasCallFull = false;
+                flag.hasCallRefresh = false;
+                flag.hasCallEnding = false;
+                //手指拉动第一次的Y坐标
+                float firstY = event.getY();
                 isNeedMyMove = false;
                 //判断当前down事件是否发生在content区域
-                if (isTop() && mfirstY < -getScrollY()) {
+                if (isTop() && firstY < -getScrollY()) {
                     isContentDown = false;
                 } else {
                     isContentDown = true;
@@ -490,14 +481,11 @@ public class SpringView extends ViewGroup {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                isFirst = true;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isNeedMyMove) {
                     //按下的时候关闭回弹
                     needResetAnim = false;
-                    //执行位移操作
-                    doMove();
                     //下拉的时候显示header并隐藏footer，上拉的时候相反
                     if (isTop()) {
                         //TODO:
@@ -514,13 +502,12 @@ public class SpringView extends ViewGroup {
                             showHeaderAndFooter(false, true);
                         }
                     }
-                    //回调onDropAnim接口
-                    callbackOnDropAnim();
                     //回调callOnPreDrag接口
                     callbackOnPreDrag();
+                    //执行位移操作
+                    doMove();
                     //回调onLimitDes接口
                     callbackOnLimitDes();
-                    isFirst = false;
                     isInControl = true;
                 } else {
                     //手指在产生移动的时候（dy!=0）才重置位置
@@ -536,8 +523,7 @@ public class SpringView extends ViewGroup {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 needResetAnim = true;      //松开的时候打开回弹
-                isFirst = true;
-                _firstDrag = true;
+                flag.hasCallPreDrag = false;
                 restSmartPosition();
                 dsY = 0;
                 dy = 0;
@@ -633,26 +619,25 @@ public class SpringView extends ViewGroup {
         if (mScroller.computeScrollOffset()) {
             scrollTo(0, mScroller.getCurrY());
             lastScrollY = getScrollY();
-            callbackOnDropAnim();
             callOnScrollAndDrag();
             invalidate();
         }
         //在滚动动画完全结束后回调接口
         //滚动回调过程中mScroller.isFinished会多次返回true，导致判断条件被多次进入，设置标志位保证只调用一次
         if (!isMoveNow && mScroller.isFinished()) {
-            if (scrollAnimType == 0) {
-                if (!hasCallFull) {
-                    hasCallFull = true;
+            if (flag.scrollAnimType == 0) {
+                if (!flag.hasCallFull) {
+                    flag.hasCallFull = true;
                     callOnAfterFullAnim();
                 }
-            } else if (scrollAnimType == 1) {
-                if (!hasCallRefresh) {
-                    hasCallRefresh = true;
+            } else if (flag.scrollAnimType == 1) {
+                if (!flag.hasCallRefresh) {
+                    flag.hasCallRefresh = true;
                     callOnAfterRefreshAnim();
                 }
-            } else if (scrollAnimType == 2) {
-                if (!hasCallEnding) {
-                    hasCallEnding = true;
+            } else if (flag.scrollAnimType == 2) {
+                if (!flag.hasCallEnding) {
+                    flag.hasCallEnding = true;
                     callOnAfterEndingAnim();
                 }
             }
@@ -661,6 +646,10 @@ public class SpringView extends ViewGroup {
 
     //springView滚动或者拖拽的时候会执行该方法
     private void callOnScrollAndDrag() {
+        //回调onDropAnim接口
+        callbackOnDropAnim();
+        //回调onFinishAnim接口
+        callbackOnFinishAnim();
         //获取type，优先使用header/footer的返回值
         boolean top = isTop();
         boolean bottom = isBottom();
@@ -717,35 +706,49 @@ public class SpringView extends ViewGroup {
 
     //在完成全部动作后会执行此方法
     private void callOnAfterFullAnim() {
-        //回调onFinishAnim()
-        if (callFreshORload == 1) {
-            if (headerHander != null) headerHander.onFinishAnim();
+        //回调onResetAnim()
+        if (flag.callFreshOrLoad == 1 || flag.callFreshOrLoad == 3) {
+            if (headerHander != null) {
+                if (flag.callHeaderAnimFlag == 2) {
+                    headerHander.onResetAnim();
+                    flag.callHeaderAnimFlag = 0;
+                }
+            }
+        } else if (flag.callFreshOrLoad == 2 || flag.callFreshOrLoad == 4) {
+            if (footerHander != null) {
+                if (flag.callFooterAnimFlag == 2) {
+                    footerHander.onResetAnim();
+                    flag.callFooterAnimFlag = 0;
+                }
+            }
+        }
+        //回调onFinishDrag()
+        if (flag.callFreshOrLoad == 1) {
             if (headerHander != null) headerHander.onFinishDrag(header);
             //如果在回弹动作中没有进行回调(说明是设置为不可弹动状态)，那么在这里进行(但是callFresh例外)
             if (give == Give.BOTTOM || give == Give.NONE && !isCallFresh) {
                 listener.onRefresh();
             }
             isCallFresh = false;
-        } else if (callFreshORload == 2) {
-            if (footerHander != null) footerHander.onFinishAnim();
+        } else if (flag.callFreshOrLoad == 2) {
             if (footerHander != null) footerHander.onFinishDrag(footer);
             if (give == Give.TOP || give == Give.NONE) {
                 listener.onLoadmore();
             }
-        } else if (callFreshORload == 3) {
+        } else if (flag.callFreshOrLoad == 3) {
             if (headerHander != null) headerHander.onFinishDrag(header);
-        } else if (callFreshORload == 4) {
+        } else if (flag.callFreshOrLoad == 4) {
             if (footerHander != null) footerHander.onFinishDrag(footer);
         }
-        callFreshORload = 0;
+        flag.callFreshOrLoad = 0;
         //动画完成后检查是否需要切换header/footer，是则切换
-        if (needChangeHeader) {
-            needChangeHeader = false;
+        if (_headerHander != null) {
             _setHeader(_headerHander);
+            _headerHander = null;
         }
-        if (needChangeFooter) {
-            needChangeFooter = false;
+        if (_footerHander != null) {
             _setFooter(_footerHander);
+            _footerHander = null;
         }
         //动画完成后检查是否需要切换type，是则切换
         if (needChangeType) {
@@ -787,17 +790,29 @@ public class SpringView extends ViewGroup {
             if (footerHander != null) footerHander.onDropAnim(footer, -getScrollY());
     }
 
-    private boolean _firstDrag = true;
+    //回调自定义header/footer onFinishAnim接口
+    private void callbackOnFinishAnim() {
+        if (getScrollY() < 0 && getScrollY() > -10 && headerHander != null)
+            if (flag.callHeaderAnimFlag == 1) {
+                headerHander.onFinishAnim();
+                flag.callHeaderAnimFlag = 2;
+            }
+        if (getScrollY() > 0 && getScrollY() < 10 && footerHander != null)
+            if (flag.callFooterAnimFlag == 1) {
+                footerHander.onFinishAnim();
+                flag.callFooterAnimFlag = 2;
+            }
+    }
 
     //回调自定义header/footer OnPreDrag接口
     private void callbackOnPreDrag() {
-        if (_firstDrag) {
+        if (!flag.hasCallPreDrag) {
             if (isTop()) {
                 if (headerHander != null) headerHander.onPreDrag(header);
-                _firstDrag = false;
+                flag.hasCallPreDrag = true;
             } else if (isBottom()) {
                 if (footerHander != null) footerHander.onPreDrag(footer);
-                _firstDrag = false;
+                flag.hasCallPreDrag = true;
             }
         }
     }
@@ -825,11 +840,21 @@ public class SpringView extends ViewGroup {
 
     private void callbackOnStartAnim() {
         if (isTop()) {  //下拉
-            callFreshORload = 1;
-            if (headerHander != null) headerHander.onStartAnim();
+            flag.callFreshOrLoad = 1;
+            if (headerHander != null) {
+                if (flag.callHeaderAnimFlag == 0 || flag.callHeaderAnimFlag == 2) {
+                    headerHander.onStartAnim();
+                    flag.callHeaderAnimFlag = 1;
+                }
+            }
         } else if (isBottom()) {
-            callFreshORload = 2;
-            if (footerHander != null) footerHander.onStartAnim();
+            flag.callFreshOrLoad = 2;
+            if (footerHander != null) {
+                if (flag.callFooterAnimFlag == 0 || flag.callFooterAnimFlag == 2) {
+                    footerHander.onStartAnim();
+                    flag.callFooterAnimFlag = 1;
+                }
+            }
         }
     }
 
@@ -887,7 +912,7 @@ public class SpringView extends ViewGroup {
      * 重置控件位置到初始状态
      */
     private void resetPosition() {
-        scrollAnimType = 0;
+        flag.scrollAnimType = 0;
         isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
         mScroller.startScroll(0, getScrollY(), 0, -getScrollY(), MOVE_TIME);
         invalidate();
@@ -897,7 +922,7 @@ public class SpringView extends ViewGroup {
      * 重置控件位置到刷新状态（或加载状态）
      */
     private void resetRefreshPosition() {
-        scrollAnimType = 1;
+        flag.scrollAnimType = 1;
         isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
         if (getScrollY() < 0) {     //下拉
             mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
@@ -912,7 +937,7 @@ public class SpringView extends ViewGroup {
      * 重置到收场动画状态
      */
     private void resetEndingPosition() {
-        scrollAnimType = 2;
+        flag.scrollAnimType = 2;
         isInControl = false;    //重置位置的时候，滑动事件已经不在控件的控制中了
         if (getScrollY() < 0) {     //下拉
             if (headerHander != null) headerHander.onEndingAnimStart();
@@ -944,7 +969,7 @@ public class SpringView extends ViewGroup {
                         resetPosition();
                 } else {
                     //顶部拉动未超过limit位置
-                    callFreshORload = 3;
+                    flag.callFreshOrLoad = 3;
                     resetPosition();
                 }
             } else if (isBottom()) {
@@ -958,7 +983,7 @@ public class SpringView extends ViewGroup {
                         resetPosition();
                 } else {
                     //底部拉动未超过limit位置
-                    callFreshORload = 4;
+                    flag.callFreshOrLoad = 4;
                     resetPosition();
                 }
             }
@@ -970,11 +995,11 @@ public class SpringView extends ViewGroup {
      */
     private void _callFresh() {
         isCallFresh = true;
-        scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
+        flag.scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
         needResetAnim = true;   //允许执行回弹动画
-        hasCallRefresh = false;
-        hasCallFull = false;
-        callFreshORload = 1;
+        flag.hasCallRefresh = false;
+        flag.hasCallFull = false;
+        flag.callFreshOrLoad = 1;
         if (headerHander != null) {
             headerHander.onPreDrag(header);
             headerHander.onStartAnim();
@@ -1252,8 +1277,6 @@ public class SpringView extends ViewGroup {
         return footer;
     }
 
-    private boolean needChangeHeader = false;
-    private boolean needChangeFooter = false;
     private DragHander _headerHander;
     private DragHander _footerHander;
     private DragHander headerHander;
@@ -1279,7 +1302,6 @@ public class SpringView extends ViewGroup {
 
     public void setHeader(DragHander headerHander) {
         if (this.headerHander != null && isTop()) {
-            needChangeHeader = true;
             _headerHander = headerHander;
             resetPosition();
         } else {
@@ -1314,7 +1336,6 @@ public class SpringView extends ViewGroup {
 
     public void setFooter(DragHander footerHander) {
         if (this.footerHander != null && isBottom()) {
-            needChangeFooter = true;
             _footerHander = footerHander;
             resetPosition();
         } else {
@@ -1383,14 +1404,28 @@ public class SpringView extends ViewGroup {
         void onLimitDes(View rootView, boolean upORdown);
 
         /**
-         * 拉动超过临界点后松开时回调
+         * 开始动画回调：拉动超过临界点后松开时回调
+         * 和{@link #onFinishAnim()}总是成对调用
          */
         void onStartAnim();
 
         /**
-         * 头(尾)已经全部弹回时回调
+         * 结束动画回调：头(尾)即将全部弹回时回调
+         * 和{@link #onStartAnim()}总是成对调用
          */
         void onFinishAnim();
+
+        /**
+         * 头(尾)弹回已经彻底结束时回调
+         * onStartAnim在有效回弹开始时回调，onFinishAnim会在有效回弹结束时回调，但此时回弹动画并未完全完成
+         * 如果此项继续下拉则会继续触发onStartAnim -> onFinishAnim，而onResetAnim则会在回弹动画彻底结束后回调，可以在这个回调中进行释放动画资源等操作
+         * 增加这个接口主要是为了处理用户不断上下拉动疯狂拖拽header/footer时的手势兼容。
+         */
+        void onResetAnim();
+
+        //###########################################
+        //########### 收场动画相关接口 ##############
+        //###########################################
 
         /**
          * 收场动画执行时间
@@ -1400,7 +1435,7 @@ public class SpringView extends ViewGroup {
         /**
          * 收场动画回弹高度
          */
-        int getEndingAnimHight(View rootView);
+        int getEndingAnimHeight(View rootView);
 
         /**
          * 收场动画开始执行

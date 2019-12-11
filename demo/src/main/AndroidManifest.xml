@@ -34,6 +34,7 @@
         <activity android:name=".demo11.Demo11Activity" />
         <activity android:name=".demo12.Demo12Activity" />
         <activity android:name=".demo13.Demo13Activity" />
+        <activity android:name=".demo14.Demo14Activity" />
         <activity android:name=".demox.DemoXActivity" />
         <activity android:name=".test.TestActivity" />
         <activity android:name=".warning.WarningActivity" />

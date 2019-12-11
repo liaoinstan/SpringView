@@ -20,7 +20,7 @@ class ScrollCallbackHelper {
     /**
      * header 在移动时回调
      */
-    public void onHeaderMove(SpringView.DragHander headerHander, View header, int offsetTop) {
+    void onHeaderMove(SpringView.DragHander headerHander, View header, int offsetTop) {
         if (lastHeaderDropDy != offsetTop) {
             headerHander.onDropAnim(header, offsetTop);
             if (offsetTop == 0 && callFinishHeader) {
@@ -35,7 +35,7 @@ class ScrollCallbackHelper {
     /**
      * footer 在移动时回调
      */
-    public void onFooterMove(SpringView.DragHander footerHander, View footer, int offsetBottom) {
+    void onFooterMove(SpringView.DragHander footerHander, View footer, int offsetBottom) {
         if (lastFooterDropDy != offsetBottom) {
             footerHander.onDropAnim(footer, offsetBottom);
             if (offsetBottom == 0 && callFinishFooter) {
@@ -50,7 +50,7 @@ class ScrollCallbackHelper {
     /**
      * 滚动到了顶部时回调
      */
-    public void onScrollTop(SpringView.DragHander headerHander, SpringView.OnFreshListener listener) {
+    void onScrollTop(SpringView.DragHander headerHander, SpringView.OnFreshListener listener) {
         if (callStartHeader) {
             if (headerHander != null) headerHander.onStartAnim();
             if (listener != null) listener.onRefresh();
@@ -62,7 +62,7 @@ class ScrollCallbackHelper {
     /**
      * 滚动到了底部时回调
      */
-    public void onScrollBottom(SpringView.DragHander footerHander, SpringView.OnFreshListener listener) {
+    void onScrollBottom(SpringView.DragHander footerHander, SpringView.OnFreshListener listener) {
         if (callStartFooter) {
             if (footerHander != null) footerHander.onStartAnim();
             if (listener != null) listener.onLoadmore();
@@ -74,7 +74,7 @@ class ScrollCallbackHelper {
     /**
      * 页面内容高度是否足够显示footer的回调
      */
-    public void onScreenFull(SpringView.DragHander footerHander, View footer, boolean upORdown) {
+    void onScreenFull(SpringView.DragHander footerHander, View footer, boolean upORdown) {
         if (lastFooterInScreen == null || upORdown != lastFooterInScreen) {
             footerHander.onLimitDes(footer, upORdown);
             lastFooterInScreen = upORdown;

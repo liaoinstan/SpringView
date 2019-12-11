@@ -53,7 +53,7 @@ public abstract class BaseScrollFooter extends BaseSimpleFooter {
     }
 
     @Override
-    public final int getEndingAnimHight(View rootView) {
+    public final int getEndingAnimHeight(View rootView) {
         return 0;
     }
 
