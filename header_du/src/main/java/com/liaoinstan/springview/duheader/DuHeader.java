@@ -1,6 +1,5 @@
 package com.liaoinstan.springview.duheader;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,13 +49,11 @@ public class DuHeader extends BaseSimpleHeader {
 
     @Override
     public void onStartAnim() {
-        Log.e("xxx","onStartAnim");
         duView.startAnim();
     }
 
     @Override
     public void onFinishAnim() {
-        Log.e("xxx","onFinishAnim");
         duView.resetAnim();
     }
 }
