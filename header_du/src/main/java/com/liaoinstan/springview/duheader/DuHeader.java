@@ -5,17 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.liaoinstan.springview.container.BaseSimpleHeader;
-import com.liaoinstan.springview.utils.DensityUtil;
 
 public class DuHeader extends BaseSimpleHeader {
 
-    private View rootView;
     private DuView duView;
     private boolean hasOverSpringHeight;
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        rootView = inflater.inflate(R.layout.du_header, viewGroup, false);
+        View rootView = inflater.inflate(R.layout.du_header, viewGroup, false);
         duView = rootView.findViewById(R.id.du_view);
         return rootView;
     }
@@ -26,12 +24,12 @@ public class DuHeader extends BaseSimpleHeader {
         if (dy < 20) hasOverSpringHeight = false;
         if (dy >= dragLimitHeight) hasOverSpringHeight = true;
         if (!hasOverSpringHeight) {
-            if (dy < DensityUtil.dp2px(40)) {
-                duView.setProgress(100);
-            } else {
-                float lv = 1 - (float) (dy - DensityUtil.dp2px(40)) / (dragLimitHeight - DensityUtil.dp2px(40)); //0-1
-                duView.setProgress(lv * 100);
-            }
+            float lv = 1 - (float) (dy) / (dragLimitHeight); //1-0
+            duView.setProgress(lv * 100);
+            //向下偏移半个view高度，平滑拖拽
+            float height = duView.getMeasuredHeight() * 0.5f;
+            float tranY = height * lv;
+            duView.setTranslationY(tranY);
         } else {
             duView.setProgress(0);
         }
@@ -44,7 +42,6 @@ public class DuHeader extends BaseSimpleHeader {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-
     }
 
     @Override

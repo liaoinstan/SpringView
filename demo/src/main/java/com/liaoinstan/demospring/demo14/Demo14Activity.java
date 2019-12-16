@@ -31,9 +31,9 @@ public class Demo14Activity extends AppCompatActivity {
                 new Handler().postDelayed(() -> {
                     //0.5秒后再结束header刷新动画（模仿'毒'的延迟，大概0.5秒左右）
                     springView.onFinishFreshAndLoadDelay(500);
-                    //开始展开topBar顶部提示，并在3秒回自动收回
+                    //开始展开topBar顶部提示，并在2.5秒回自动收回
                     topBarFrameLayout.setTopBarText("为你更新20条新内容");
-                    topBarFrameLayout.showAndHideDelay(3000);
+                    topBarFrameLayout.showAndHideDelay(2500);
                 }, 2000);
             }
 

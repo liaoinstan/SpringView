@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -37,15 +38,24 @@ public class TopBarFrameLayout extends FrameLayout {
     protected void onFinishInflate() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_top_bar, this, true);
         textTopBar = findViewById(R.id.text_top_bar);
-        textTopBar.bringToFront();
         super.onFinishInflate();
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int measuredHeight = textTopBar.getMeasuredHeight();
+                textTopBar.setTranslationY(-measuredHeight);
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int measuredHeight = textTopBar.getMeasuredHeight();
-        textTopBar.setTranslationY(-measuredHeight);
+        if (isInEditMode()) {
+            int measuredHeight = textTopBar.getMeasuredHeight();
+            textTopBar.setTranslationY(-measuredHeight);
+        }
     }
 
     //底部导航条，展开收起动画
