@@ -1,6 +1,5 @@
 package com.liaoinstan.springview.rotationheader;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +7,6 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
-
-import androidx.core.content.ContextCompat;
 
 import com.liaoinstan.springview.container.BaseSimpleFooter;
 import com.liaoinstan.springview.widget.SpringView;
@@ -19,22 +16,16 @@ import com.liaoinstan.springview.widget.SpringView;
  * Created by Administrator on 2016/3/21.
  */
 public class RotationFooter extends BaseSimpleFooter {
-    private Context context;
-    private int rotationSrc;
 
     private RotateAnimation mRotateUpAnim;
-
     private ProgressBar footer_progress;
 
-    public RotationFooter(Context context) {
-        this(context, R.drawable.progress_gear);
-    }
+    //记录拖拽是否超过弹动高度
+    private boolean hasOverLimitHeight;
 
-    public RotationFooter(Context context, int rotationSrc) {
+    public RotationFooter() {
         setType(SpringView.Type.OVERLAP);
         setMovePara(2.0f);
-        this.context = context;
-        this.rotationSrc = rotationSrc;
 
         mRotateUpAnim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setInterpolator(new LinearInterpolator());
@@ -47,8 +38,12 @@ public class RotationFooter extends BaseSimpleFooter {
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View view = inflater.inflate(R.layout.rotation_footer, viewGroup, true);
         footer_progress = view.findViewById(R.id.rotation_footer_progress);
-        footer_progress.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));
         return view;
+    }
+
+    @Override
+    public int getDragLimitHeight(View rootView) {
+        return rootView.getMeasuredHeight();
     }
 
     @Override
@@ -57,8 +52,12 @@ public class RotationFooter extends BaseSimpleFooter {
 
     @Override
     public void onDropAnim(View rootView, int dy) {
-        float rota = 360 * Math.abs(dy) / rootView.getMeasuredHeight();
-        footer_progress.setRotation(rota);
+        int dragLimitHeight = getDragLimitHeight(rootView);
+        if (dy >= dragLimitHeight) hasOverLimitHeight = true;
+        if (!hasOverLimitHeight) {
+            float rota = 360 * Math.abs(dy) / rootView.getMeasuredHeight();
+            footer_progress.setRotation(rota);
+        }
     }
 
     @Override
@@ -73,5 +72,6 @@ public class RotationFooter extends BaseSimpleFooter {
     @Override
     public void onFinishAnim() {
         footer_progress.clearAnimation();
+        hasOverLimitHeight = false;
     }
 }

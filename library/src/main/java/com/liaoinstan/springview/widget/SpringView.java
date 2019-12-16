@@ -14,7 +14,6 @@ import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ScrollingView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +33,11 @@ public class SpringView extends ViewGroup {
     public enum Give {BOTH, TOP, BOTTOM, NONE}
 
     //拖拽类型
+    //OVERLAP 重叠
+    //FOLLOW  跟随
+    //DRAG    拖拽
+    //SCROLL  滚动：目前该模式不支持ListView(建议使用RecyclerView代替，主要原因是由于ListView本身设计存在缺陷无法准确地计算出内容高度)
+    //              ScrollView不支持6.0之前(建议使用NestedScrollView代替，主要原因是ScrollView的滚动接口只支持6.0之后的版本)
     public enum Type {OVERLAP, FOLLOW, DRAG, SCROLL}
 
     private Context context;
@@ -94,8 +98,12 @@ public class SpringView extends ViewGroup {
     private boolean appBarCouldScroll = false;
 
     //保存上次ContentView的paddingTop和paddingBottom
-    int paddingTopContent;
-    int paddingBottomContent;
+    private int paddingTopContent;
+    private int paddingBottomContent;
+
+    private RecyclerView.OnScrollListener onRecyclerScrollListener;
+    private NestedScrollView.OnScrollChangeListener onNestedScrollChangeListener;
+    private OnScrollChangeListener onScrollChangeListener;
 
     @Override
     protected void onAttachedToWindow() {
@@ -157,15 +165,7 @@ public class SpringView extends ViewGroup {
             return;
         }
         setPadding(0, 0, 0, 0);
-        if (headerResourceId != 0) {
-            _setHeader(new InnerHeader(headerResourceId));
-        }
-        if (footerResourceId != 0) {
-            _setFooter(new InnerFooter(footerResourceId));
-        }
-
         //找到当前布局下可以滚动的view
-
         if (SpringHelper.isViewCouldScroll(content)) {
             //如果内容是可以滚动的view，则直接设置contentLay,contentView
             contentLay = content;
@@ -183,31 +183,59 @@ public class SpringView extends ViewGroup {
             contentLay = content;
         }
 
-        //TODO:在需要的时候才设置监听器？
-        if (contentView instanceof RecyclerView) {
-            //TODO:recyclerView在设置这个监听器的时候就会自动调用一次，ScrollView不会
-            ((RecyclerView) contentView).addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    paddingScroll();
-                }
-            });
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                contentView.setOnScrollChangeListener(new OnScrollChangeListener() {
-                    @Override
-                    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                        paddingScroll();
-                    }
-                });
-            }
-        }
-
         //保存padding
         paddingTopContent = contentView.getPaddingTop();
         paddingBottomContent = contentView.getPaddingBottom();
 
+        //初始化ScrollListener
+        onRecyclerScrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                paddingScroll();
+            }
+        };
+        onNestedScrollChangeListener = new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                paddingScroll();
+            }
+        };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            onScrollChangeListener = new OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    paddingScroll();
+                }
+            };
+        } else {
+            onScrollChangeListener = null;
+        }
+
+        //如果在布局中设置了header/footer则开始初始化
+        if (headerResourceId != 0) {
+            _setHeader(new InnerHeader(headerResourceId));
+        }
+        if (footerResourceId != 0) {
+            _setFooter(new InnerFooter(footerResourceId));
+        }
+
         super.onFinishInflate();
+    }
+
+    private void setScrollChangeListener() {
+        if (judgeType(headerHander) == Type.SCROLL || judgeType(footerHander) == Type.SCROLL) {
+            if (contentView instanceof RecyclerView) {
+                //recyclerView在设置这个监听器的时候就会自动调用一次回调函数，ScrollView不会
+                ((RecyclerView) contentView).removeOnScrollListener(onRecyclerScrollListener);
+                ((RecyclerView) contentView).addOnScrollListener(onRecyclerScrollListener);
+            } else if (contentView instanceof NestedScrollView) {
+                ((NestedScrollView) contentView).setOnScrollChangeListener(onNestedScrollChangeListener);
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    contentView.setOnScrollChangeListener(onScrollChangeListener);
+                }
+            }
+        }
     }
 
     private void paddingScroll() {
@@ -216,25 +244,30 @@ public class SpringView extends ViewGroup {
         }
         //计算内容高度和滚动距离
         int contentHeight;
+        int contentViewHeight;
         int scrollY;
         if (contentView instanceof RecyclerView) {
             contentHeight = ((RecyclerView) contentView).computeVerticalScrollRange();
             scrollY = ((RecyclerView) contentView).computeVerticalScrollOffset();
+            contentViewHeight = ((RecyclerView) contentView).computeVerticalScrollExtent();
         } else if (contentView instanceof NestedScrollView) {
             //不知道为何，NestedScrollView获取computeVerticalScrollRange的结果会莫名奇妙多出一个paddingTop的高度？
-            contentHeight = ((ScrollingView) contentView).computeVerticalScrollRange() - contentView.getPaddingTop();
-            scrollY = contentView.getScrollY();
+            contentHeight = ((NestedScrollView) contentView).computeVerticalScrollRange() - contentView.getPaddingTop();
+            scrollY = ((NestedScrollView) contentView).computeVerticalScrollOffset();
+            contentViewHeight = ((NestedScrollView) contentView).computeVerticalScrollExtent() - contentView.getPaddingBottom() - contentView.getPaddingTop();
         } else if (contentView instanceof ScrollView) {
             contentHeight = ((ViewGroup) contentView).getChildAt(0).getMeasuredHeight();
             scrollY = contentView.getScrollY();
+            contentViewHeight = contentView.getMeasuredHeight() - contentView.getPaddingBottom() - contentView.getPaddingTop();
         } else {
-            //TODO:?contentView是其他的情况
+            //TODO:contentView是其他的情况，做默认处理
             contentHeight = contentView.getMeasuredHeight();
             scrollY = contentView.getScrollY();
+            contentViewHeight = contentView.getMeasuredHeight() - contentView.getPaddingBottom() - contentView.getPaddingTop();
         }
 
         //可滚动最大高度
-        int maxY = contentHeight - contentView.getMeasuredHeight() + contentView.getPaddingBottom() + contentView.getPaddingTop();
+        int maxY = contentHeight - contentViewHeight;
         if (maxY < 0) maxY = 0;
         //上下部分滚动距离
         //int offsetBottom = footer.getMeasuredHeight() - (maxY - scrollY);
@@ -272,7 +305,7 @@ public class SpringView extends ViewGroup {
                 scrollCallbackHelper.onScrollTop(headerHander, listener);
             }
         }
-        if (scrollY == maxY) {
+        if (scrollY >= maxY) {
             //滚动到了底部
             //如果maxY=0则内部高度不足一屏，此时scrollY也为0，可以认为此时既在顶部同时也在底部
             if (judgeType(footerHander) == Type.SCROLL) {
@@ -337,13 +370,11 @@ public class SpringView extends ViewGroup {
         boolean needFooterScroll = footerHander != null && judgeType(footerHander) == Type.SCROLL;
         if (needHeaderScroll || needFooterScroll) {
             //设置padding
+            int paddingTopAdd = needHeaderScroll ? HEADER_SPRING_HEIGHT : 0;
+            int paddingBottomAdd = needFooterScroll ? FOOTER_SPRING_HEIGHT : 0;
+            contentView.setPadding(0, paddingTopContent + paddingTopAdd, 0, paddingBottomContent + paddingBottomAdd);
             if (contentView instanceof ViewGroup) {
-                int paddingTopAdd = needHeaderScroll ? HEADER_SPRING_HEIGHT : 0;
-                int paddingBottomAdd = needFooterScroll ? FOOTER_SPRING_HEIGHT : 0;
-                contentView.setPadding(0, paddingTopContent + paddingTopAdd, 0, paddingBottomContent + paddingBottomAdd);
                 ((ViewGroup) contentView).setClipToPadding(false);
-            } else {
-                //TODO:
             }
         } else {
             contentView.setPadding(0, paddingTopContent, 0, paddingBottomContent);
@@ -414,12 +445,8 @@ public class SpringView extends ViewGroup {
                 //手指拉动第一次的Y坐标
                 float firstY = event.getY();
                 isNeedMyMove = false;
-                //判断当前down事件是否发生在content区域
-                if (isTop() && firstY < -getScrollY()) {
-                    isContentDown = false;
-                } else {
-                    isContentDown = true;
-                }
+                //判断当前down事件是否发生在content区域（当前正在拖拽header && 点击区域在ScrollY内）
+                isContentDown = !(isTop() && firstY < -getScrollY());
                 break;
             }
             case MotionEvent.ACTION_MOVE:
@@ -447,7 +474,7 @@ public class SpringView extends ViewGroup {
                 isNeedMyMove = isNeedMyMove(event);
                 //如果内部控件既在顶部又在最底部，那说明该控件内容不足一屏，还不足以滚动
                 boolean isNotFull = isTop && isBottom;
-                //如果down事件是不是在content区域发生的（比如说header内），则不对这个事件进行跟踪转发
+                //如果down事件不是在content区域发生的（比如说header内），则不对这个事件进行跟踪转发
                 if (isNeedMyMove && !isInControl && !isNotFull && isContentDown) {
                     //把内部控件的事件转发给本控件处理
                     isInControl = true;
@@ -459,8 +486,6 @@ public class SpringView extends ViewGroup {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                isMoveNow = false;
-                break;
             case MotionEvent.ACTION_CANCEL:
                 isMoveNow = false;
                 break;
@@ -481,6 +506,7 @@ public class SpringView extends ViewGroup {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                performClick();
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isNeedMyMove) {
@@ -488,19 +514,11 @@ public class SpringView extends ViewGroup {
                     needResetAnim = false;
                     //下拉的时候显示header并隐藏footer，上拉的时候相反
                     if (isTop()) {
-                        //TODO:
-                        if (judgeType(footerHander) == Type.SCROLL) {
-                            showHeaderAndFooter(true, true);
-                        } else {
-                            showHeaderAndFooter(true, false);
-                        }
+                        boolean showFooter = judgeType(footerHander) == Type.SCROLL;
+                        showHeaderAndFooter(true, showFooter);
                     } else if (isBottom()) {
-                        //TODO:
-                        if (judgeType(headerHander) == Type.SCROLL) {
-                            showHeaderAndFooter(true, true);
-                        } else {
-                            showHeaderAndFooter(false, true);
-                        }
+                        boolean showHeader = judgeType(headerHander) == Type.SCROLL;
+                        showHeaderAndFooter(showHeader, true);
                     }
                     //回调callOnPreDrag接口
                     callbackOnPreDrag();
@@ -588,6 +606,11 @@ public class SpringView extends ViewGroup {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
     }
 
     //执行位移操作
@@ -686,7 +709,7 @@ public class SpringView extends ViewGroup {
             if (header != null) header.setTranslationY(0);
             if (footer != null) footer.setTranslationY(0);
         }
-        //TODO：只在onScrollChanged回调会有闪烁
+        //只在onScrollChanged回调会有闪烁
         paddingScroll();
     }
 
@@ -1009,10 +1032,10 @@ public class SpringView extends ViewGroup {
         invalidate();
     }
 
-    private void showHeaderAndFooter(boolean showHeader, boolean showFooter) {
-        if (header != null)
+    private void showHeaderAndFooter(Boolean showHeader, Boolean showFooter) {
+        if (header != null && showHeader != null)
             header.setVisibility(showHeader ? View.VISIBLE : View.INVISIBLE);
-        if (footer != null)
+        if (footer != null && showFooter != null)
             footer.setVisibility(showFooter ? View.VISIBLE : View.INVISIBLE);
     }
 
@@ -1083,6 +1106,7 @@ public class SpringView extends ViewGroup {
      */
     private void _setType(Type type) {
         this.type = type;
+        setScrollChangeListener();
         requestLayout();
         needChangeType = false;
         if (header != null) header.setTranslationY(0);
@@ -1331,6 +1355,7 @@ public class SpringView extends ViewGroup {
             addView(tempView);
             this.header = tempView;
         }
+        setScrollChangeListener();
         requestLayout();
     }
 
@@ -1359,6 +1384,7 @@ public class SpringView extends ViewGroup {
             addView(tempView);
             this.footer = tempView;
         }
+        setScrollChangeListener();
         requestLayout();
     }
 

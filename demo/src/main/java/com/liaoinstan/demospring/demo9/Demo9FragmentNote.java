@@ -2,13 +2,13 @@ package com.liaoinstan.demospring.demo9;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.rotationheader.RotationFooter;
@@ -56,8 +56,8 @@ public class Demo9FragmentNote extends Fragment {
     private void initView() {
         //初始化SpringView
         springView = rootView.findViewById(R.id.springview);
-        springView.setHeader(new RotationHeader(getContext()));
-        springView.setFooter(new RotationFooter(getContext()));
+        springView.setHeader(new RotationHeader());
+        springView.setFooter(new RotationFooter());
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

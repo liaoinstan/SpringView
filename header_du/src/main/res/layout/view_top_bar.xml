@@ -1,0 +1,9 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_top_bar"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="#ECECF0"
+    android:gravity="center"
+    android:text="为你更新20条新内容"
+    android:textColor="#333333"
+    android:textSize="11sp" />

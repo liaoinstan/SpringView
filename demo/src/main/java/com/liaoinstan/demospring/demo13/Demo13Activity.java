@@ -13,19 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.aliheader.AliHeader;
 import com.liaoinstan.springview.container.AutoFooter;
+import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Demo13Activity extends AppCompatActivity {
-    private List<String> mDatas = new ArrayList<String>();
+    private List<String> mDatas = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -41,13 +43,13 @@ public class Demo13Activity extends AppCompatActivity {
         initData();
 
         recyclerView = findViewById(R.id.recycle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL));
+//        recyclerView.setLayoutManager(new GridLayoutManager(Demo13Activity.this, 2, RecyclerView.VERTICAL, false));
         recyclerViewAdapter = new RecyclerViewAdapter(mDatas);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         springView = findViewById(R.id.springview);
-        springView.setType(SpringView.Type.SCROLL);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -115,13 +117,15 @@ public class Demo13Activity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull final SampleViewHolder holder, final int position) {
             holder.text_item.setText(results.get(position));
-            if (position % 2 == 1) {
-                holder.text_item.setBackgroundColor(Color.parseColor("#e3f1fc"));
-                holder.text_item.setTextColor(Color.parseColor("#9dd2fc"));
-            } else {
-                holder.text_item.setBackgroundColor(Color.parseColor("#4468b3f3"));
-                holder.text_item.setTextColor(Color.parseColor("#ffffff"));
-            }
+            Random random = new Random(position);
+            //瀑布流：给item设置一个随机的颜色
+            int color = Color.argb(88, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+            holder.text_item.setBackgroundColor(color);
+            holder.text_item.setTextColor(Color.WHITE);
+            //瀑布流：给item设置一个随机的高度
+            ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+            layoutParams.height = 300 + DensityUtil.dp2px(random.nextInt(60));
+            holder.itemView.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -134,9 +138,6 @@ public class Demo13Activity extends AppCompatActivity {
 
             SampleViewHolder(View view) {
                 super(view);
-                ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
-                layoutParams.height = 250;
-                itemView.setLayoutParams(layoutParams);
                 text_item = view.findViewById(R.id.item_text);
             }
         }

@@ -48,12 +48,12 @@ public class QQHeader extends BaseSimpleHeader {
 
     @Override
     public void onPreDrag(View rootView) {
+        dotcount++;
+        text_dot.setText("x" + dotcount);
     }
 
     @Override
     public void onFinishDrag(View rootView) {
-        dotcount++;
-        text_dot.setText("x" + dotcount);
     }
 
     @Override

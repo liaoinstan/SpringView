@@ -10,19 +10,22 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="#00000000"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#18cfbe"
+            android:background="#cc000000"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="Demo14Activity" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <com.liaoinstan.springview.duheader.TopBarFrameLayout
+        android:id="@+id/top_bar_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -55,10 +58,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#dbfbf8"
+                        android:background="#ECECF0"
                         android:gravity="center"
                         android:text="这是一个仿'毒'APP的效果"
-                        android:textColor="#18cfbe"
+                        android:textColor="#333333"
                         android:textSize="12sp" />
 
                     <TextView
@@ -69,7 +72,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#dbfbf8" />
+                        android:background="#ECECF0" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -79,7 +82,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#dbfbf8" />
+                        android:background="#ECECF0" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -89,13 +92,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="#dbfbf8" />
+                        android:background="#ECECF0" />
 
                 </LinearLayout>
             </ScrollView>
 
         </com.liaoinstan.springview.widget.SpringView>
 
-    </LinearLayout>
-
+    </com.liaoinstan.springview.duheader.TopBarFrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

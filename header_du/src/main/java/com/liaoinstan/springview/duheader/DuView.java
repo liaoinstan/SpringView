@@ -132,7 +132,7 @@ public class DuView extends View {
             }
             postInvalidate();
 
-            postDelayed(runnable, 100);
+            postDelayed(runnable, 70);
         }
     };
 
