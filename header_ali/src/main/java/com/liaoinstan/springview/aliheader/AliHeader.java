@@ -69,7 +69,7 @@ public class AliHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.ali_header, viewGroup, true);
+        View view = inflater.inflate(R.layout.ali_header, viewGroup, false);
         headerTitle = view.findViewById(R.id.ali_header_text);
         headerArrow = view.findViewById(R.id.ali_header_arrow);
         headerLogo = view.findViewById(R.id.ali_header_logo);

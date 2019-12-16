@@ -36,7 +36,7 @@ public class RotationFooter extends BaseSimpleFooter {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.rotation_footer, viewGroup, true);
+        View view = inflater.inflate(R.layout.rotation_footer, viewGroup, false);
         footer_progress = view.findViewById(R.id.rotation_footer_progress);
         return view;
     }

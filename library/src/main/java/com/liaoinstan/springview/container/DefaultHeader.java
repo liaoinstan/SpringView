@@ -59,7 +59,7 @@ public class DefaultHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.default_header, viewGroup, true);
+        View view = inflater.inflate(R.layout.default_header, viewGroup, false);
         headerTitle = view.findViewById(R.id.default_header_title);
         headerTime = view.findViewById(R.id.default_header_time);
         headerArrow = view.findViewById(R.id.default_header_arrow);

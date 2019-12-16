@@ -44,7 +44,7 @@ public class WangyiHeader extends BaseHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.wangyi_header, viewGroup, true);
+        View view = inflater.inflate(R.layout.wangyi_header, viewGroup, false);
         circle_round = view.findViewById(R.id.circle_round);
         text_ending_title = view.findViewById(R.id.text_ending_title);
         lay_circle = view.findViewById(R.id.lay_circle);

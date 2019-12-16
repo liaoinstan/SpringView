@@ -852,9 +852,9 @@ public class SpringView extends ViewGroup {
             }
         } else {
             //上拉
-            if (Math.abs(scrollY) >= HEADER_LIMIT_HEIGHT && Math.abs(lastScrollY) < HEADER_LIMIT_HEIGHT) {
+            if (Math.abs(scrollY) >= FOOTER_LIMIT_HEIGHT && Math.abs(lastScrollY) < FOOTER_LIMIT_HEIGHT) {
                 if (footerHander != null) footerHander.onLimitDes(header, true);
-            } else if (Math.abs(scrollY) <= HEADER_LIMIT_HEIGHT && Math.abs(lastScrollY) > HEADER_LIMIT_HEIGHT) {
+            } else if (Math.abs(scrollY) <= FOOTER_LIMIT_HEIGHT && Math.abs(lastScrollY) > FOOTER_LIMIT_HEIGHT) {
                 if (footerHander != null) footerHander.onLimitDes(header, false);
             }
         }

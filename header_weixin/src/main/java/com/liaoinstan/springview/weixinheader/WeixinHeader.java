@@ -59,7 +59,7 @@ public class WeixinHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View root = inflater.inflate(R.layout.weixin_header, viewGroup, true);
+        View root = inflater.inflate(R.layout.weixin_header, viewGroup, false);
         recycler = root.findViewById(R.id.recycler);
         img_dot1 = root.findViewById(R.id.img_dot1);
         img_dot2 = root.findViewById(R.id.img_dot2);

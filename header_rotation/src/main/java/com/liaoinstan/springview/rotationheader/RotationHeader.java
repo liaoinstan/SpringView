@@ -68,7 +68,7 @@ public class RotationHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.rotation_header, viewGroup, true);
+        View view = inflater.inflate(R.layout.rotation_header, viewGroup, false);
         progress1 = view.findViewById(R.id.progress1);
         progress2 = view.findViewById(R.id.progress2);
         progress3 = view.findViewById(R.id.progress3);

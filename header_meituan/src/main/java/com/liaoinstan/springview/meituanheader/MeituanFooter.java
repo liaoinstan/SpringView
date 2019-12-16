@@ -41,7 +41,7 @@ public class MeituanFooter extends BaseSimpleFooter {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.meituan_footer, viewGroup, true);
+        View view = inflater.inflate(R.layout.meituan_footer, viewGroup, false);
         footer_img = view.findViewById(R.id.meituan_footer_img);
         if (animationLoading != null) {
             footer_img.setImageDrawable(animationLoading);

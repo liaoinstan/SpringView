@@ -34,7 +34,7 @@ public class DefaultFooter extends BaseSimpleFooter {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.default_footer, viewGroup, true);
+        View view = inflater.inflate(R.layout.default_footer, viewGroup, false);
         footerTitle = view.findViewById(R.id.default_footer_title);
         footerProgressbar = view.findViewById(R.id.default_footer_progressbar);
         footerProgressbar.setIndeterminateDrawable(ContextCompat.getDrawable(context, rotationSrc));

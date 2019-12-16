@@ -26,7 +26,7 @@ public class QQHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.header_qq, viewGroup, true);
+        View view = inflater.inflate(R.layout.header_qq, viewGroup, false);
         text_dot = view.findViewById(R.id.text_dot);
         return view;
     }

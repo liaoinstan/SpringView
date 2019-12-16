@@ -57,7 +57,7 @@ public class MeituanHeader extends BaseSimpleHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.meituan_header, viewGroup, true);
+        View view = inflater.inflate(R.layout.meituan_header, viewGroup, false);
         header_img = view.findViewById(R.id.meituan_header_img);
         if (pullAnimSrcs != null && pullAnimSrcs.length > 0)
             header_img.setImageResource(pullAnimSrcs[0]);

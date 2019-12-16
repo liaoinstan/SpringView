@@ -18,7 +18,7 @@ public class WarningHeader extends BaseHeader {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.header_warning, viewGroup, true);
+        View view = inflater.inflate(R.layout.header_warning, viewGroup, false);
         textView = view.findViewById(R.id.textView);
         return view;
     }

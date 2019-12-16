@@ -69,11 +69,11 @@ public class AliFooter extends BaseSimpleFooter {
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.ali_footer, viewGroup, true);
-        footerTitle = (TextView) view.findViewById(R.id.ali_footer_text);
-        footerArrow = (ImageView) view.findViewById(R.id.ali_footer_arrow);
-        footerLogo = (ImageView) view.findViewById(R.id.ali_footer_logo);
-        footerProgressbar = (ProgressBar) view.findViewById(R.id.ali_footer_progressbar);
+        View view = inflater.inflate(R.layout.ali_footer, viewGroup, false);
+        footerTitle = view.findViewById(R.id.ali_footer_text);
+        footerArrow = view.findViewById(R.id.ali_footer_arrow);
+        footerLogo = view.findViewById(R.id.ali_footer_logo);
+        footerProgressbar = view.findViewById(R.id.ali_footer_progressbar);
         frame = view.findViewById(R.id.ali_frame);
         if (logoSrc != 0) footerLogo.setImageResource(logoSrc);
         if (!isShowText) footerTitle.setVisibility(View.GONE);
