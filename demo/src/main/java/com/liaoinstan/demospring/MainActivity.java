@@ -2,14 +2,16 @@ package com.liaoinstan.demospring;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.liaoinstan.demospring.demo1.Demo1Activity;
 import com.liaoinstan.demospring.demo10.Demo10Activity;
 import com.liaoinstan.demospring.demo11.Demo11Activity;
-import com.liaoinstan.demospring.demo13.Demo13Activity;
 import com.liaoinstan.demospring.demo12.Demo12Activity;
+import com.liaoinstan.demospring.demo13.Demo13Activity;
+import com.liaoinstan.demospring.demo14.Demo14Activity;
 import com.liaoinstan.demospring.demo2.Demo2Activity;
 import com.liaoinstan.demospring.demo3.Demo3Activity;
 import com.liaoinstan.demospring.demo4.Demo4Activity;
@@ -18,6 +20,7 @@ import com.liaoinstan.demospring.demo6.Demo6Activity;
 import com.liaoinstan.demospring.demo7.Demo7Activity;
 import com.liaoinstan.demospring.demo8.Demo8Activity;
 import com.liaoinstan.demospring.demo9.Demo9Activity;
+import com.liaoinstan.demospring.demox.DemoXActivity;
 import com.liaoinstan.demospring.test.TestActivity;
 import com.liaoinstan.demospring.warning.WarningActivity;
 
@@ -81,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.demo13:
                 intent.setClass(this, Demo13Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demo14:
+                intent.setClass(this, Demo14Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.demox:
+                intent.setClass(this, DemoXActivity.class);
                 startActivity(intent);
                 break;
             case R.id.warning:

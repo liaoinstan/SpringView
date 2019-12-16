@@ -156,7 +156,7 @@ public class WangyiHeader extends BaseHeader {
     }
 
     @Override
-    public int getEndingAnimHight(View rootView) {
+    public int getEndingAnimHeight(View rootView) {
         return text_ending_title.getMeasuredHeight();
     }
 }

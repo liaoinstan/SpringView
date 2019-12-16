@@ -6,18 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by liaoinstan on 2016/3/23.
  */
-public class AcFunHeader extends BaseHeader {
+public class AcFunHeader extends BaseSimpleHeader {
     private Context context;
     private int imgSrc;
     private ImageView acfun_header_img;
 
     public AcFunHeader(Context context, int imgSrc) {
+        setType(SpringView.Type.OVERLAP);
+        setMovePara(2.0f);
         this.context = context;
         this.imgSrc = imgSrc;
     }

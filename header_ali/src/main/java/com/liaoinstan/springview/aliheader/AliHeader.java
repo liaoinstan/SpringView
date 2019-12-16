@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class AliHeader extends BaseHeader {
+public class AliHeader extends BaseSimpleHeader {
     private Context context;
     private int rotationSrc;
     private int arrowSrc;
@@ -51,6 +52,8 @@ public class AliHeader extends BaseHeader {
     }
 
     public AliHeader(Context context, int rotationSrc, int arrowSrc, int logoSrc, boolean isShowText) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;

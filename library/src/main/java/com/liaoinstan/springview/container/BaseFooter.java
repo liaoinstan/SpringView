@@ -11,6 +11,8 @@ import com.liaoinstan.springview.widget.SpringView;
  */
 public abstract class BaseFooter implements SpringView.DragHander {
 
+    public String TAG = getClass().getSimpleName();
+
     /**
      * 这个方法用于设置当前View的临界高度(limit hight)，即拉动到多少会被认定为刷新操作，而没到达该高度则不会执行刷新
      * 返回值大于0才有效，如果<=0 则设置为默认footer的高度
@@ -42,11 +44,22 @@ public abstract class BaseFooter implements SpringView.DragHander {
 
     /**
      * 设置移动参数
+     * 如果你的footer实现了该接口，那么SpringView会优先使用该接口返回的结果（忽略掉:SpringView.setMovePara()）
+     * 添加这个接口的目的是为了让不同的footer能够自行定义自己的摩擦阻力，而不再是由SpringView进行设置
      * 返回值大于0才有效，默认返回0
      */
     @Override
     public float getMovePara() {
         return 0;
+    }
+
+    /**
+     * 返回header的拖动方式:type
+     * 返回值非null才有效，默认返回null
+     */
+    @Override
+    public SpringView.Type getType() {
+        return null;
     }
 
     /**
@@ -61,6 +74,10 @@ public abstract class BaseFooter implements SpringView.DragHander {
      */
     @Override
     public void onFinishDrag(View rootView) {
+    }
+
+    @Override
+    public void onResetAnim() {
     }
 
     //###################################################
@@ -83,7 +100,7 @@ public abstract class BaseFooter implements SpringView.DragHander {
      * 默认返回0
      */
     @Override
-    public int getEndingAnimHight(View rootView) {
+    public int getEndingAnimHeight(View rootView) {
         return 0;
     }
 

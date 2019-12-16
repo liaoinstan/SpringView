@@ -1,7 +1,6 @@
 package com.liaoinstan.springview.aliheader;
 
 import android.content.Context;
-import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.liaoinstan.springview.container.BaseFooter;
+import androidx.core.content.ContextCompat;
+
+import com.liaoinstan.springview.container.BaseSimpleFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class AliFooter extends BaseFooter {
+public class AliFooter extends BaseSimpleFooter {
     private Context context;
     private int rotationSrc;
     private int arrowSrc;
@@ -50,6 +52,8 @@ public class AliFooter extends BaseFooter {
     }
 
     public AliFooter(Context context, int rotationSrc, int arrowSrc, int logoSrc, boolean isShowText) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         this.rotationSrc = rotationSrc;
         this.arrowSrc = arrowSrc;

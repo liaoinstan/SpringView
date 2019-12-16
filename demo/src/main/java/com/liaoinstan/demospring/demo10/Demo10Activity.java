@@ -2,6 +2,7 @@ package com.liaoinstan.demospring.demo10;
 
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -29,7 +30,6 @@ public class Demo10Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         springView = findViewById(R.id.springview);
-        springView.setType(SpringView.Type.DRAG);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
@@ -41,7 +41,8 @@ public class Demo10Activity extends AppCompatActivity {
                 new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 2000);
             }
         });
-        springView.setHeader(new MeituanHeader(this, pullAnimSrcs, refreshAnimSrcs));
-        springView.setFooter(new MeituanFooter(this, loadingAnimSrcs));
+        //给header和footer设置为DRAG模式
+        springView.setHeader(new MeituanHeader(this, pullAnimSrcs, refreshAnimSrcs).setType(SpringView.Type.DRAG));
+        springView.setFooter(new MeituanFooter(this, loadingAnimSrcs).setType(SpringView.Type.DRAG));
     }
 }

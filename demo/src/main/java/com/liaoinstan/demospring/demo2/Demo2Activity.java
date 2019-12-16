@@ -3,14 +3,15 @@ package com.liaoinstan.demospring.demo2;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.liaoinstan.demospring.R;
 import com.liaoinstan.springview.rotationheader.RotationFooter;
@@ -52,8 +53,8 @@ public class Demo2Activity extends AppCompatActivity {
                 new Handler().postDelayed(() -> springView.onFinishFreshAndLoad(), 1000);
             }
         });
-        springView.setHeader(new RotationHeader(this));
-        springView.setFooter(new RotationFooter(this));
+        springView.setHeader(new RotationHeader());
+        springView.setFooter(new RotationFooter());
     }
 
     private void initData() {

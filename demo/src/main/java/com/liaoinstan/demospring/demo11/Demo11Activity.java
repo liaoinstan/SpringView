@@ -40,7 +40,6 @@ public class Demo11Activity extends AppCompatActivity implements WeixinHeader.On
         setSupportActionBar(toolbar);
 
         springView = findViewById(R.id.springview);
-        springView.setMovePara(1.5f);
         springView.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {

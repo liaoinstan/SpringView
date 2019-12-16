@@ -9,12 +9,13 @@ import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
-import com.liaoinstan.springview.container.BaseFooter;
+import com.liaoinstan.springview.container.BaseSimpleFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class MeituanFooter extends BaseFooter {
+public class MeituanFooter extends BaseSimpleFooter {
 
     private AnimationDrawable animationLoading;
 
@@ -27,6 +28,8 @@ public class MeituanFooter extends BaseFooter {
     }
 
     public MeituanFooter(Context context, int[] loadingAnimSrcs) {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(2.0f);
         this.context = context;
         if (loadingAnimSrcs != null) this.loadingAnimSrcs = loadingAnimSrcs;
         animationLoading = new AnimationDrawable();

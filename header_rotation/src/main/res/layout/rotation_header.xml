@@ -4,46 +4,51 @@
 
 
     <ProgressBar
+        android:id="@+id/progress1"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="-60dp"
-        android:id="@+id/progress1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-60dp"
+        android:indeterminateDrawable="@drawable/progress_gear" />
 
     <ProgressBar
+        android:id="@+id/progress2"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:id="@+id/progress2"
+        android:layout_below="@+id/progress1"
         android:layout_marginTop="-30dp"
         android:layout_marginRight="-30dp"
-        android:layout_below="@+id/progress1"
+        android:layout_toStartOf="@+id/progress1"
         android:layout_toLeftOf="@+id/progress1"
-        android:layout_toStartOf="@+id/progress1" />
+        android:indeterminateDrawable="@drawable/progress_gear_fu" />
 
     <ProgressBar
         android:id="@+id/progress3"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="-20dp"
         android:layout_below="@+id/progress1"
+        android:layout_marginTop="-20dp"
+        android:layout_toEndOf="@+id/progress1"
         android:layout_toRightOf="@+id/progress1"
-        android:layout_toEndOf="@+id/progress1" />
+        android:indeterminateDrawable="@drawable/progress_gear_fu" />
 
     <ProgressBar
+        android:id="@+id/progress4"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/progress4"
         android:layout_below="@+id/progress2"
+        android:layout_alignStart="@+id/progress1"
         android:layout_alignLeft="@+id/progress1"
-        android:layout_alignStart="@+id/progress1" />
+        android:indeterminateDrawable="@drawable/progress_gear" />
 
     <ProgressBar
+        android:id="@+id/progress5"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="-20dp"
-        android:id="@+id/progress5"
         android:layout_below="@+id/progress4"
+        android:layout_marginLeft="-20dp"
+        android:layout_toEndOf="@+id/progress4"
         android:layout_toRightOf="@+id/progress4"
-        android:layout_toEndOf="@+id/progress4" />
+        android:indeterminateDrawable="@drawable/progress_gear_fu" />
 </RelativeLayout>

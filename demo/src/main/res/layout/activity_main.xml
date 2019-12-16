@@ -117,6 +117,52 @@
                 android:textSize="11sp" />
         </FrameLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/demo13"
+                style="@style/homeButton"
+                android:layout_marginTop="0dp"
+                android:onClick="onClick"
+                android:text="demo13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="1dp"
+                android:text="new"
+                android:textColor="#ff0000"
+                android:textSize="11sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/demo14"
+                style="@style/homeButton"
+                android:layout_marginTop="0dp"
+                android:onClick="onClick"
+                android:text="demo14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="1dp"
+                android:text="new"
+                android:textColor="#ff0000"
+                android:textSize="11sp" />
+        </FrameLayout>
+
         <!--建设中，目前尚未完成-->
         <FrameLayout
             android:layout_width="match_parent"
@@ -125,11 +171,11 @@
             android:visibility="gone">
 
             <TextView
-                android:id="@+id/demo13"
+                android:id="@+id/demox"
                 style="@style/homeButton"
                 android:layout_marginTop="0dp"
                 android:onClick="onClick"
-                android:text="demo13" />
+                android:text="demox" />
 
             <TextView
                 android:layout_width="wrap_content"

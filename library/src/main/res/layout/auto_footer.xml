@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <ProgressBar
+        android:id="@+id/progress_auto"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/lay_auto_bottom_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1px"
+            android:background="#ccc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="我是有底线的"
+            android:textColor="#aaa"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1px"
+            android:background="#ccc" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.liaoinstan.demospring.demo1.Demo1Activity">
+    tools:context="com.liaoinstan.demospring.demo2.Demo2Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -32,9 +32,7 @@
             android:id="@+id/springview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            app:type="overlap">
+            android:background="#ffffff">
 
             <ListView
                 android:id="@+id/list"

@@ -22,89 +22,81 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.liaoinstan.springview.widget.SpringView
-            android:id="@+id/springview"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    android:background="#68b3f3"
+                    android:gravity="center"
+                    android:text="We are in ScrollView"
+                    android:textColor="#ffffff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3"
-                        android:gravity="center"
-                        android:text="We are in ScrollView"
-                        android:textColor="#ffffff" />
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3"
+                    android:gravity="center"
+                    android:text="SpringView支持ScrollView\n\n这是一个提供了记录刷新时间的Header"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/text"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3"
-                        android:gravity="center"
-                        android:text="SpringView支持ScrollView\n\n这是一个提供了记录刷新时间的Header"
-                        android:textColor="#ffffff"
-                        android:textSize="12sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#68b3f3"
+                    android:gravity="center"
+                    android:text="We are in ScrollView"
+                    android:textColor="#ffffff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#68b3f3"
-                        android:gravity="center"
-                        android:text="We are in ScrollView"
-                        android:textColor="#ffffff" />
-
-                </LinearLayout>
-            </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
 
-        </com.liaoinstan.springview.widget.SpringView>
-
-    </LinearLayout>
+    </com.liaoinstan.springview.widget.SpringView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

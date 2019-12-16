@@ -13,8 +13,9 @@ import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,8 @@ import java.util.List;
 /**
  * Created by liaoinstan on 2018/6/12.
  */
-public class WeixinHeader extends BaseHeader {
+public class WeixinHeader extends BaseSimpleHeader {
 
-    private View root;
     private RecyclerView recycler;
     private RecycleAdapterWeixinHeader adapter;
     private ImageView img_dot1;
@@ -52,9 +52,14 @@ public class WeixinHeader extends BaseHeader {
     private OnProgramLongClickListener onProgramLongClickListener;
     private OnWeixinHeaderLoadImgCallback imgLoadCallback;
 
+    public WeixinHeader() {
+        setType(SpringView.Type.FOLLOW);
+        setMovePara(1.5f);
+    }
+
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        root = inflater.inflate(R.layout.weixin_header, viewGroup, true);
+        View root = inflater.inflate(R.layout.weixin_header, viewGroup, true);
         recycler = root.findViewById(R.id.recycler);
         img_dot1 = root.findViewById(R.id.img_dot1);
         img_dot2 = root.findViewById(R.id.img_dot2);
@@ -152,7 +157,6 @@ public class WeixinHeader extends BaseHeader {
     public void onDropAnim(View rootView, int dy) {
         int dragSpringHeight = getDragSpringHeight(rootView);
         if (dy >= dragSpringHeight) hasOverSpringHeight = true;
-        if (dy <= 20) reset();
         if (dy > dragSpringHeight) {
             //如果拖拽超过停顿位置，则给内容设置位移系数保持居中
             int offset = dy - dragSpringHeight;
@@ -165,6 +169,8 @@ public class WeixinHeader extends BaseHeader {
                 recycler.setTranslationY(dy - dragSpringHeight);
                 //小圆点的一系列位移渐变缩放等动画
                 if (dy < dragSpringHeight / 2) {
+                    img_dot1.setTranslationX(0);
+                    img_dot3.setTranslationX(0);
                     float lv = dy / ((float) dragSpringHeight / 2); //0-1
                     int nowWidth = (int) (lv * dotWidth);
                     int nowWidthSide = (int) (lv * dotWidthSide);
@@ -173,11 +179,12 @@ public class WeixinHeader extends BaseHeader {
                     setViewWidthHeight(img_dot2, nowWidth, nowWidth);
                     setViewWidthHeight(img_dot3, nowWidthSide, nowWidthSide);
                     //小圆点居中
-                    lay_dot.setTranslationY(-(dy / 2 - nowWidth / 2));
+                    lay_dot.setTranslationY(-((float) dy / 2 - (float) nowWidth / 2));
                     //记录下小圆点最大位移距离
                     if (Math.abs(lay_dot.getTranslationY()) > dotMaxTranY) {
                         dotMaxTranY = Math.abs(lay_dot.getTranslationY());
                     }
+                    lay_dot.setAlpha(1);
                 } else if (dy < dragSpringHeight * 2 / 3) {
                     setViewWidthHeight(img_dot1, dotWidthSide, dotWidthSide);
                     setViewWidthHeight(img_dot2, dotWidth, dotWidth);
@@ -189,11 +196,12 @@ public class WeixinHeader extends BaseHeader {
                     img_dot3.setTranslationX(nowSpace);
                     //中间的小圆点不断变小
                     int width2 = (int) (dotWidth - (dotWidth - dotWidthSide) * lv);
-                    ViewGroup.LayoutParams layoutParam2 = img_dot2.getLayoutParams();
-                    layoutParam2.height = width2;
-                    layoutParam2.width = width2;
-                    img_dot2.setLayoutParams(layoutParam2);
+                    setViewWidthHeight(img_dot2, width2, width2);
+                    lay_dot.setAlpha(1);
                 } else if (dy < dragSpringHeight) {
+                    setViewWidthHeight(img_dot2, dotWidthSide, dotWidthSide);
+                    img_dot1.setTranslationX(-dotSpace - dotWidth);
+                    img_dot3.setTranslationX(dotSpace + dotWidth);
                     //分开后小圆点不断向下位移并透明消失
                     float lv = (dy - (float) dragSpringHeight * 2 / 3) / ((float) dragSpringHeight - (float) dragSpringHeight * 2 / 3); //0-1
                     float alpha = 1 - lv;
@@ -237,7 +245,6 @@ public class WeixinHeader extends BaseHeader {
         img_dot1.setTranslationX(0);
         img_dot3.setTranslationX(0);
         lay_dot.setTranslationY(0);
-        lay_dot.setAlpha(1f);
     }
 
     //###################### 外部接口 #######################

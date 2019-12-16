@@ -21,10 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:paddingBottom="40dp"
         android:paddingLeft="10dp"
-        android:paddingRight="20dp"
         android:paddingTop="30dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
         app:footer="@layout/footer"
         app:header="@layout/header"
         app:type="overlap">
@@ -133,41 +133,54 @@
 
         </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/group_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
+            <RadioGroup
+                android:id="@+id/group_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 样式:"
-                android:textColor="#000000" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/overlap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="overlap(重叠)"
-                android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 样式:"
+                    android:textColor="#000000" />
 
-            <RadioButton
-                android:id="@+id/follow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="follow(跟随)"
-                android:textSize="12sp" />
+                <RadioButton
+                    android:id="@+id/overlap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="overlap(重叠)"
+                    android:textSize="12sp" />
 
-            <RadioButton
-                android:id="@+id/drag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="drag(拖拽)"
-                android:textSize="12sp" />
+                <RadioButton
+                    android:id="@+id/follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="follow(跟随)"
+                    android:textSize="12sp" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/drag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="drag(拖拽)"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/scroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="scroll(滚动)"
+                    android:textSize="12sp" />
+
+            </RadioGroup>
+
+        </HorizontalScrollView>
 
         <RadioGroup
             android:id="@+id/group_give"

@@ -22,88 +22,79 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="#fefeff"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.liaoinstan.springview.widget.SpringView
-            android:id="@+id/springview"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#fefeff"
-            app:type="overlap">
+            android:layout_height="match_parent">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    android:background="#ffd5d1"
+                    android:gravity="center"
+                    android:text="We are in ScrollView"
+                    android:textColor="#ffffff" />
 
-                    <TextView
-                        android:id="@+id/text"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffd5d1"
-                        android:gravity="center"
-                        android:text="We are in ScrollView"
-                        android:textColor="#ffffff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="SpringView支持多点触控，双手连续下拉到底部试试\n\n图片素材比较模糊，自行替换"
+                    android:textColor="#cccccc"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffffff"
-                        android:gravity="center"
-                        android:text="SpringView支持多点触控，双手连续下拉到底部试试\n\n图片素材比较模糊，自行替换"
-                        android:textColor="#cccccc"
-                        android:textSize="12sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffd5d1" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffd5d1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffffff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffffff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffd5d1" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffd5d1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffffff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffffff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffd5d1" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffd5d1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffffff" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffffff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#ffd5d1" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#ffd5d1" />
-
-                </LinearLayout>
-            </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
 
-        </com.liaoinstan.springview.widget.SpringView>
-
-    </LinearLayout>
+    </com.liaoinstan.springview.widget.SpringView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

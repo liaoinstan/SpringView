@@ -53,4 +53,9 @@ public class InnerHeader extends BaseHeader {
     public void onFinishAnim() {
         Log.d(TAG, "onFinishAnim");
     }
+
+    @Override
+    public void onResetAnim() {
+        Log.d(TAG, "onResetAnim");
+    }
 }

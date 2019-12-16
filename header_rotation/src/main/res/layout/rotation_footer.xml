@@ -3,9 +3,10 @@
     android:layout_height="50dp">
 
     <ProgressBar
+        android:id="@+id/rotation_footer_progress"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/rotation_footer_progress"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:indeterminateDrawable="@drawable/progress_gear" />
 </RelativeLayout>

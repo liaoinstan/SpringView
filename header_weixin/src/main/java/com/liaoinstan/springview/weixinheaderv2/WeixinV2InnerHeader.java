@@ -5,23 +5,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.liaoinstan.springview.container.BaseHeader;
+import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
 import com.liaoinstan.springview.weixinheader.R;
+import com.liaoinstan.springview.widget.SpringView;
 
-public class WeixinV2InnerHeader extends BaseHeader {
+public class WeixinV2InnerHeader extends BaseSimpleHeader {
 
-    private View root;
-    private TextView text_search;
+    private OnSearchClickListener onSearchClickListener;
 
-    public WeixinV2InnerHeader(OnSearchClickListener onSearchClickListener) {
+    WeixinV2InnerHeader(OnSearchClickListener onSearchClickListener) {
+        setMovePara(2.0f);
+        setType(SpringView.Type.FOLLOW);
         this.onSearchClickListener = onSearchClickListener;
     }
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
-        root = inflater.inflate(R.layout.weixin_header_v2_inner, viewGroup, false);
-        text_search = root.findViewById(R.id.text_search);
+        View root = inflater.inflate(R.layout.weixin_header_v2_inner, viewGroup, false);
+        TextView text_search = root.findViewById(R.id.text_search);
         text_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,12 +66,6 @@ public class WeixinV2InnerHeader extends BaseHeader {
 
     @Override
     public void onFinishAnim() {
-    }
-
-    private OnSearchClickListener onSearchClickListener;
-
-    public void setOnSearchClickListener(OnSearchClickListener onSearchClickListener) {
-        this.onSearchClickListener = onSearchClickListener;
     }
 
     interface OnSearchClickListener {

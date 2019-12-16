@@ -34,7 +34,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="Demo9Activity"/>
+                app:title="Demo9Activity" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -54,7 +54,8 @@
             app:tabIndicatorColor="#5793e6"
             app:tabIndicatorHeight="1dp"
             app:tabSelectedTextColor="#5793e6"
-            app:tabTextColor="#665793e6" />
+            app:tabTextColor="#665793e6"
+            tools:background="#33ff0000" />
 
         <!--app:tabTextAppearance="@style/TabLayoutTextStyle"-->
 

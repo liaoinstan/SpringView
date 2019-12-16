@@ -33,7 +33,6 @@
             android:id="@+id/springview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="#ffffff">
 
             <androidx.recyclerview.widget.RecyclerView
