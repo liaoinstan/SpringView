@@ -70,7 +70,7 @@ class Utils {
     /**
      * 检查如果已经申请了震动权限，就震动一下，震动时长：time
      */
-    public static void vibrate(Context context, int time) {
+    static void vibrate(Context context, int time) {
         if (PermissionChecker.checkSelfPermission(context, Manifest.permission.VIBRATE) == PermissionChecker.PERMISSION_GRANTED) {
             Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
             if (vib != null) vib.vibrate(time);

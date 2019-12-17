@@ -55,9 +55,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="12dp"
                     android:paddingTop="20dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="12dp" />
 
             </com.liaoinstan.springview.widget.SpringView>
 

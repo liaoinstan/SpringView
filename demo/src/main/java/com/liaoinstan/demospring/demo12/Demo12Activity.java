@@ -98,7 +98,6 @@ public class Demo12Activity extends AppCompatActivity implements WeixinHeaderV2.
 
     @Override
     public boolean onDrop(Program program, RecyclerView.ViewHolder holder, int position) {
-        //Toast.makeText(Demo12Activity.this, "删除：" + program.getName(), Toast.LENGTH_SHORT).show();
         //返回ture会执行删除操作，false不删除
         return true;
     }
@@ -114,6 +113,11 @@ public class Demo12Activity extends AppCompatActivity implements WeixinHeaderV2.
         new AlertDialog.Builder(this)
                 .setMessage("确定要添加新的小程序？（仅测试）")
                 .setPositiveButton("确定", (dialog, which) -> {
+                    if (weixinHeaderV2.getRecentProgramCount() >= 7) {
+                        //'最近使用'最多只能有7条数据
+                        Toast.makeText(Demo12Activity.this, "已经放不下了", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     switch (new Random().nextInt(5)) {
                         case 0:
                             weixinHeaderV2.addItemRecent(new Program("ofo小黄车", String.valueOf(R.drawable.wx_program1)));

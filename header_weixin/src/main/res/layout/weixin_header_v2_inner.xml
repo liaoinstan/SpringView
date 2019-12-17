@@ -11,19 +11,23 @@
     <TextView
         android:id="@+id/text_search"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/shape_rect_coner_dark"
+        android:drawablePadding="5dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:paddingLeft="12dp"
-        android:drawablePadding="5dp"
+        android:paddingRight="12dp"
         android:text="搜索小程序"
-        android:drawableLeft="@drawable/weixin_ic_search"
-        android:textColor="@color/weixin_blank"
-        android:textSize="16sp" />
+        android:textColor="#88ffffff"
+        android:textSize="17sp"
+        tools:drawableLeft="@drawable/weixin_ic_search_light"
+        tools:drawableTint="#88ffffff" />
+
+    <!--由于drawableTint熟悉不支持低版本兼容，所以这里设置为tools属性，在代码里使用DrawableCompat动态设置-->
 
 </LinearLayout>

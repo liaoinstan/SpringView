@@ -220,7 +220,7 @@ public class WeixinHeader extends BaseSimpleHeader {
         //下拉超过临界高度时如果有震动权限就震动一下
         if (!hasOverSpringHeight && !upORdown && PermissionChecker.checkSelfPermission(rootView.getContext(), Manifest.permission.VIBRATE) == PermissionChecker.PERMISSION_GRANTED) {
             Vibrator vib = (Vibrator) rootView.getContext().getSystemService(Service.VIBRATOR_SERVICE);
-            if (vib != null) vib.vibrate(35);
+            if (vib != null) vib.vibrate(10);
         }
     }
 

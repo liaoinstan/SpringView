@@ -31,7 +31,7 @@ dependencies {
 publish {
     artifactId = 'WangyiHeader'  // artifactId
     uploadName = 'SpringView:WangyiHeader' // 展示名字
-    publishVersion = '1.6.0' // 版本
+    publishVersion = '1.7.0' // 版本
     desc = rootProject.ext.desc
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId

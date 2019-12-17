@@ -372,12 +372,12 @@ public class SpringView extends ViewGroup {
             //设置padding
             int paddingTopAdd = needHeaderScroll ? HEADER_SPRING_HEIGHT : 0;
             int paddingBottomAdd = needFooterScroll ? FOOTER_SPRING_HEIGHT : 0;
-            contentView.setPadding(0, paddingTopContent + paddingTopAdd, 0, paddingBottomContent + paddingBottomAdd);
+            contentView.setPadding(contentView.getPaddingLeft(), paddingTopContent + paddingTopAdd, contentView.getPaddingRight(), paddingBottomContent + paddingBottomAdd);
             if (contentView instanceof ViewGroup) {
                 ((ViewGroup) contentView).setClipToPadding(false);
             }
         } else {
-            contentView.setPadding(0, paddingTopContent, 0, paddingBottomContent);
+            contentView.setPadding(contentView.getPaddingLeft(), paddingTopContent, contentView.getPaddingRight(), paddingBottomContent);
             ((ViewGroup) contentView).setClipToPadding(false);
         }
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
@@ -1017,19 +1017,21 @@ public class SpringView extends ViewGroup {
      * {@link #callFresh()}的执行方法，不要暴露在外部
      */
     private void _callFresh() {
-        isCallFresh = true;
-        flag.scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
-        needResetAnim = true;   //允许执行回弹动画
-        flag.hasCallRefresh = false;
-        flag.hasCallFull = false;
-        flag.callFreshOrLoad = 1;
-        if (headerHander != null) {
-            headerHander.onPreDrag(header);
-            headerHander.onStartAnim();
+        if (!isTop()) {
+            isCallFresh = true;
+            flag.scrollAnimType = 1;     //不是全部回弹动画（半回弹到limit位置）
+            needResetAnim = true;   //允许执行回弹动画
+            flag.hasCallRefresh = false;
+            flag.hasCallFull = false;
+            flag.callFreshOrLoad = 1;
+            if (headerHander != null) {
+                headerHander.onPreDrag(header);
+                headerHander.onStartAnim();
+            }
+            showHeaderAndFooter(true, false);
+            mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
+            invalidate();
         }
-        showHeaderAndFooter(true, false);
-        mScroller.startScroll(0, getScrollY(), 0, -getScrollY() - HEADER_SPRING_HEIGHT, MOVE_TIME);
-        invalidate();
     }
 
     private void showHeaderAndFooter(Boolean showHeader, Boolean showFooter) {

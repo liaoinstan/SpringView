@@ -14,7 +14,7 @@
         android:paddingLeft="22dp"
         android:paddingRight="22dp"
         android:textColor="#99ffffff"
-        android:textSize="11sp"
+        android:textSize="12sp"
         tools:text="最近使用" />
 
     <TextView
@@ -27,8 +27,8 @@
         android:background="@drawable/shape_rect_coner_dash_line"
         android:gravity="center"
         android:text="拖动到此处设为我的小程序"
-        android:textColor="#99ffffff"
-        android:textSize="11sp"
+        android:textColor="#88ffffff"
+        android:textSize="12sp"
         android:visibility="gone"
         tools:visibility="visible" />
 

@@ -259,8 +259,8 @@ public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCal
             float lv = (dy - (float) dragLimiteHeight) / ((float) dragSpringHeight - dragLimiteHeight); //0-1
             smokeView.setAlpha(lv);
             lay_content.setAlpha(lv);
-            if (contentView != null) contentView.setAlpha(1 - 0.5f * lv); //1-0.5
-            if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.5f * lv);  //0-0.5
+            if (contentView != null) contentView.setAlpha(1 - 0.9f * lv); //1-0.1
+            if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.1f * lv);  //0-0.1
             //计算内容缩放比例
             float scale = MIN_SCALE + (1 - MIN_SCALE) * lv; //0.7-1
             if (!hasOverSpringHeight) {
@@ -275,7 +275,7 @@ public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCal
         } else {
             smokeView.setAlpha(1);
             lay_content.setAlpha(1);
-            if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.5f);
+            if (weixinTitleBar != null) weixinTitleBar.setTitleBgAlpha(0.1f);
             if (contentView != null) contentView.setAlpha(0f);
             text_title.setScaleX(1);
             text_title.setScaleY(1);
@@ -298,6 +298,7 @@ public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCal
     public void onPreDrag(View rootView) {
         //拖拽开始前，开始绘制烟雾效果
         smokeView.startAnim();
+        springViewInner.callFresh();
     }
 
     @Override
@@ -366,22 +367,40 @@ public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCal
     //###################### 对外公开的方法（添加、移除小程序） #######################
 
     //添加小程序到'最近使用'
-    public void addItemRecent(List<Program> programs) {
-        int position = Utils.getMoreItemIndex(results);
-        if (position != -1) {
-            results.addAll(position, programs);
-            if (adapter != null) adapter.notifyDataSetChanged();
+    public boolean addItemRecent(List<Program> programs) {
+        int recentProgramCount = Utils.getRecentProgramCount(results);
+        if (recentProgramCount < 7) {
+            //如果添加后大于7条数据，则截取掉多余的数据
+            if (recentProgramCount + programs.size() > 7) {
+                programs = programs.subList(0, 7 - recentProgramCount);
+            }
+            int position = Utils.getMoreItemIndex(results);
+            if (position != -1) {
+                results.addAll(position, programs);
+                if (adapter != null) adapter.notifyDataSetChanged();
+            }
+            return true;
+        } else {
+            //最近使用最多只展示7条数据
+            return false;
         }
     }
 
     //添加小程序到'最近使用'
-    public void addItemRecent(Program program) {
-        int position = Utils.getMoreItemIndex(results);
-        if (position != -1) {
-            results.add(position, program);
-            if (adapter != null) {
-                adapter.notifyItemInserted(position);
+    public boolean addItemRecent(Program program) {
+        int recentProgramCount = Utils.getRecentProgramCount(results);
+        if (recentProgramCount < 7) {
+            int position = Utils.getMoreItemIndex(results);
+            if (position != -1) {
+                results.add(position, program);
+                if (adapter != null) {
+                    adapter.notifyItemInserted(position);
+                }
             }
+            return true;
+        } else {
+            //最近使用最多只展示7条数据
+            return false;
         }
     }
 
@@ -413,6 +432,16 @@ public class WeixinHeaderV2 extends BaseSimpleHeader implements DragItemTouchCal
                 }
             }
         }
+    }
+
+    //获取当前的'最近使用'小程序的数量
+    public int getRecentProgramCount() {
+        return Utils.getRecentProgramCount(results);
+    }
+
+    //获取当前的'我的'小程序的数量
+    public int getMineProgramCount() {
+        return Utils.getMineProgramCount(results);
     }
 
     //###################### 动画 #######################

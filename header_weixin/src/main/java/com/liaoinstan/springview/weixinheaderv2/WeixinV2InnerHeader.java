@@ -1,9 +1,12 @@
 package com.liaoinstan.springview.weixinheaderv2;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.liaoinstan.springview.container.BaseSimpleHeader;
 import com.liaoinstan.springview.utils.DensityUtil;
@@ -24,6 +27,11 @@ public class WeixinV2InnerHeader extends BaseSimpleHeader {
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
         View root = inflater.inflate(R.layout.weixin_header_v2_inner, viewGroup, false);
         TextView text_search = root.findViewById(R.id.text_search);
+        //搜索图标着色，用DrawableCompat着色可以向下兼容，而drawableTint属性不向下兼容
+        Drawable originalSearchDrawable = viewGroup.getContext().getResources().getDrawable(R.drawable.weixin_ic_search_light).mutate();
+        Drawable searchDrawable = DrawableCompat.wrap(originalSearchDrawable);
+        DrawableCompat.setTintList(searchDrawable, text_search.getTextColors());
+        text_search.setCompoundDrawablesWithIntrinsicBounds(searchDrawable, null, null, null);
         text_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
