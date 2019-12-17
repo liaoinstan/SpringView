@@ -35,8 +35,6 @@ public class Demo12Activity extends AppCompatActivity implements WeixinHeaderV2.
         add(new Program("好货", String.valueOf(R.drawable.wx_program3)));
         add(new Program("快闪", String.valueOf(R.drawable.wx_program4)));
         add(new Program("蘑菇街", String.valueOf(R.drawable.wx_program5)));
-        add(new Program("ofo小黄车", String.valueOf(R.drawable.wx_program1)));
-        add(new Program("哈图", String.valueOf(R.drawable.wx_program2)));
     }};
 
     @Override
@@ -98,7 +96,7 @@ public class Demo12Activity extends AppCompatActivity implements WeixinHeaderV2.
 
     @Override
     public boolean onDrop(Program program, RecyclerView.ViewHolder holder, int position) {
-        //返回ture会执行删除操作，false不删除
+        //返回ture会执行删除操作，false不删除，默认会删除
         return true;
     }
 
