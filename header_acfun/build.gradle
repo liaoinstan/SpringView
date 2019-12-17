@@ -24,7 +24,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
     implementation project(':library')
-//    implementation 'com.liaoinstan.springview:library:1.6.0'
+//    implementation 'com.liaoinstan.springview:library:1.7.0'
 }
 
 publish {

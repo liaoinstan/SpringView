@@ -41,12 +41,13 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
     implementation "com.google.android.material:material:$materialLibraryVersion"
 
-//    implementation 'com.liaoinstan.springview:library:1.6.0'
-//    implementation 'com.liaoinstan.springview:AcfunHeader:1.6.0'
-//    implementation 'com.liaoinstan.springview:AliHeader:1.6.0'
-//    implementation 'com.liaoinstan.springview:MeituanHeader:1.6.0'
-//    implementation 'com.liaoinstan.springview:RotationHeader:1.6.0'
-//    implementation 'com.liaoinstan.springview:WeixinHeader:1.6.0'
+//    implementation 'com.liaoinstan.springview:library:1.7.0'
+//    implementation 'com.liaoinstan.springview:AcfunHeader:1.7.0'
+//    implementation 'com.liaoinstan.springview:AliHeader:1.7.0'
+//    implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'
+//    implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'
+//    implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'
+//    implementation 'com.liaoinstan.springview:DuHeader:1.7.0'
 
     implementation project(':library')
     implementation project(':header_ali')

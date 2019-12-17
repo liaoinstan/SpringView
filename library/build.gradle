@@ -34,5 +34,5 @@ publish {
     website = rootProject.website
     licences = rootProject.licences
     autoPublish = false
-    dryRun = false
+    dryRun = true
 }
