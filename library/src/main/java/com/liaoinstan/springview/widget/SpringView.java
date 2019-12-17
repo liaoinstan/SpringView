@@ -400,10 +400,10 @@ public class SpringView extends ViewGroup {
                     //content:3 header: x footer x
                     contentLay.bringToFront();
                 } else {
-                    //content:2 header: 1 footer 3
+                    //content:3 header: 1 footer 2
                     if (header != null) header.bringToFront();
-                    contentLay.bringToFront();
                     if (footer != null) footer.bringToFront();
+                    contentLay.bringToFront();
                 }
             } else {
                 if (judgeType(footerHander) == Type.OVERLAP) {

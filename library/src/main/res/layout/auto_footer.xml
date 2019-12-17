@@ -8,7 +8,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/lay_auto_bottom_line"
@@ -23,14 +23,15 @@
             android:background="#ccc" />
 
         <TextView
+            android:id="@+id/text_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="我是有底线的"
             android:textColor="#aaa"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="我是有底线的" />
 
         <View
             android:layout_width="60dp"
