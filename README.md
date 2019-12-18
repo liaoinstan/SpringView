@@ -79,11 +79,11 @@ dependencies {
 
    //other Headers/Footers, choose one or more that you like
    implementation 'com.liaoinstan.springview:AcfunHeader:1.7.0'         //AcFun style （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.7.0'           //alitrip style （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'       //meituan style （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'      //mechanical gear style （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'        //weichat Mini Program header（only header）
-   implementation 'com.liaoinstan.springview:DuHeader:1.7.0'		//'Du'app header（only header）
+   implementation 'com.liaoinstan.springview:AliHeader:1.7.0'           //Alitrip style （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'       //Meituan style （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'      //Mechanical gear style （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'        //WeChat Mini Program header（only header）
+   implementation 'com.liaoinstan.springview:DuHeader:1.7.0'		//Du app header（only header）
 }
 ```
 or Maven：
@@ -107,7 +107,7 @@ or Maven：
  
 ### **v1.6.0**
 - Add a new header (WeixinHeaderV2) for new version of WeChat (WeChat 7).
-- The mvement parameter of SpringView (MovePara) no longer affects both Header and Footer. BaseHeader/Footer now has a new getMovePara() interface that allows you to set different movement parameters for Header and Footer to match different drag-and-drop feel.(if you don't implement the interface, SpringView is still compatible with the previous rules).
+- The movement parameter of SpringView (MovePara) no longer affects both Header and Footer. BaseHeader/Footer now has a new getMovePara() interface that allows you to set different movement parameters for Header and Footer to match different drag-and-drop feel.(if you don't implement the interface, SpringView is still compatible with the previous rules).
 - Update to Android X.
 - Fixed several drag and drop stickiness issues, and callFresh method callback issues.
  
