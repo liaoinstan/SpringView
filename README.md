@@ -83,6 +83,7 @@ dependencies {
    implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'       //meituan style （header and footer）
    implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'      //mechanical gear style （header and footer）
    implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'        //weichat Mini Program header（only header）
+   implementation 'com.liaoinstan.springview:DuHeader:1.7.0'		//'Du'app header（only header）
 }
 ```
 or Maven：
