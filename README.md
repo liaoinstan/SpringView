@@ -100,14 +100,14 @@ or Maven：
 **Update log**
 --------
 ### **v1.7.0**
-- Add new a header for 'Du' app.
+- Add new a header (DuHeader), and a auto-scrolling Footer (AutoFooter).
 - Add a new type SCROLL. Based on this mode, effects such as scrolling to the bottom and automatic loading can be achieved.
 - Header / Footer now has setType () method, you can set different Type for Header and Footer respectively.
 - Fix issus.
  
 ### **v1.6.0**
 - Add a new header (WeixinHeaderV2) for new version of WeChat (WeChat 7).
-- The mvement parameter of SpringView (MovePara) no longer affects both Header and Footer. BaseHeader/Footer now has a new getMovePara() interface that allows you to set different movement parameters for Header and Footer to match different drag-and-drop feel.(if you don't implement the interface, SpringView is still compatible with the previous rules)
+- The mvement parameter of SpringView (MovePara) no longer affects both Header and Footer. BaseHeader/Footer now has a new getMovePara() interface that allows you to set different movement parameters for Header and Footer to match different drag-and-drop feel.(if you don't implement the interface, SpringView is still compatible with the previous rules).
 - Update to Android X.
 - Fixed several drag and drop stickiness issues, and callFresh method callback issues.
  
