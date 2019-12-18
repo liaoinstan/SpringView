@@ -1,4 +1,4 @@
-更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/DemoSpring-1.6.0-release.apk?raw=true)  　　　　English document：[English document](https://github.com/liaoinstan/SpringView/blob/master/README.md)
+更多请移步至：[我的CSDN博客](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk演示：[点击下载](https://github.com/liaoinstan/SpringView/blob/master/apk/DemoSpring-1.7.0-release.apk?raw=true)  　　　　English document：[English document](https://github.com/liaoinstan/SpringView/blob/master/README.md)
 
 SpringView
 =====
@@ -26,6 +26,7 @@ SpringView
 **📌新增：** 
 
 ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_v2.gif) 
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/auto_footer.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/du_header.gif) 
 
 **如何使用 SpringView**
 --------
@@ -74,14 +75,15 @@ springView.setListener(new SpringView.OnFreshListener() {
 dependencies {
 
    //SpringView核心库 (只包含DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.6.0'
+   implementation 'com.liaoinstan.springview:library:1.7.0'
 
    //以下是各个风格的Header/Footer，选择自己喜欢的引入
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.6.0'         //AcFun风格 （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.6.0'           //阿里旅行风格 （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.6.0'       //美团风格 （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.6.0'      //齿轮机械风格 （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.6.0'        //微信小程序header（只有header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.7.0'         //AcFun风格 （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.7.0'           //阿里旅行风格 （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'       //美团风格 （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'      //齿轮机械风格 （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'        //微信小程序header（只有header）
+   implementation 'com.liaoinstan.springview:DuHeader:1.7.0'	        //'毒'App header（只有header）
 }
 ```
 或者 Maven：
@@ -89,7 +91,7 @@ dependencies {
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
   <type>pom</type>
 </dependency>
 ```
