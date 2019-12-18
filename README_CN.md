@@ -99,6 +99,12 @@ dependencies {
 
 **更新日志**
 --------
+#### **v1.7.0**
+ - 新增一个仿毒app的header (DuHeader)，和一个自动滚动的Footer (AutoFooter)
+ - 新增SCROLL模式，基于这种模式可以实现滚动到底部自动加载等效果
+ - Header/Footer现在新增了setType()方法，你可以分别给Header和Footer设置不同的Type
+ - 修复一些Bug
+
 #### **v1.6.0**
  - 新增了仿新版微信(微信7)小程序效果的header (WeixinHeaderV2) 
  - SpringView的移动参数(MovePara)不再同时影响Header和Footer了，BaseHeader/Footer新增了getMovePara()接口，你可以分别为header和footer设置不同的移动参数以匹配不同的拖拽手感。（如果你没有实现该接口，SpringView仍然兼容以前的规则）
