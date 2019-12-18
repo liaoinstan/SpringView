@@ -1,4 +1,4 @@
-More, please visit：[My CSDN](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk demo：[download](https://github.com/liaoinstan/SpringView/blob/master/apk/DemoSpring-1.6.0-release.apk?raw=true)  　　　　中文文档：[中文文档](https://github.com/liaoinstan/SpringView/blob/master/README_CN.md)
+More, please visit：[My CSDN](http://blog.csdn.net/liaoinstan/article/details/51023907)  　　　　apk demo：[download](https://github.com/liaoinstan/SpringView/blob/master/apk/DemoSpring-1.7.0-release.apk?raw=true)  　　　　中文文档：[中文文档](https://github.com/liaoinstan/SpringView/blob/master/README_CN.md)
 
 SpringView
 =====
@@ -25,7 +25,8 @@ SpringView
 
 **📌new：** 
 
-![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_v2_s.gif)
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/auto_footer_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_v2_s.gif)
+![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/du_header_s.gif) ![这里写图片描述](https://github.com/liaoinstan/SpringView/blob/master/screenshot/weixin_header_v2_s.gif)
 
 **How to use SpringView**
 --------
@@ -74,14 +75,14 @@ use Gradle:
 dependencies {
 
    //SpringView core library (only include DefaultHeader/Footer)
-   implementation 'com.liaoinstan.springview:library:1.6.0'
+   implementation 'com.liaoinstan.springview:library:1.7.0'
 
    //other Headers/Footers, choose one or more that you like
-   implementation 'com.liaoinstan.springview:AcfunHeader:1.6.0'         //AcFun style （header and footer）
-   implementation 'com.liaoinstan.springview:AliHeader:1.6.0'           //alitrip style （header and footer）
-   implementation 'com.liaoinstan.springview:MeituanHeader:1.6.0'       //meituan style （header and footer）
-   implementation 'com.liaoinstan.springview:RotationHeader:1.6.0'      //mechanical gear style （header and footer）
-   implementation 'com.liaoinstan.springview:WeixinHeader:1.6.0'        //weichat Mini Program header（only header）
+   implementation 'com.liaoinstan.springview:AcfunHeader:1.7.0'         //AcFun style （header and footer）
+   implementation 'com.liaoinstan.springview:AliHeader:1.7.0'           //alitrip style （header and footer）
+   implementation 'com.liaoinstan.springview:MeituanHeader:1.7.0'       //meituan style （header and footer）
+   implementation 'com.liaoinstan.springview:RotationHeader:1.7.0'      //mechanical gear style （header and footer）
+   implementation 'com.liaoinstan.springview:WeixinHeader:1.7.0'        //weichat Mini Program header（only header）
 }
 ```
 or Maven：
@@ -89,7 +90,7 @@ or Maven：
 <dependency>
   <groupId>com.liaoinstan.springview</groupId>
   <artifactId>library</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
   <type>pom</type>
 </dependency>
 ```
