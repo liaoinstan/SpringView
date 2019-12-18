@@ -78,10 +78,12 @@ public class Demo13Activity extends AppCompatActivity {
     }
 
     //模拟请求服务器数据
-    //如果数据小于14条就每次返回2条，大于14条就返回null，模拟服务器已经没有数据的情况，这只为演示
+    //如果数据小于25条就每次返回5条，大于25条就返回null，模拟服务器已经没有数据的情况，这只为演示
     private List<String> getRemoteData() {
-        if (mDatas.size() < 20) {
+        if (mDatas.size() < 25) {
             List<String> remoteData = new ArrayList<>();
+            remoteData.add("add item");
+            remoteData.add("add item");
             remoteData.add("add item");
             remoteData.add("add item");
             remoteData.add("add item");

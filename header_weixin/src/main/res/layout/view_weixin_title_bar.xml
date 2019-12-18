@@ -32,7 +32,7 @@
         android:layout_height="80dp"
         android:layout_gravity="top"
         android:background="@drawable/select_delete_bg"
-        android:drawableTop="@drawable/weixin_ic_drop"
+        android:drawableTop="@drawable/select_delete_drop"
         android:gravity="center"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
