@@ -9,7 +9,6 @@ import com.liaoinstan.springview.container.BaseSimpleHeader;
 public class DuHeader extends BaseSimpleHeader {
 
     private DuView duView;
-    private boolean hasOverSpringHeight;
 
     @Override
     public View getView(LayoutInflater inflater, ViewGroup viewGroup) {
@@ -21,18 +20,12 @@ public class DuHeader extends BaseSimpleHeader {
     @Override
     public void onDropAnim(View rootView, int dy) {
         int dragLimitHeight = getDragLimitHeight(rootView);
-        if (dy < 20) hasOverSpringHeight = false;
-        if (dy >= dragLimitHeight) hasOverSpringHeight = true;
-        if (!hasOverSpringHeight) {
-            float lv = 1 - (float) (dy) / (dragLimitHeight); //1-0
-            duView.setProgress(lv * 100);
-            //向下偏移半个view高度，平滑拖拽
-            float height = duView.getMeasuredHeight() * 0.5f;
-            float tranY = height * lv;
-            duView.setTranslationY(tranY);
-        } else {
-            duView.setProgress(0);
-        }
+        float lv = 1 - (float) (dy) / (dragLimitHeight); //1-0
+        duView.setProgress(lv * 100);
+        //向下偏移半个view高度，平滑拖拽
+        float height = duView.getMeasuredHeight() * 0.5f;
+        float tranY = height * lv;
+        duView.setTranslationY(tranY);
     }
 
     @Override
