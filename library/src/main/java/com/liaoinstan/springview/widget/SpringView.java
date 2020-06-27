@@ -1,5 +1,6 @@
 package com.liaoinstan.springview.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -238,6 +239,7 @@ public class SpringView extends ViewGroup {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private void paddingScroll() {
         if (judgeType(headerHander) != Type.SCROLL && judgeType(footerHander) != Type.SCROLL) {
             return;
@@ -796,7 +798,7 @@ public class SpringView extends ViewGroup {
     private void callOnAfterEndingAnim() {
         final DragHander dragHander = isTop() ? headerHander : footerHander;
         if (dragHander == null) return;
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 dragHander.onEndingAnimEnd();
@@ -1343,19 +1345,23 @@ public class SpringView extends ViewGroup {
         if (header != null) {
             removeView(this.header);
         }
-        View tempView = headerHander.getView(inflater, this);
-        //建议在自定义Header中getView方法中调用inflate(R.layout.header_view, viewGroup, false);时，第三个参数'attachToRoot'传false
-        //这里进行这个判断是为了兼容，无论attachToRoot用的什么参数都能够正常运行
-        //_setFooter(.)同理
-        if (tempView instanceof SpringView) {
-            //如果tempView就是SpringView，则说明自定义Header的getView方法中inflate传入了true，此时header已经被添加到SpringView中了，无需addView
-            //获取最后一个view，即是header view
-            this.header = getChildAt(getChildCount() - 1);
+        if (headerHander != null) {
+            View tempView = headerHander.getView(inflater, this);
+            //建议在自定义Header中getView方法中调用inflate(R.layout.header_view, viewGroup, false);时，第三个参数'attachToRoot'传false
+            //这里进行这个判断是为了兼容，无论attachToRoot用的什么参数都能够正常运行
+            //_setFooter(.)同理
+            if (tempView instanceof SpringView) {
+                //如果tempView就是SpringView，则说明自定义Header的getView方法中inflate传入了true，此时header已经被添加到SpringView中了，无需addView
+                //获取最后一个view，即是header view
+                this.header = getChildAt(getChildCount() - 1);
+            } else {
+                //否则，则说明getView方法中inflate传入的是false，需要在这里添加
+                //此时tempView即是header view
+                addView(tempView);
+                this.header = tempView;
+            }
         } else {
-            //否则，则说明getView方法中inflate传入的是false，需要在这里添加
-            //此时tempView即是header view
-            addView(tempView);
-            this.header = tempView;
+            this.header = null;
         }
         setScrollChangeListener();
         requestLayout();
@@ -1378,13 +1384,17 @@ public class SpringView extends ViewGroup {
         if (footer != null) {
             removeView(footer);
         }
-        View tempView = footerHander.getView(inflater, this);
-        //同_setHeader(.),注释详见_setHeader(.)方法
-        if (tempView instanceof SpringView) {
-            this.footer = getChildAt(getChildCount() - 1);
+        if (footerHander != null) {
+            View tempView = footerHander.getView(inflater, this);
+            //同_setHeader(.),注释详见_setHeader(.)方法
+            if (tempView instanceof SpringView) {
+                this.footer = getChildAt(getChildCount() - 1);
+            } else {
+                addView(tempView);
+                this.footer = tempView;
+            }
         } else {
-            addView(tempView);
-            this.footer = tempView;
+            this.footer = null;
         }
         setScrollChangeListener();
         requestLayout();
