@@ -137,7 +137,7 @@ public class SpringView extends ViewGroup {
         }
     }
 
-    public SpringView( Context context) {
+    public SpringView(Context context) {
         this(context, null);
     }
 
