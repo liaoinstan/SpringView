@@ -104,6 +104,7 @@ public class SpringView extends ViewGroup {
     private RecyclerView.OnScrollListener onRecyclerScrollListener;
     private NestedScrollView.OnScrollChangeListener onNestedScrollChangeListener;
     private OnScrollChangeListener onScrollChangeListener;
+    private AppBarStateChangeListener appBarStateChangeListener;
 
     @Override
     protected void onAttachedToWindow() {
@@ -112,12 +113,27 @@ public class SpringView extends ViewGroup {
         AppBarLayout appBarLayout = SpringHelper.findAppBarLayout(this);
         appBarCouldScroll = SpringHelper.couldScroll(appBarLayout);
         if (appBarLayout != null) {
-            appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
-                @Override
-                public void onStateChanged(AppBarLayout appBarLayout, State state) {
-                    appbarState = state;
-                }
-            });
+            if (appBarStateChangeListener == null) {
+                appBarStateChangeListener = new AppBarStateChangeListener() {
+                    @Override
+                    public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                        appbarState = state;
+                    }
+                };
+            }
+            appBarLayout.addOnOffsetChangedListener(appBarStateChangeListener);
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //解决ViewPager更新内容时出现的内存泄漏
+        if (appBarStateChangeListener != null) {
+            AppBarLayout appBarLayout = SpringHelper.findAppBarLayout(this);
+            if (appBarLayout != null) {
+                appBarLayout.removeOnOffsetChangedListener(appBarStateChangeListener);
+            }
         }
     }
 
